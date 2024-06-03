@@ -45,7 +45,7 @@ export default function Card({ v, ethThreshold }) {
           <div class="min-w-0 flex-auto">
             <div class="mt-1">
               <div class="text-sm">
-                {formatEther(v.ethCollected)} / {ethThreshold} ETH
+                {Number(formatEther(v.ethCollected)).toFixed(4)} / {ethThreshold} ETH
               </div>
             </div>
           </div>
@@ -110,7 +110,7 @@ export default function Card({ v, ethThreshold }) {
           id="style-HciqI"
         >
           {`${
-            (formatEther(v.ethCollected) / ethThreshold) * 100
+            Number((formatEther(v.ethCollected) / ethThreshold) * 100).toFixed(2)
           }%`}
         </div>
       </div>
