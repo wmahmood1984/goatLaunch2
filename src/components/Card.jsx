@@ -17,7 +17,7 @@ export default function Card({ v, ethThreshold }) {
           to={`details/${v[10]}`}
           state={{ data: v }}
           class="  truncate text-3xl text-green-400  text-[#FFB921] hover:underline font-bold  "
-          href="viewpresale?tokenAddress=0x91DeB06aA91d13A5ab572e62495FeceA2c8053Ac"
+
         >
           {v[0]}
         </Link>
@@ -114,9 +114,11 @@ export default function Card({ v, ethThreshold }) {
           }%`}
         </div>
       </div>
-      <a
+      <Link
+              to={`details/${v[10]}`}
+              state={{ data: v }}
         class=" mt-1 truncate text-xs leading-5 text-gray-400  text-[#FFB921] hover:underline font-bold  "
-        href="/viewpresale?tokenAddress=0xff13b7C5342d1540DF5BFb8Ad9e0f852Ef459520"
+
       >
         <div class="relative p-[2px] group flex flex-1 shrink-0">
           <div
@@ -140,7 +142,7 @@ export default function Card({ v, ethThreshold }) {
             />
           </div>
         </div>
-      </a>
+      </Link>
       <Link
         class=" flex text-lg text-white font-bold bg-black/25 hover:bg-black/50 p-3 rounded-md mt-5 w-full text-center justify-center undefined "
         to={`details/${v[10]}`}

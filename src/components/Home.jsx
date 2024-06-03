@@ -3,20 +3,23 @@ import "./Home.css";
 import Sidebar from "./Sidebar";
 import Search from "./Search";
 
-import { LaunchAbi, LaunchAddress, defaultRpc, defualtChain } from "../config";
+import { LaunchAbi, LaunchAddress, defaultRpc, defualtChain, ethScan } from "../config";
 import Web3 from "web3";
 import { ethers, formatEther } from "ethers";
 import { Link } from "react-router-dom";
 import { wte } from "./writeFun";
 import Card from "./Card";
-import { useWeb3ModalProvider, useWeb3ModalAccount } from '@web3modal/ethers/react'
-import { BrowserProvider, } from 'ethers'
+import {
+  useWeb3ModalProvider,
+  useWeb3ModalAccount,
+} from "@web3modal/ethers/react";
+import { BrowserProvider } from "ethers";
 
 import { useMediaQuery } from "react-responsive";
 
 export default function Home() {
   const isMobile = useMediaQuery({ query: "(max-width: 600px)" });
-  const { address, chainId, isConnected } = useWeb3ModalAccount()
+  const { address, chainId, isConnected } = useWeb3ModalAccount();
   // const { activate, deactivate, account, library, chainId } = useWeb3React();
   const wchain = chainId ? chainId : defualtChain;
   const web3 = new Web3(new Web3.providers.HttpProvider(defaultRpc));
@@ -85,8 +88,6 @@ export default function Home() {
     //return {pic:`https://aquamarine-confident-planarian-104.mypinata.cloud/ipfs/${item[9][4]}`, name:item[0]}
   };
 
-
-
   function handleChange(event) {
     const selectedValue = parseInt(event.target.value);
 
@@ -99,7 +100,6 @@ export default function Home() {
     const filtered =
       v == 1
         ? cloned.sort((a, b) => {
-
             return Number(a.tokenCreated) - Number(b.tokenCreated);
           })
         : cloned.sort(
@@ -111,27 +111,24 @@ export default function Home() {
     setFilteredData(filtered);
   };
 
-
-  const filterByFilled = (v)=>{
-    const cloned = [...data]
-    if(v==0){
-      setFilteredData(cloned) 
-    }else if(v==1){
-      const filtered = cloned.filter(e=>e.launched==true)
-      setFilteredData(filtered)
-    }else if(v==2){
-      const filtered = cloned.filter(e=>e.launched==false)
-      setFilteredData(filtered)
+  const filterByFilled = (v) => {
+    const cloned = [...data];
+    if (v == 0) {
+      setFilteredData(cloned);
+    } else if (v == 1) {
+      const filtered = cloned.filter((e) => e.launched == true);
+      setFilteredData(filtered);
+    } else if (v == 2) {
+      const filtered = cloned.filter((e) => e.launched == false);
+      setFilteredData(filtered);
     }
-  }
+  };
 
-  console.log(
-    "console",
- data
-  );
+  console.log("console", data);
 
   return (
-    data && sorted && (
+    data &&
+    sorted && (
       <div
         style={{ backgroundImage: `url("./assets/backg.png")` }}
         class="relative h-full snipcss-oFsOI"
@@ -179,7 +176,7 @@ export default function Home() {
                             <div>
                               <a
                                 class=" text-black font-semibold mr-1  text-[#FFB921] hover:underline font-bold  "
-                                href="profile?address=0x3c39F1E1F53Dd4a8B0A19B82B42781AFf2d7E4E6"
+                                href={`${ethScan}${v.data.buyer}`}
                               >
                                 {`${v.data.buyer.slice(
                                   0,
@@ -190,12 +187,13 @@ export default function Home() {
                                 {wte(v.data.ethPaid)}
                               </span>{" "}
                               ETH of
-                              <a
+                              <Link
                                 class=" text-black font-semibold ml-1  text-[#FFB921] hover:underline font-bold  "
-                                href="/viewpresale?tokenAddress=0x91DeB06aA91d13A5ab572e62495FeceA2c8053Ac"
+                                to={`details/${v[10]}`}
+                                state={{ data: v }}  
                               >
                                 {findname(v.data.tokenAddress).name}
-                              </a>
+                              </Link>
                             </div>
                             <img
                               src={findname(v.data.tokenAddress).pic}
@@ -218,7 +216,7 @@ export default function Home() {
                             <div>
                               <a
                                 class=" text-black font-semibold mr-1  text-[#FFB921] hover:underline font-bold  "
-                                href="profile?address=0x9de614630f2e756Fb731A789EC64dDe2F99Ef379"
+                                href={`${ethScan}${v.data.seller}`}
                               >
                                 {`${v.data.seller.slice(
                                   0,
@@ -229,12 +227,14 @@ export default function Home() {
                                 {wte(v.data.ethReceived)}
                               </span>{" "}
                               ETH of
-                              <a
+                              <Link
+                                            to={`details/${v[10]}`}
+                                            state={{ data: v }}
                                 class=" text-black font-semibold ml-1  text-[#FFB921] hover:underline font-bold  "
-                                href="/viewpresale?tokenAddress=0x0b4B6b641fe9151BeB3e733C05BB60Ad7d0a4D0e"
+
                               >
                                 {findname(v.data.tokenAddress).name}
-                              </a>
+                              </Link>
                             </div>
                             <img
                               src={findname(v.data.tokenAddress).pic}
@@ -249,31 +249,32 @@ export default function Home() {
               </div>
 
               <div class="flex items-center justify-center gap-20">
-                {sorted.map((v, e) => 
-                {if(e<2){
-                  return(
-                    <div>
-                      <h2 class="text-2xl mb-4 font-bold tracking-tight text-white sm:text-2xl mt-6 text-center">
-                        🏆 Top 🏆
-                      </h2>
-                      <div class="flex flex-col sm:flex-row flex-wrap justify-center gap-4 mb-6">
-                        <div
-                          style={isMobile ? { width: "100%" } : {}}
-                          className={
-                            isMobile
-                              ? ""
-                              : "block bg-neutral-600/25 rounded-3xl overflow-hidden shrink-0 flex-1 p-4 sm:min-w-[20rem] style-cGSC2"
-                          }
-                          id="style-cGSC2"
-                        >
-                          <div class="flex gap-x-4 mt-1 justify-center">
-                            <a
-                              class="  truncate text-3xl text-green-400  text-[#FFB921] hover:underline font-bold  "
-                              href="viewpresale?tokenAddress=0x91DeB06aA91d13A5ab572e62495FeceA2c8053Ac"
-                            >
-                              {v[0]}
-                            </a>
-                            {/* <div class="text-yellow-400 text-xs">
+                {sorted.map((v, e) => {
+                  if (e < 2) {
+                    return (
+                      <div>
+                        <h2 class="text-2xl mb-4 font-bold tracking-tight text-white sm:text-2xl mt-6 text-center">
+                          🏆 Top 🏆
+                        </h2>
+                        <div class="flex flex-col sm:flex-row flex-wrap justify-center gap-4 mb-6">
+                          <div
+                            style={isMobile ? { width: "100%" } : {}}
+                            className={
+                              isMobile
+                                ? ""
+                                : "block bg-neutral-600/25 rounded-3xl overflow-hidden shrink-0 flex-1 p-4 sm:min-w-[20rem] style-cGSC2"
+                            }
+                            id="style-cGSC2"
+                          >
+                            <div class="flex gap-x-4 mt-1 justify-center">
+                              <Link
+                                class="  truncate text-3xl text-green-400  text-[#FFB921] hover:underline font-bold  "
+                                to={`details/${v[10]}`}
+                                state={{ data: v }}
+                              >
+                                {v[0]}
+                              </Link>
+                              {/* <div class="text-yellow-400 text-xs">
                               <svg
                                 aria-hidden="true"
                                 focusable="false"
@@ -291,127 +292,134 @@ export default function Home() {
                               </svg>
                               <span class="ml-1">13</span>
                             </div> */}
-                          </div>
-                          <img
-                            src={`https://aquamarine-confident-planarian-104.mypinata.cloud/ipfs/${v[9][4]}`}
-                            class="rounded-full h-20 w-20 m-auto mt-4"
-                            alt="Token Image"
-                          />
-                          <div class="flex justify-between mb-5">
-                            <div class="flex gap-x-4">
-                              <div class="min-w-0 flex-auto">
-                                <div class="mt-1">
-                                  <div class="text-sm">         {Number(formatEther(v.ethCollected)).toFixed(4)} / {ethThreshold} ETH</div>
+                            </div>
+                            <img
+                              src={`https://aquamarine-confident-planarian-104.mypinata.cloud/ipfs/${v[9][4]}`}
+                              class="rounded-full h-20 w-20 m-auto mt-4"
+                              alt="Token Image"
+                            />
+                            <div class="flex justify-between mb-5">
+                              <div class="flex gap-x-4">
+                                <div class="min-w-0 flex-auto">
+                                  <div class="mt-1">
+                                    <div class="text-sm">
+                                      {" "}
+                                      {Number(
+                                        formatEther(v.ethCollected)
+                                      ).toFixed(4)}{" "}
+                                      / {ethThreshold} ETH
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="flex flex-col sm:items-end flex-shrink-0">
+                                <div class="mt-1 flex justify-start space-x-2">
+                                  <a
+                                    class=" text-white hover:text-blue-500  text-[#FFB921] hover:underline font-bold  "
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    href={v[9][0]}
+                                  >
+                                    <svg
+                                      aria-hidden="true"
+                                      focusable="false"
+                                      data-prefix="fas"
+                                      data-icon="window-maximize"
+                                      class="svg-inline--fa fa-window-maximize "
+                                      role="img"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      viewBox="0 0 512 512"
+                                    >
+                                      <path
+                                        fill="currentColor"
+                                        d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM96 96H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H96c-17.7 0-32-14.3-32-32s14.3-32 32-32z"
+                                      ></path>
+                                    </svg>
+                                  </a>
+                                  <a
+                                    class="  text-white hover:text-blue-500  text-[#FFB921] hover:underline font-bold  "
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    href={v[9][2]}
+                                  >
+                                    <svg
+                                      aria-hidden="true"
+                                      focusable="false"
+                                      data-prefix="fab"
+                                      data-icon="telegram"
+                                      class="svg-inline--fa fa-telegram "
+                                      role="img"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      viewBox="0 0 496 512"
+                                    >
+                                      <path
+                                        fill="currentColor"
+                                        d="M248,8C111.033,8,0,119.033,0,256S111.033,504,248,504,496,392.967,496,256,384.967,8,248,8ZM362.952,176.66c-3.732,39.215-19.881,134.378-28.1,178.3-3.476,18.584-10.322,24.816-16.948,25.425-14.4,1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25,5.342-39.5,3.652-3.793,67.107-61.51,68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608,69.142-14.845,10.194-26.894,9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7,18.45-13.7,108.446-47.248,144.628-62.3c68.872-28.647,83.183-33.623,92.511-33.789,2.052-.034,6.639.474,9.61,2.885a10.452,10.452,0,0,1,3.53,6.716A43.765,43.765,0,0,1,362.952,176.66Z"
+                                      ></path>
+                                    </svg>
+                                  </a>
+                                  <a
+                                    class=" text-white hover:text-blue-500  text-[#FFB921] hover:underline font-bold  "
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    href={v[9][1]}
+                                  >
+                                    <svg
+                                      aria-hidden="true"
+                                      focusable="false"
+                                      data-prefix="fab"
+                                      data-icon="x-twitter"
+                                      class="svg-inline--fa fa-x-twitter "
+                                      role="img"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      viewBox="0 0 512 512"
+                                    >
+                                      <path
+                                        fill="currentColor"
+                                        d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"
+                                      ></path>
+                                    </svg>
+                                  </a>
                                 </div>
                               </div>
                             </div>
-                            <div class="flex flex-col sm:items-end flex-shrink-0">
-                              <div class="mt-1 flex justify-start space-x-2">
-                                <a
-                                  class=" text-white hover:text-blue-500  text-[#FFB921] hover:underline font-bold  "
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  href={v[9][0]}
-                                >
-                                  <svg
-                                    aria-hidden="true"
-                                    focusable="false"
-                                    data-prefix="fas"
-                                    data-icon="window-maximize"
-                                    class="svg-inline--fa fa-window-maximize "
-                                    role="img"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 512 512"
-                                  >
-                                    <path
-                                      fill="currentColor"
-                                      d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM96 96H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H96c-17.7 0-32-14.3-32-32s14.3-32 32-32z"
-                                    ></path>
-                                  </svg>
-                                </a>
-                                <a
-                                  class="  text-white hover:text-blue-500  text-[#FFB921] hover:underline font-bold  "
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  href={v[9][2]}
-                                >
-                                  <svg
-                                    aria-hidden="true"
-                                    focusable="false"
-                                    data-prefix="fab"
-                                    data-icon="telegram"
-                                    class="svg-inline--fa fa-telegram "
-                                    role="img"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 496 512"
-                                  >
-                                    <path
-                                      fill="currentColor"
-                                      d="M248,8C111.033,8,0,119.033,0,256S111.033,504,248,504,496,392.967,496,256,384.967,8,248,8ZM362.952,176.66c-3.732,39.215-19.881,134.378-28.1,178.3-3.476,18.584-10.322,24.816-16.948,25.425-14.4,1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25,5.342-39.5,3.652-3.793,67.107-61.51,68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608,69.142-14.845,10.194-26.894,9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7,18.45-13.7,108.446-47.248,144.628-62.3c68.872-28.647,83.183-33.623,92.511-33.789,2.052-.034,6.639.474,9.61,2.885a10.452,10.452,0,0,1,3.53,6.716A43.765,43.765,0,0,1,362.952,176.66Z"
-                                    ></path>
-                                  </svg>
-                                </a>
-                                <a
-                                  class=" text-white hover:text-blue-500  text-[#FFB921] hover:underline font-bold  "
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  href={v[9][1]}
-                                >
-                                  <svg
-                                    aria-hidden="true"
-                                    focusable="false"
-                                    data-prefix="fab"
-                                    data-icon="x-twitter"
-                                    class="svg-inline--fa fa-x-twitter "
-                                    role="img"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 512 512"
-                                  >
-                                    <path
-                                      fill="currentColor"
-                                      d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"
-                                    ></path>
-                                  </svg>
-                                </a>
+                            <div class="w-full bg-neutral-600/25 rounded-md overflow-hidden shrink-0 mb-4">
+                              <div
+                                style={{
+                                  width: `${
+                                    (formatEther(v.ethCollected) /
+                                      ethThreshold) *
+                                    100
+                                  }%`,
+                                }}
+                                class="bg-blue-700 p-1.5 text-center text-xs font-medium leading-none text-white style-O1xiV"
+                                id="style-O1xiV"
+                              >
+                                {`${Number(
+                                  (formatEther(v.ethCollected) / ethThreshold) *
+                                    100
+                                ).toFixed(4)}%`}
                               </div>
                             </div>
-                          </div>
-                          <div class="w-full bg-neutral-600/25 rounded-md overflow-hidden shrink-0 mb-4">
-                            <div
-                                       style={{
-                                        width: `${
-                                          (formatEther(v.ethCollected) / ethThreshold) * 100
-                                        }%`,
-                                      }}
-                              class="bg-blue-700 p-1.5 text-center text-xs font-medium leading-none text-white style-O1xiV"
-                              id="style-O1xiV"
+                            <Link
+                                          to={`details/${v[10]}`}
+                                          state={{ data: v }}
+                              class=" mt-1 truncate text-xs leading-5 text-gray-400  text-[#FFB921] hover:underline font-bold  "
+
+                            ></Link>
+                            <Link
+                              class=" flex text-lg text-white font-bold bg-black/25 hover:bg-black/50 p-3 rounded-md mt-5 w-full text-center justify-center undefined "
+                              to={`details/${v[10]}`}
+                              state={{ data: v }}
                             >
-          {`${
-            Number((formatEther(v.ethCollected) / ethThreshold) * 100).toFixed(4)
-          }%`}
-                            </div>
+                              View
+                            </Link>
                           </div>
-                          <a
-                            class=" mt-1 truncate text-xs leading-5 text-gray-400  text-[#FFB921] hover:underline font-bold  "
-                            href="/viewpresale?tokenAddress=0x91DeB06aA91d13A5ab572e62495FeceA2c8053Ac"
-                          ></a>
-                          <Link
-                            class=" flex text-lg text-white font-bold bg-black/25 hover:bg-black/50 p-3 rounded-md mt-5 w-full text-center justify-center undefined "
-                            to={`details/${v[10]}`}
-                            state={{ data: v }}
-                          >
-                            View
-                          </Link>
                         </div>
                       </div>
-                    </div>
-                    )
-                }
-                  
-                }
-                
-                  
-                )}
+                    );
+                  }
+                })}
               </div>
               <div class="mb-5">
                 <section
@@ -507,12 +515,12 @@ export default function Home() {
                                 <input
                                   onChange={() => {
                                     setFilled(0);
-                                    filterByFilled(0)
+                                    filterByFilled(0);
                                   }}
                                   class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                   type="checkbox"
                                   value="all"
-                                  checked={filled==0}
+                                  checked={filled == 0}
                                   name="filled"
                                 />
                                 <label class="ml-3 min-w-0 flex-1 text-white">
@@ -523,13 +531,13 @@ export default function Home() {
                                 <input
                                   onChange={() => {
                                     setFilled(1);
-                                    filterByFilled(1)
+                                    filterByFilled(1);
                                   }}
                                   class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                   type="checkbox"
                                   value="filled"
                                   name="filled"
-                                  checked={filled==1}
+                                  checked={filled == 1}
                                 />
                                 <label class="ml-3 min-w-0 flex-1 text-white">
                                   Filled
@@ -539,13 +547,13 @@ export default function Home() {
                                 <input
                                   onChange={() => {
                                     setFilled(2);
-                                    filterByFilled(2)
+                                    filterByFilled(2);
                                   }}
                                   class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                   type="checkbox"
                                   value="unfilled"
                                   name="filled"
-                                  checked={filled==2}
+                                  checked={filled == 2}
                                 />
                                 <label class="ml-3 min-w-0 flex-1 text-white">
                                   Unfilled

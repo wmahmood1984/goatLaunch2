@@ -296,7 +296,7 @@ export default function Details() {
                                   alt="Token Image"
                                 />
                                 <div class="ml-3 bg-green-300 rounded-md pl-1 pr-1 text-black">
-                                  <a href="profile?address=0x498ff8B3E0Bba856b7D2F037DefA008708339e67">
+                                  <a href={`${ethScan}${v._user}`}>
                                     {`${v._user.slice(0, 4)}...${v._user.slice(
                                       -5
                                     )}`}
