@@ -36,7 +36,7 @@ export const getContract = async (conAdd,conAbi,walletProvider)=>{
   return contract
 }
 
-export default function Details() {
+export default function Details({selected,setSelected}) {
   const { address, chainId, isConnected } = useWeb3ModalAccount()
   const { walletProvider } = useWeb3ModalProvider()
   const { state } = useLocation();
