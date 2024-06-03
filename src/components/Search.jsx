@@ -86,7 +86,7 @@ export default function Search() {
               onClick={()=>{activate(injected)}}   
               style={{opacity:hovered? "0.5" : "1", background:"black",zIndex:9,height:"95%",width:"95%",borderRadius: "9999px", padding:"10px 16px 0px 12px"}}
               className="p-4 ">{account? `${account.slice(0,4)}...${account.slice(-5)}`: "Connect"}</a> */}
-              <w3m-button/>
+              <w3m-button balance="hide"/>
               </span>
             </button>
           </div>

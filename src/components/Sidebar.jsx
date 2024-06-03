@@ -108,7 +108,7 @@ export default function Sidebar({selected,setSelected}) {
                   </li>
                   <li>
                     <Link
-
+                        to="leaderboard"
                                           className={selected==2?`${_selec}`:`${_nonSelect}`}
                       onClick={()=>{setSelected(2)}}
 
