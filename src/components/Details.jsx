@@ -245,7 +245,7 @@ export default function Details({selected,setSelected}) {
         class="snipcss-qdNqy"
       >
         <div class="relative h-full">
-          <div class="fixed -z-10 pointer-events-none inset-0 overflow-hidden">
+          {/* <div class="fixed -z-10 pointer-events-none inset-0 overflow-hidden">
             <div class="absolute top-0 left-0 right-0 -u-z-10">
               <img
                 src="https://www.basejump.pro/blur-02.svg"
@@ -260,7 +260,7 @@ export default function Details({selected,setSelected}) {
                 class="w-full"
               />
             </div>
-          </div>
+          </div> */}
 
           <div class="lg:pl-72">
           <Search selected={selected} setSelected={setSelected}/>

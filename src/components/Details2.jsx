@@ -12,7 +12,7 @@ import Card from "./Card";
 
 import { useMediaQuery } from 'react-responsive'
 
-export default function Details() {
+export default function Details({selected,setSelected}) {
   
   const isMobile = useMediaQuery({ query: '(max-width: 600px)' })
   const { activate, deactivate, account, library, chainId } = useWeb3React();
@@ -81,7 +81,7 @@ export default function Details() {
       <div
       style={{backgroundImage:`url("/assets/backg.png")`}}
       class="relative h-full snipcss-oFsOI">
-        <div class="fixed -z-10 pointer-events-none inset-0 overflow-hidden">
+        {/* <div class="fixed -z-10 pointer-events-none inset-0 overflow-hidden">
           <div class="absolute top-0 left-0 right-0 -u-z-10">
             <img
               src="https://www.basejump.pro/blur-02.svg"
@@ -96,7 +96,7 @@ export default function Details() {
               class="w-full"
             />
           </div>
-        </div>
+        </div> */}
 
         <div class="lg:pl-72">
           <Search />
