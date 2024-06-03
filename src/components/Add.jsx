@@ -154,7 +154,7 @@ const validation = ()=>{
         </div>
 
         <div class="lg:pl-72 snipcss0-0-0-1">
-        <Search/>
+        <Search selected={selected} setSelected={setSelected}/>
           <main class="py-10 relative snipcss0-1-1-22">
             <div class="px-4 sm:px-6 lg:px-8 mx-auto snipcss0-2-22-23">
               <div class="mx-auto max-w-7xl snipcss0-3-23-24">
