@@ -1,0 +1,613 @@
+body {  
+    line-height:1.5;
+    font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    color:var(--fallback-bc,oklch(var(--bc)/1));
+  }  
+body { 
+/* CSS Variables that may have been missed get put on body */ 
+    --tw-text-opacity:  1;  
+    --tw-text-opacity:  1;  
+    --tw-text-opacity:  1;  
+    --tw-text-opacity:  1;  
+    --tw-text-opacity:  1;  
+    --tw-blur:  blur(24px); 
+    --tw-text-opacity:  1;  
+    --tw-space-x-reverse:  0;  
+} 
+
+* { 
+    box-sizing: border-box; 
+    border: 0 solid #e5e7eb;
+} 
+
+.relative { 
+    position: relative;
+} 
+
+.flex { 
+    display: flex;
+} 
+
+.flex-col { 
+    flex-direction: column;
+} 
+
+.justify-center { 
+    justify-content: center;
+} 
+
+@media (min-width: 640px){ 
+  .sm\:flex-row { 
+    flex-direction: row;
+  } 
+
+  .sm\:justify-between { 
+    justify-content: space-between;
+  } 
+
+  .sm\:px-6 { 
+    padding-left: 1.5rem;
+  } 
+
+  .sm\:px-6 { 
+    padding-right: 1.5rem;
+  } 
+}     
+
+@media (min-width: 1024px){ 
+  .lg\:px-8 { 
+    padding-left: 2rem; 
+    padding-right: 2rem;
+  } 
+
+  .lg\:pl-72 { 
+    padding-left: 18rem;
+  } 
+}     
+
+body { 
+    margin: 0; 
+    line-height: inherit;
+} 
+
+html { 
+    line-height: 1.5; 
+    -webkit-text-size-adjust: 100%; 
+    -moz-tab-size: 4; 
+    -o-tab-size: 4; 
+    tab-size: 4; 
+    font-family: ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji; 
+    font-feature-settings: normal; 
+    font-variation-settings: normal; 
+    -webkit-tap-highlight-color: transparent;
+} 
+
+html { 
+    -webkit-tap-highlight-color: transparent;
+} 
+
+html { 
+    background-color: #191a1a; 
+    color: #fff;
+} 
+
+:root { 
+    --toastify-color-info: #3498db; 
+    --toastify-color-success: #07bc0c; 
+    --toastify-color-warning: #f1c40f; 
+    --toastify-color-error: #e74c3c; 
+    --toastify-icon-color-info: var(--toastify-color-info); 
+    --toastify-icon-color-success: var(--toastify-color-success); 
+    --toastify-icon-color-warning: var(--toastify-color-warning); 
+    --toastify-icon-color-error: var(--toastify-color-error); 
+    --toastify-color-progress-info: var(--toastify-color-info); 
+    --toastify-color-progress-success: var(--toastify-color-success); 
+    --toastify-color-progress-warning: var(--toastify-color-warning); 
+    --toastify-color-progress-error: var(--toastify-color-error);
+} 
+
+:root { 
+    background-color: var(--fallback-b1,oklch(var(--b1)/1)); 
+    color: var(--fallback-bc,oklch(var(--bc)/1));
+} 
+
+:root { 
+    color-scheme: dark; 
+    --b1: 25.3267% 0.015896 252.417568; 
+    --bc: 74.6477% 0.0216 264.435964; 
+} 
+
+:root { 
+    --w3m-color-mix-strength: 0%; 
+    --w3m-font-family: Inter, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; 
+    --w3m-font-size-master: 10px; 
+    --w3m-border-radius-master: 4px; 
+    --wui-font-family: var(--w3m-font-family); 
+    --wui-font-size-mini: calc(var(--w3m-font-size-master) * 0.8); 
+    --wui-font-size-micro: var(--w3m-font-size-master); 
+    --wui-font-size-tiny: calc(var(--w3m-font-size-master) * 1.2); 
+    --wui-font-size-small: calc(var(--w3m-font-size-master) * 1.4); 
+    --wui-font-size-paragraph: calc(var(--w3m-font-size-master) * 1.6); 
+    --wui-font-size-medium: calc(var(--w3m-font-size-master) * 1.8); 
+    --wui-font-size-large: calc(var(--w3m-font-size-master) * 2); 
+    --wui-font-size-medium-title: calc(var(--w3m-font-size-master) * 2.4); 
+    --wui-font-size-2xl: calc(var(--w3m-font-size-master) * 4); 
+    --wui-border-radius-5xs: var(--w3m-border-radius-master); 
+    --wui-border-radius-4xs: calc(var(--w3m-border-radius-master) * 1.5); 
+    --wui-border-radius-3xs: calc(var(--w3m-border-radius-master) * 2); 
+    --wui-border-radius-xxs: calc(var(--w3m-border-radius-master) * 3); 
+    --wui-border-radius-xs: calc(var(--w3m-border-radius-master) * 4); 
+    --wui-border-radius-s: calc(var(--w3m-border-radius-master) * 5); 
+    --wui-border-radius-m: calc(var(--w3m-border-radius-master) * 7); 
+    --wui-border-radius-l: calc(var(--w3m-border-radius-master) * 9); 
+    --wui-border-radius-3xl: calc(var(--w3m-border-radius-master) * 20); 
+    --wui-color-modal-bg: var(--wui-color-modal-bg-base); 
+    --wui-color-blue-100: var(--wui-color-blue-base-100); 
+    --wui-color-accent-100: var(--wui-color-accent-base-100); 
+    --wui-color-accent-090: var(--wui-color-accent-base-090); 
+    --wui-color-accent-080: var(--wui-color-accent-base-080); 
+    --wui-accent-glass-090: var(--wui-accent-glass-base-090); 
+    --wui-accent-glass-080: var(--wui-accent-glass-base-080); 
+    --wui-accent-glass-020: var(--wui-accent-glass-base-020); 
+    --wui-accent-glass-015: var(--wui-accent-glass-base-015); 
+    --wui-accent-glass-010: var(--wui-accent-glass-base-010); 
+    --wui-accent-glass-005: var(--wui-accent-glass-base-005); 
+    --wui-accent-glass-002: var(--wui-accent-glass-base-002); 
+    --wui-color-fg-100: var(--wui-color-fg-base-100); 
+    --wui-color-fg-125: var(--wui-color-fg-base-125); 
+    --wui-color-fg-150: var(--wui-color-fg-base-150); 
+    --wui-color-fg-175: var(--wui-color-fg-base-175); 
+    --wui-color-fg-200: var(--wui-color-fg-base-200); 
+    --wui-color-fg-225: var(--wui-color-fg-base-225); 
+    --wui-color-fg-250: var(--wui-color-fg-base-250); 
+    --wui-color-fg-275: var(--wui-color-fg-base-275); 
+    --wui-color-fg-300: var(--wui-color-fg-base-300); 
+    --wui-color-bg-100: var(--wui-color-bg-base-100); 
+    --wui-color-bg-125: var(--wui-color-bg-base-125); 
+    --wui-color-bg-150: var(--wui-color-bg-base-150); 
+    --wui-color-bg-175: var(--wui-color-bg-base-175); 
+    --wui-color-bg-200: var(--wui-color-bg-base-200); 
+    --wui-color-bg-225: var(--wui-color-bg-base-225); 
+    --wui-color-bg-250: var(--wui-color-bg-base-250); 
+    --wui-color-bg-275: var(--wui-color-bg-base-275); 
+    --wui-color-bg-300: var(--wui-color-bg-base-300); 
+    --wui-color-success-100: var(--wui-color-success-base-100); 
+    --wui-color-error-100: var(--wui-color-error-base-100); 
+    --wui-icon-box-bg-error-100: var(--wui-icon-box-bg-error-base-100); 
+    --wui-icon-box-bg-blue-100: var(--wui-icon-box-bg-blue-base-100); 
+    --wui-icon-box-bg-success-100: var(--wui-icon-box-bg-success-base-100); 
+    --wui-icon-box-bg-inverse-100: var(--wui-icon-box-bg-inverse-base-100); 
+    --wui-all-wallets-bg-100: var(--wui-all-wallets-bg-base-100); 
+    --wui-avatar-border: var(--wui-avatar-border-base); 
+    --wui-thumbnail-border: var(--wui-thumbnail-border-base); 
+} 
+
+:root { 
+    --wui-color-modal-bg: color-mix(            in srgb,            var(--w3m-color-mix) var(--w3m-color-mix-strength),            var(--wui-color-modal-bg-base)          ); 
+    --wui-box-shadow-blue: color-mix(in srgb, var(--wui-color-accent-100) 16%, transparent); 
+    --wui-color-accent-090: color-mix(            in srgb,            var(--wui-color-accent-base-100) 90%,            var(--w3m-default)          ); 
+    --wui-color-accent-080: color-mix(            in srgb,            var(--wui-color-accent-base-100) 80%,            var(--w3m-default)          ); 
+    --wui-color-accent-090: color-mix(            in srgb,            var(--wui-color-accent-base-100) 90%,            transparent          ); 
+    --wui-color-accent-080: color-mix(            in srgb,            var(--wui-color-accent-base-100) 80%,            transparent          ); 
+    --wui-accent-glass-090: color-mix(            in srgb,            var(--wui-color-accent-base-100) 90%,            transparent          ); 
+    --wui-accent-glass-080: color-mix(            in srgb,            var(--wui-color-accent-base-100) 80%,            transparent          ); 
+    --wui-accent-glass-020: color-mix(            in srgb,            var(--wui-color-accent-base-100) 20%,            transparent          ); 
+    --wui-accent-glass-015: color-mix(            in srgb,            var(--wui-color-accent-base-100) 15%,            transparent          ); 
+    --wui-accent-glass-010: color-mix(            in srgb,            var(--wui-color-accent-base-100) 10%,            transparent          ); 
+    --wui-accent-glass-005: color-mix(            in srgb,            var(--wui-color-accent-base-100) 5%,            transparent          ); 
+    --wui-color-accent-002: color-mix(            in srgb,            var(--wui-color-accent-base-100) 2%,            transparent          ); 
+    --wui-color-fg-100: color-mix(            in srgb,            var(--w3m-color-mix) var(--w3m-color-mix-strength),            var(--wui-color-fg-base-100)          ); 
+    --wui-color-fg-125: color-mix(            in srgb,            var(--w3m-color-mix) var(--w3m-color-mix-strength),            var(--wui-color-fg-base-125)          ); 
+    --wui-color-fg-150: color-mix(            in srgb,            var(--w3m-color-mix) var(--w3m-color-mix-strength),            var(--wui-color-fg-base-150)          ); 
+    --wui-color-fg-175: color-mix(            in srgb,            var(--w3m-color-mix) var(--w3m-color-mix-strength),            var(--wui-color-fg-base-175)          ); 
+    --wui-color-fg-200: color-mix(            in srgb,            var(--w3m-color-mix) var(--w3m-color-mix-strength),            var(--wui-color-fg-base-200)          ); 
+    --wui-color-fg-225: color-mix(            in srgb,            var(--w3m-color-mix) var(--w3m-color-mix-strength),            var(--wui-color-fg-base-225)          ); 
+    --wui-color-fg-250: color-mix(            in srgb,            var(--w3m-color-mix) var(--w3m-color-mix-strength),            var(--wui-color-fg-base-250)          ); 
+    --wui-color-fg-275: color-mix(            in srgb,            var(--w3m-color-mix) var(--w3m-color-mix-strength),            var(--wui-color-fg-base-275)          ); 
+    --wui-color-fg-300: color-mix(            in srgb,            var(--w3m-color-mix) var(--w3m-color-mix-strength),            var(--wui-color-fg-base-300)          ); 
+    --wui-color-bg-100: color-mix(            in srgb,            var(--w3m-color-mix) var(--w3m-color-mix-strength),            var(--wui-color-bg-base-100)          ); 
+    --wui-color-bg-125: color-mix(            in srgb,            var(--w3m-color-mix) var(--w3m-color-mix-strength),            var(--wui-color-bg-base-125)          ); 
+    --wui-color-bg-150: color-mix(            in srgb,            var(--w3m-color-mix) var(--w3m-color-mix-strength),            var(--wui-color-bg-base-150)          ); 
+    --wui-color-bg-175: color-mix(            in srgb,            var(--w3m-color-mix) var(--w3m-color-mix-strength),            var(--wui-color-bg-base-175)          ); 
+    --wui-color-bg-200: color-mix(            in srgb,            var(--w3m-color-mix) var(--w3m-color-mix-strength),            var(--wui-color-bg-base-200)          ); 
+    --wui-color-bg-225: color-mix(            in srgb,            var(--w3m-color-mix) var(--w3m-color-mix-strength),            var(--wui-color-bg-base-225)          ); 
+    --wui-color-bg-250: color-mix(            in srgb,            var(--w3m-color-mix) var(--w3m-color-mix-strength),            var(--wui-color-bg-base-250)          ); 
+    --wui-color-bg-275: color-mix(            in srgb,            var(--w3m-color-mix) var(--w3m-color-mix-strength),            var(--wui-color-bg-base-275)          ); 
+    --wui-color-bg-300: color-mix(            in srgb,            var(--w3m-color-mix) var(--w3m-color-mix-strength),            var(--wui-color-bg-base-300)          ); 
+    --wui-color-success-100: color-mix(            in srgb,            var(--w3m-color-mix) var(--w3m-color-mix-strength),            var(--wui-color-success-base-100)          ); 
+    --wui-color-error-100: color-mix(            in srgb,            var(--w3m-color-mix) var(--w3m-color-mix-strength),            var(--wui-color-error-base-100)          ); 
+    --wui-icon-box-bg-error-100: color-mix(            in srgb,            var(--w3m-color-mix) var(--w3m-color-mix-strength),            var(--wui-icon-box-bg-error-base-100)          ); 
+    --wui-icon-box-bg-accent-100: color-mix(            in srgb,            var(--w3m-color-mix) var(--w3m-color-mix-strength),            var(--wui-icon-box-bg-blue-base-100)          ); 
+    --wui-icon-box-bg-success-100: color-mix(            in srgb,            var(--w3m-color-mix) var(--w3m-color-mix-strength),            var(--wui-icon-box-bg-success-base-100)          ); 
+    --wui-icon-box-bg-inverse-100: color-mix(            in srgb,            var(--w3m-color-mix) var(--w3m-color-mix-strength),            var(--wui-icon-box-bg-inverse-base-100)          ); 
+    --wui-all-wallets-bg-100: color-mix(            in srgb,            var(--w3m-color-mix) var(--w3m-color-mix-strength),            var(--wui-all-wallets-bg-base-100)          ); 
+    --wui-avatar-border: color-mix(            in srgb,            var(--w3m-color-mix) var(--w3m-color-mix-strength),            var(--wui-avatar-border-base)          ); 
+    --wui-thumbnail-border: color-mix(            in srgb,            var(--w3m-color-mix) var(--w3m-color-mix-strength),            var(--wui-thumbnail-border-base)          );
+} 
+
+:root { 
+    --w3m-color-mix: #fff; 
+    --w3m-accent: unset; 
+    --w3m-default: #fff; 
+    --wui-color-modal-bg-base: #191a1a; 
+    --wui-color-blue-base-100: #47a1ff; 
+    --wui-color-accent-base-100: var(--w3m-accent); 
+    --wui-color-accent-base-090: #59aaff; 
+    --wui-color-accent-base-080: #6cb4ff; 
+    --wui-accent-glass-base-090: rgba(71, 161, 255, 0.9); 
+    --wui-accent-glass-base-080: rgba(71, 161, 255, 0.8); 
+    --wui-accent-glass-base-020: rgba(71, 161, 255, 0.2); 
+    --wui-accent-glass-base-015: rgba(71, 161, 255, 0.15); 
+    --wui-accent-glass-base-010: rgba(71, 161, 255, 0.1); 
+    --wui-accent-glass-base-005: rgba(71, 161, 255, 0.05); 
+    --wui-accent-glass-base-002: rgba(71, 161, 255, 0.02); 
+    --wui-color-fg-base-100: #e4e7e7; 
+    --wui-color-fg-base-125: #d0d5d5; 
+    --wui-color-fg-base-150: #a8b1b1; 
+    --wui-color-fg-base-175: #a8b0b0; 
+    --wui-color-fg-base-200: #949e9e; 
+    --wui-color-fg-base-225: #868f8f; 
+    --wui-color-fg-base-250: #788080; 
+    --wui-color-fg-base-275: #788181; 
+    --wui-color-fg-base-300: #6e7777; 
+    --wui-color-bg-base-100: #141414; 
+    --wui-color-bg-base-125: #191a1a; 
+    --wui-color-bg-base-150: #1e1f1f; 
+    --wui-color-bg-base-175: #222525; 
+    --wui-color-bg-base-200: #272a2a; 
+    --wui-color-bg-base-225: #2c3030; 
+    --wui-color-bg-base-250: #313535; 
+    --wui-color-bg-base-275: #363b3b; 
+    --wui-color-bg-base-300: #3b4040; 
+    --wui-color-success-base-100: #26d962; 
+    --wui-color-error-base-100: #f25a67; 
+    --wui-icon-box-bg-error-base-100: #3c2426; 
+    --wui-icon-box-bg-blue-base-100: #20303f; 
+    --wui-icon-box-bg-success-base-100: #1f3a28; 
+    --wui-icon-box-bg-inverse-base-100: #243240; 
+    --wui-all-wallets-bg-base-100: #222b35; 
+    --wui-avatar-border-base: #252525; 
+    --wui-thumbnail-border-base: #252525; 
+} 
+
+.block { 
+    display: block;
+} 
+
+.flex-1 { 
+    flex: 1 1 0%;
+} 
+
+.shrink-0 { 
+    flex-shrink: 0;
+} 
+
+.overflow-hidden { 
+    overflow: hidden;
+} 
+
+.rounded-3xl { 
+    border-radius: 1.5rem;
+} 
+
+.bg-neutral-600\/25 { 
+    background-color: rgba(82,82,82,.25);
+} 
+
+.p-8 { 
+    padding: 2rem;
+} 
+
+@media (min-width: 640px){ 
+  .sm\:min-w-\[20rem\] { 
+    min-width: 20rem;
+  } 
+}     
+
+*,:after,:before { 
+    box-sizing: border-box; 
+    border: 0 solid #e5e7eb;
+} 
+
+.mt-1 { 
+    margin-top: .25rem;
+} 
+
+.gap-x-4 { 
+    -moz-column-gap: 1rem; 
+    column-gap: 1rem;
+} 
+
+.mb-5 { 
+    margin-bottom: 1.25rem;
+} 
+
+.justify-between { 
+    justify-content: space-between;
+} 
+
+.mb-4 { 
+    margin-bottom: 1rem;
+} 
+
+.w-full { 
+    width: 100%;
+} 
+
+.rounded-md { 
+    border-radius: .375rem;
+} 
+
+a { 
+    color: inherit; 
+    text-decoration: inherit;
+} 
+
+.truncate { 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap;
+} 
+
+.text-xs { 
+    font-size: .75rem; 
+    line-height: 1rem;
+} 
+
+.font-bold { 
+    font-weight: 700;
+} 
+
+.leading-5 { 
+    line-height: 1.25rem;
+} 
+
+.text-\[\#FFB921\] { 
+    --tw-text-opacity: 1; 
+    color: rgb(255 185 33/var(--tw-text-opacity));
+} 
+
+.text-gray-400 { 
+    --tw-text-opacity: 1; 
+    color: rgb(156 163 175/var(--tw-text-opacity));
+} 
+
+.hover\:underline:hover { 
+    text-decoration-line: underline;
+} 
+
+.mt-5 { 
+    margin-top: 1.25rem;
+} 
+
+.bg-black\/25 { 
+    background-color: rgba(0,0,0,.25);
+} 
+
+.p-3 { 
+    padding: .75rem;
+} 
+
+.text-center { 
+    text-align: center;
+} 
+
+.text-lg { 
+    font-size: 1.125rem; 
+    line-height: 1.75rem;
+} 
+
+.text-white { 
+    --tw-text-opacity: 1; 
+    color: rgb(255 255 255/var(--tw-text-opacity));
+} 
+
+.hover\:bg-black\/50:hover { 
+    background-color: rgba(0,0,0,.5);
+} 
+
+.text-3xl { 
+    font-size: 1.875rem; 
+    line-height: 2.25rem;
+} 
+
+.text-green-400 { 
+    --tw-text-opacity: 1; 
+    color: rgb(74 222 128/var(--tw-text-opacity));
+} 
+
+.text-yellow-400 { 
+    --tw-text-opacity: 1; 
+    color: rgb(250 204 21/var(--tw-text-opacity));
+} 
+
+.flex-shrink-0 { 
+    flex-shrink: 0;
+} 
+
+@media (min-width: 640px){ 
+  .sm\:items-end { 
+    align-items: flex-end;
+  } 
+}     
+
+.bg-blue-700\/50 { 
+    background-color: rgba(29,78,216,.5);
+} 
+
+.p-1\.5 { 
+    padding: .375rem;
+} 
+
+.font-medium { 
+    font-weight: 500;
+} 
+
+.leading-none { 
+    line-height: 1;
+} 
+
+.p-\[2px\] { 
+    padding: 2px;
+} 
+
+svg { 
+    display: block; 
+    vertical-align: middle;
+} 
+
+.svg-inline--fa { 
+    display: var(--fa-display,inline-block); 
+    height: 1em; 
+    overflow: visible; 
+    vertical-align: -.125em;
+} 
+
+svg:not(:host).svg-inline--fa,svg:not(:root).svg-inline--fa { 
+    overflow: visible; 
+    box-sizing: content-box;
+} 
+
+.ml-1 { 
+    margin-left: .25rem;
+} 
+
+.min-w-0 { 
+    min-width: 0;
+} 
+
+.flex-auto { 
+    flex: 1 1 auto;
+} 
+
+.justify-start { 
+    justify-content: flex-start;
+} 
+
+.absolute { 
+    position: absolute;
+} 
+
+.inset-0 { 
+    inset: 0;
+} 
+
+.z-\[1\] { 
+    z-index: 1;
+} 
+
+.rounded-lg { 
+    border-radius: .5rem;
+} 
+
+.opacity-60 { 
+    opacity: .6;
+} 
+
+.blur-xl { 
+    --tw-blur: blur(24px);
+} 
+
+.blur-xl { 
+    filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+} 
+
+.transition { 
+    transition-property: color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter; 
+    transition-property: color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter; 
+    transition-property: color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter; 
+    transition-timing-function: cubic-bezier(.4,0,.2,1); 
+    transition-duration: .15s;
+} 
+
+.duration-500 { 
+    transition-duration: .5s;
+} 
+
+.will-change-transform { 
+    will-change: transform;
+} 
+
+.group:hover .group-hover\:opacity-100 { 
+    opacity: 1;
+} 
+
+.z-10 { 
+    z-index: 10;
+} 
+
+.h-\[15rem\] { 
+    height: 15rem;
+} 
+
+.bg-black\/75 { 
+    background-color: rgba(0,0,0,.75);
+} 
+
+.hover\:text-blue-500:hover { 
+    --tw-text-opacity: 1; 
+    color: rgb(59 130 246/var(--tw-text-opacity));
+} 
+
+.space-x-2 > :not([hidden]) ~ :not([hidden])  { 
+    --tw-space-x-reverse: 0; 
+    margin-right: calc(.5rem * var(--tw-space-x-reverse)); 
+    margin-left: calc(.5rem * calc(1 - var(--tw-space-x-reverse)));
+} 
+
+img { 
+    display: block; 
+    vertical-align: middle;
+} 
+
+img { 
+    max-width: 100%; 
+    height: auto;
+} 
+
+.bottom-0 { 
+    bottom: 0;
+} 
+
+.left-0 { 
+    left: 0;
+} 
+
+.right-0 { 
+    right: 0;
+} 
+
+.top-0 { 
+    top: 0;
+} 
+
+.m-auto { 
+    margin: auto;
+} 
+
+.w-1\/2 { 
+    width: 50%;
+} 
+
+.opacity-5 { 
+    opacity: .05;
+} 
+
+.text-sm { 
+    font-size: .875rem; 
+    line-height: 1.25rem;
+} 
+
+
+/* These were inline style tags. Uses id+class to override almost everything */
+#style-UfLKH.style-UfLKH {  
+   width: 46.1621%;  
+}  
+#style-Yj3dU.style-Yj3dU {  
+   background-size: 400% 400%;  
+    background-position: 99.3012% 50%;  
+}  
+#style-jjbMl.style-jjbMl {  
+   background-size: 400% 400%;  
+    background-position: 99.3012% 50%;  
+}  
