@@ -10,6 +10,7 @@ import {
   useWeb3ModalAccount,
 } from "@web3modal/ethers/react";
 import { BrowserProvider } from "ethers";
+import { SimpleDialog } from "./Modal";
 
 export default function Sidebar({ selected, setSelected }) {
   const { address, chainId, isConnected } = useWeb3ModalAccount();
@@ -17,6 +18,7 @@ export default function Sidebar({ selected, setSelected }) {
   const web3 = new Web3(new Web3.providers.HttpProvider(defaultRpc));
   const contractR = new web3.eth.Contract(LaunchAbi, LaunchAddress);
   const [admin, setAdmin] = useState();
+  const [showmodal,setshowmodal] = useState(false)
 
   useEffect(() => {
     const abc = async () => {
@@ -170,6 +172,17 @@ export default function Sidebar({ selected, setSelected }) {
             </li>
             <li class="mt-auto">
               <ul role="list" class="-mx-2 space-y-1">
+              <li>
+                  <button
+                    onClick={()=>{setshowmodal(true)}}
+                    style={{background:"#F76F0B",marginLeft:"5%",marginBottom:"10%",borderRadius:"25px",color:"white",fontWeight:"bold",width:"150px"}}
+                  >
+
+                    How it Works
+                  </button>
+                </li>
+                
+                
                 <li>
                   <a
                     href="https://x.com/goatpad_?s=11"
@@ -225,6 +238,7 @@ export default function Sidebar({ selected, setSelected }) {
           </ul>
         </nav>
       </div>
+      <SimpleDialog open={showmodal} onClose={()=>{setshowmodal(false)}}></SimpleDialog>
     </div>
   );
 }
