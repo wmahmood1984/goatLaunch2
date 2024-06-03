@@ -7,25 +7,26 @@ import { BrowserRouter as Router } from 'react-router-dom'
 
 
 import { createWeb3Modal, defaultConfig } from '@web3modal/ethers/react'
+import { defaultRpc, defualtChain } from './config.js'
 
 // 1. Get projectId
 const projectId = 'b27a2874021a4091a9123942dd0b075f'
 
 // 2. Set chains
 const mainnet = {
-  chainId: 97,
-  name: 'Ethereum',
+  chainId: Number(defualtChain),
+  name: '',
   currency: 'ETH',
   explorerUrl: 'https://etherscan.io',
 //  rpcUrl: 'https://cloudflare-eth.com'
-rpcUrl : "https://data-seed-prebsc-2-s1.binance.org:8545/"
+rpcUrl : defaultRpc
 }
 
 // 3. Create a metadata object
 const metadata = {
   name: 'My Website',
   description: 'My Website description',
-  url: 'http://localhost:5173/', // origin must match your domain & subdomain
+  url: 'https://goatlaunch2.netlify.app/', // origin must match your domain & subdomain
   icons: ['https://avatars.mywebsite.com/']
 }
 
