@@ -230,11 +230,7 @@ export default function Details({selected,setSelected}) {
                         <span class="ml-1">13</span>
                       </div>
                     </div>
-                    <img
-                      src="https://api.basejump.pro:4000/static/tkn_0xe1993802dc981b1b2eb8311804985e17afb846e9a58fce07406241757af13a33.png"
-                      class="rounded-full h-20 w-20 m-auto mt-4"
-                      alt="Token Image"
-                    />
+                    
                     <div class="flex justify-between mb-5">
                       <div class="flex gap-x-4">
                         <div class="min-w-0 flex-auto">

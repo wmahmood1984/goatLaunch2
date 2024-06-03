@@ -44,7 +44,7 @@ export default function Sidebar({ selected, setSelected }) {
               style={{ width: "200px", height: "auto" }}
               class="h-16"
               src={logo}
-              alt="BaseJump"
+
             />
           </a>
         </div>
