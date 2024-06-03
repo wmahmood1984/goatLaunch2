@@ -440,7 +440,7 @@ export default function Details() {
                     </p>
                     <div class="mb-5">
                       Total bought:{" "}
-                      {formatEther(data.ethCollected)} /{" "}
+                      {Number(formatEther(data.ethCollected)).toFixed(4)} /{" "}
                       {ethThreshold} ETH
                     </div>
                     <div class="w-full bg-neutral-600/25 rounded-md overflow-hidden shrink-0 mb-4">
