@@ -15,11 +15,12 @@ import Typography from '@mui/material/Typography';
 import { blue } from '@mui/material/colors';
 import wc from "../assets/walletconnect-seeklogo.svg";
 import { DialogContent } from '@mui/material';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 
 export function SimpleDialog({ onClose, selectedValue, open }) {
-
+const navigate = useNavigate()
 
   const handleClose = () => {
     onClose(selectedValue);
@@ -38,14 +39,16 @@ export function SimpleDialog({ onClose, selectedValue, open }) {
 
   return (
     <Dialog
-    
+
     onClose={handleClose} open={open}>
       <DialogTitle
-      sx={{height:"auto",fontWeight:"bold",fontSize:"25px",textAlign:"center"}}
+      
+      sx={{height:"auto",fontWeight:"bold",fontSize:"20px",textAlign:"center",background:"grey",color:"white"}}
       >How it works</DialogTitle>
-      <DialogContent>
+      <DialogContent 
+      sx={{background:"grey",color:"white",fontsize:"5px"}}
+      >
       GoatPad is dedicated to ensuring that all tokens launched on our platform are secure and unruggable. We emphasize fair launches, full transparency, giving you peace of mind as you invest.
-      <br/>
       <br/>
       Key Features:
       <br/>
@@ -74,6 +77,10 @@ export function SimpleDialog({ onClose, selectedValue, open }) {
       •	Sell Anytime: Lock in your profits or manage your losses.
       <br></br>
       Join GoatPad today and invest with confidence, knowing that your tokens are secure, unruggable, and the process is transparent.
+      <button
+      onClick={()=>{navigate("/");onClose() }}
+      style={{background:"#F76F0B",width:"80%",marginLeft:"10%",marginTop:"15px",border:"1px solid yellow"}}
+      >Go to GoatPad</button>
       </DialogContent>
     </Dialog>
   );
