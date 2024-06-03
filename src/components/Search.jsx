@@ -7,16 +7,20 @@ import { useWeb3ModalProvider, useWeb3ModalAccount } from '@web3modal/ethers/rea
 import { BrowserProvider, } from 'ethers'
 
 import { useMediaQuery } from "react-responsive";
+import Mobilemenu from "./Mobilemenu";
 
 
-export default function Search() {
+export default function Search({selected,setSelected}) {
   const isMobile = useMediaQuery({ query: "(max-width: 600px)" });
   const { address, chainId, isConnected } = useWeb3ModalAccount()
-  const [hovered,setHovered] = useState(false)
+  const [showMobile,setShowMobile] = useState(false)
 //  console.log("acount",account) 
     return (
-    <div class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200/10 bg-gray-900/10 px-4 lg:px-0 shadow-sm sm:gap-x-6 sm:pr-6 lg:pr-8">
-      <button type="button" class="-m-2.5 p-2.5 text-gray-700 lg:hidden">
+      <div>
+<div class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200/10 bg-gray-900/10 px-4 lg:px-0 shadow-sm sm:gap-x-6 sm:pr-6 lg:pr-8">
+      {!showMobile && <button 
+      onClick={()=>{setShowMobile(true)}}
+      type="button" class="-m-2.5 p-2.5 text-gray-700 lg:hidden">
         <span class="sr-only">Open sidebar</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +38,8 @@ export default function Search() {
             d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
           ></path>
         </svg>
-      </button>
+      </button>}
+      
       <div class="h-6 w-px bg-gray-900/10 lg:hidden" aria-hidden="true"></div>
       <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6 backdrop-blur-md">
         <label for="search-field" class="sr-only">
@@ -93,5 +98,9 @@ export default function Search() {
         </div>
       </div>
     </div>
+
+{showMobile &&     <Mobilemenu selected={selected} setSelected={setSelected} />}
+      </div>
+    
   );
 }

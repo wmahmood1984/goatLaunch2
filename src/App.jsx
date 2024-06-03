@@ -23,14 +23,14 @@ export default function App() {
           <ToastContainer />
       <Sidebar selected={selected} setSelected={setSelected} />
     <Routes>
-      <Route path='leaderboard' element={<LeaderBoard/>}></Route>
+      <Route path='leaderboard' element={<LeaderBoard />}></Route>
       <Route
           path="add"
           element={<Add selected={selected} setSelected={setSelected} />}
         ></Route>
-        <Route path="adminpanel" element={<Admin />}></Route>
-        <Route path="details/:id" element={<Details />}></Route>
-        <Route path='/' element={<Home/>}>
+        <Route path="adminpanel" element={<Admin selected={selected} setSelected={setSelected}  />}></Route>
+        <Route path="details/:id" element={<Details selected={selected} setSelected={setSelected} />}></Route>
+        <Route path='/' element={<Home selected={selected} setSelected={setSelected} />}>
       </Route>
     </Routes>
 

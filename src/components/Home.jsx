@@ -17,7 +17,7 @@ import { BrowserProvider } from "ethers";
 
 import { useMediaQuery } from "react-responsive";
 
-export default function Home() {
+export default function Home({selected,setSelected }) {
   const isMobile = useMediaQuery({ query: "(max-width: 600px)" });
   const { address, chainId, isConnected } = useWeb3ModalAccount();
   // const { activate, deactivate, account, library, chainId } = useWeb3React();
@@ -151,7 +151,7 @@ export default function Home() {
         </div>
 
         <div class="lg:pl-72">
-          <Search />
+          <Search selected={selected} setSelected={setSelected} />
           <main class="py-10 relative">
             <div class="px-4 sm:px-6 lg:px-8 mx-auto">
               <div

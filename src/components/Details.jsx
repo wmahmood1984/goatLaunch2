@@ -263,7 +263,7 @@ export default function Details() {
           </div>
 
           <div class="lg:pl-72">
-            <Search />
+          <Search selected={selected} setSelected={setSelected}/>
 
             <main
               style={{ backgroundImage: `url("./assets/backg.png") !important` }}

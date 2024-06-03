@@ -21,7 +21,7 @@ export const getContract = async (conAdd,conAbi,walletProvider)=>{
   return contract
 }
 
-export default function Admin() {
+export default function Admin({selected,setSelected}) {
   const { address, chainId, isConnected } = useWeb3ModalAccount()
   const wchain = chainId ? chainId : defualtChain;
   const web3 = new Web3(new Web3.providers.HttpProvider(defaultRpc));
@@ -95,7 +95,7 @@ export default function Admin() {
         </div>
 
         <div class="lg:pl-72 snipcss0-0-0-1">
-          <Search />
+        <Search selected={selected} setSelected={setSelected}/>
           <main class="py-10 relative snipcss0-1-1-22">
             <div class="px-4 sm:px-6 lg:px-8 mx-auto snipcss0-2-22-23">
               <div class="mx-auto max-w-7xl snipcss0-3-23-24">

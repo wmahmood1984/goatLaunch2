@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
-import "./Home.css";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react'
 import logo from "../assets/logo.png";
-// import { useWeb3React } from '@web3-react/core'
+import { Link } from 'react-router-dom';
 import { LaunchAbi, LaunchAddress, defaultRpc, defualtChain } from "../config";
 import Web3 from "web3";
 import {
@@ -11,8 +9,9 @@ import {
 } from "@web3modal/ethers/react";
 import { BrowserProvider } from "ethers";
 
-export default function Sidebar({ selected, setSelected }) {
-  const { address, chainId, isConnected } = useWeb3ModalAccount();
+
+export default function Mobilemenu({selected}) {
+    const { address, chainId, isConnected } = useWeb3ModalAccount();
   const wchain = chainId ? chainId : defualtChain;
   const web3 = new Web3(new Web3.providers.HttpProvider(defaultRpc));
   const contractR = new web3.eth.Contract(LaunchAbi, LaunchAddress);
@@ -26,26 +25,17 @@ export default function Sidebar({ selected, setSelected }) {
 
     abc();
   }, [address]);
-  //  console.log("data",data)
-
-  //   console.log("sele",selected)
-  const _selec =
+    const _selec =
     "bg-blue-700 text-white group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold";
   const _nonSelect =
     "text-gray-400 hover:text-white hover:bg-black/25 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold";
-  return (
-    <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
-      <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-black/10 px-6 pb-4">
-        <div class="flex h-32 shrink-0 items-center">
-          <a href="/">
-            <img
-              style={{ width: "200px", height: "auto" }}
-              class="h-16"
-              src={logo}
-              alt="BaseJump"
-            />
-          </a>
-        </div>
+    return (
+    <div 
+    style={{border:"1px solid red", width:"300px",zIndex:"999",height:"600px",display:"flex",flexDirection:"column",justifyContent:"flex-start"}}
+    
+    >
+        <img src={logo}></img>
+        <w3m-button balance='hide'/>
         <nav class="flex flex-1 flex-col">
           <ul role="list" class="flex flex-1 flex-col gap-y-7">
             <li>
@@ -224,7 +214,8 @@ export default function Sidebar({ selected, setSelected }) {
             </li>
           </ul>
         </nav>
-      </div>
+
+
     </div>
-  );
+  )
 }
