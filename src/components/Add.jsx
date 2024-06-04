@@ -319,7 +319,7 @@ const validation = ()=>{
                     </div>
                     <div class="mt-8 snipcss0-6-26-59">
                       <label class="block text-sm font-medium leading-6 text-white snipcss0-7-59-60">
-                        First Buyer
+                        First Buyer - Put 0 if you don't want to be the first buyer
                       </label>
                       <div class="mt-2 snipcss0-7-59-61">
                         <input
@@ -413,97 +413,7 @@ const validation = ()=>{
       <div id="loom-companion-mv3" ext-id="liecbddmkiiihnedobmlmillhodjkdmb">
         <section id="shadow-host-companion"></section>
       </div>
-      <w3m-modal></w3m-modal>
-      <next-route-announcer
-        id="style-MbWEH"
-        class="style-MbWEH"
-      ></next-route-announcer>
-      <iframe
-        id="verify-api"
-        src="https://verify.walletconnect.com/e7ba0da4ac18303153e8cf4f2e34b2ad"
-        class="style-SO5q3"
-      ></iframe>
-      <div
-        class="snipcss-modal snipcss-micromodal-slide"
-        id="modal-pick-resolution"
-      ></div>
-      <div
-        class="edge_builder edge_builder_top style-yjVgy"
-        id="style-yjVgy"
-      ></div>
-      <div
-        class="edge_builder edge_builder_right style-jegbH"
-        id="style-jegbH"
-      ></div>
-      <div
-        class="edge_builder edge_builder_bottom style-7blPB"
-        id="style-7blPB"
-      ></div>
-      <div
-        class="edge_builder edge_builder_left style-RhXvk"
-        id="style-RhXvk"
-      ></div>
-      <div
-        class="edge_builder2 edge_builder_top style-n8d6b"
-        id="style-n8d6b"
-      ></div>
-      <div
-        class="edge_builder2 edge_builder_right style-SZmGz"
-        id="style-SZmGz"
-      ></div>
-      <div
-        class="edge_builder2 edge_builder_bottom style-v2cjq"
-        id="style-v2cjq"
-      ></div>
-      <div
-        class="edge_builder2 edge_builder_left style-sgjMU"
-        id="style-sgjMU"
-      ></div>
-      <div data-tether-id="1" id="style-jz6nT" class="style-jz6nT"></div>
-      
-      <div
-        class="snipcss-modal snipcss-micromodal-slide"
-        id="modal-pick-resolution"
-      ></div>
-      <div
-        class="edge_builder edge_builder_top style-HMzv6"
-        id="style-HMzv6"
-      ></div>
-      <div
-        class="edge_builder edge_builder_right style-H8A3y"
-        id="style-H8A3y"
-      ></div>
-      <div
-        class="edge_builder edge_builder_bottom style-HqV3E"
-        id="style-HqV3E"
-      ></div>
-      <div
-        class="edge_builder edge_builder_left style-exqlk"
-        id="style-exqlk"
-      ></div>
-      <div
-        class="edge_builder2 edge_builder_top style-THHfK"
-        id="style-THHfK"
-      ></div>
-      <div
-        class="edge_builder2 edge_builder_right style-MCWbL"
-        id="style-MCWbL"
-      ></div>
-      <div
-        class="edge_builder2 edge_builder_bottom style-BcFUS"
-        id="style-BcFUS"
-      ></div>
-      <div
-        class="edge_builder2 edge_builder_left style-BWlIe"
-        id="style-BWlIe"
-      ></div>
-      <div data-tether-id="1" id="style-yrnmL" class="style-yrnmL"></div>
-      <canvas
-        width="70"
-        height="70"
-        id="snipcss-kiwi"
-        class="style-mTQGN"
-      ></canvas>
+
     </div>
   );
 }
