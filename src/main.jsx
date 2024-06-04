@@ -50,7 +50,7 @@ createWeb3Modal({
   projectId,
   enableAnalytics: true, // Optional - defaults to your Cloud configuration
   themeVariables: {
-    '--w3m-color-mix': '#00BB7F',
+    '--w3m-color-mix': 'black',
     '--w3m-color-mix-strength': 40,
     '--w3m-accent': "black"
   }

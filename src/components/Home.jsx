@@ -38,9 +38,16 @@ export default function Home({selected,setSelected }) {
       const _data = await contractR.methods.getTokens().call();
       setData(_data);
       setFilteredData(_data);
-      const sorted = _data.sort(
-        (a, b) => Number(b.ethCollected) - Number(a.ethCollected)
-      );
+      
+      const sorted = [..._data].sort(
+        (a, b) => {
+
+
+          return Number(formatEther(b.ethCollected)) - Number(formatEther(a.ethCollected))
+        })
+      ;
+
+ 
       setSorted(sorted);
       const _ethThreshold = await contractR.methods.ethThreshold().call();
       setEthThreshold(formatEther(_ethThreshold));
@@ -124,7 +131,7 @@ export default function Home({selected,setSelected }) {
     }
   };
 
-  console.log("console", data);
+
 
   return (
     data &&
