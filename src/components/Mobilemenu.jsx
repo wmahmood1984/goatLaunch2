@@ -10,7 +10,7 @@ import {
 import { BrowserProvider } from "ethers";
 
 
-export default function Mobilemenu({selected}) {
+export default function Mobilemenu({selected,setSelected,setShowMobile}) {
     const { address, chainId, isConnected } = useWeb3ModalAccount();
   const wchain = chainId ? chainId : defualtChain;
   const web3 = new Web3(new Web3.providers.HttpProvider(defaultRpc));
@@ -25,6 +25,8 @@ export default function Mobilemenu({selected}) {
 
     abc();
   }, [address]);
+
+
     const _selec =
     "bg-blue-700 text-white group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold w80";
   const _nonSelect =
@@ -37,6 +39,10 @@ export default function Mobilemenu({selected}) {
         <img 
         width="150px"
         src={logo}></img>
+        <button
+        onClick={()=>{setShowMobile(false)}}
+        style={{position:"absolute",top:"4%",left:"60%",border:"1px solid white",borderRadius:"25px",width:"50px"}}
+        >{" "}X{" "}</button>
         <w3m-button balance='hide'/>
         <nav class="flex flex-1 flex-col">
           <ul role="list" class="flex flex-1 flex-col gap-y-7">

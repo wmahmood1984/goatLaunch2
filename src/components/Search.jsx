@@ -99,7 +99,7 @@ export default function Search({selected,setSelected}) {
       </div>
     </div>
 
-{showMobile &&     <Mobilemenu selected={selected} setSelected={setSelected} />}
+{showMobile &&     <Mobilemenu selected={selected} setSelected={setSelected} setShowMobile={setShowMobile} />}
       </div>
     
   );
