@@ -26,15 +26,17 @@ export default function Mobilemenu({selected}) {
     abc();
   }, [address]);
     const _selec =
-    "bg-blue-700 text-white group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold";
+    "bg-blue-700 text-white group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold w80";
   const _nonSelect =
-    "text-gray-400 hover:text-white hover:bg-black/25 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold";
+    "text-gray-400 hover:text-white hover:bg-black/25 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold  w80";
     return (
     <div 
-    style={{border:"1px solid red", width:"300px",zIndex:"999",height:"600px",display:"flex",flexDirection:"column",justifyContent:"flex-start"}}
+    style={{border:"1px solid white", width:"300px",zIndex:"999",height:"600px",display:"flex",flexDirection:"column",justifyContent:"flex-start"}}
     
     >
-        <img src={logo}></img>
+        <img 
+        width="150px"
+        src={logo}></img>
         <w3m-button balance='hide'/>
         <nav class="flex flex-1 flex-col">
           <ul role="list" class="flex flex-1 flex-col gap-y-7">
