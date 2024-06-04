@@ -106,7 +106,7 @@ export default function Mobilemenu({selected,setSelected,setShowMobile}) {
                 </li>
                 <li>
                   <Link
-                    to="leaderboard"
+                    to="/leaderboard"
                     className={selected == 2 ? `${_selec}` : `${_nonSelect}`}
                     onClick={() => {
                       setSelected(2);
