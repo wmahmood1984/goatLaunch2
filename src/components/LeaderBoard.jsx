@@ -21,7 +21,7 @@ export default function LeaderBoard() {
       const _data = await contractR.methods.getTokens().call();
       setData(_data);
 
-      const sorted = _data.sort(
+      const sorted = [..._data].sort(
         (a, b) => Number(b.ethCollected) - Number(a.ethCollected)
       );
       setFilteredData(sorted);
