@@ -5,7 +5,7 @@ import Search from "./Search";
 import { writeFunction } from "./writeFun";
 // import { useWeb3React } from "@web3-react/core";
 import { LaunchAbi, LaunchAddress } from "../config";
-import { Contract } from "ethers";
+import { Contract, parseEther } from "ethers";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
 import { CircularProgress } from "@mui/material";
@@ -41,6 +41,7 @@ export default function Add({selected,setSelected}) {
   const [file,setFile] = useState("")
   const [fileName,setFileName] = useState("")
   const [toggle,setToggle] = useState(false)
+  const [firstBuyer,setBuyer] = useState(0)
 
   // const {account,library,chainId} = useWeb3React()
 
@@ -316,6 +317,19 @@ const validation = ()=>{
                         ></textarea>
                       </div>
                     </div>
+                    <div class="mt-8 snipcss0-6-26-59">
+                      <label class="block text-sm font-medium leading-6 text-white snipcss0-7-59-60">
+                        First Buyer
+                      </label>
+                      <div class="mt-2 snipcss0-7-59-61">
+                        <input
+                          class="block w-full rounded-md border-0 bg-white/5 p-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6 snipcss0-8-61-62"
+                          placeholder="Description"
+                          value={firstBuyer}
+                            onChange={(e)=>{setBuyer(e.target.value)}}
+                        ></input>
+                      </div>
+                    </div>
                     <div class="mt-8 snipcss0-6-26-63">
                       <label class="block text-sm font-medium leading-6 text-white snipcss0-7-63-64">
                         Token Image
@@ -378,6 +392,7 @@ const validation = ()=>{
                             name,
                             ticker,
                             [website,XX,telegram,description,file],
+                            parseEther(firstBuyer),
                             {gasLimit:1300000}
 
                         )

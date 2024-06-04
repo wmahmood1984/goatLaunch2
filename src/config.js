@@ -547,7 +547,7 @@ export const tokenAbi = [
 ]
 
 export const tokenAddress = "0xB84B60b31cf851330A74FAc1F02B921545bA3C03"
-export const LaunchAddress = "0xA078Cc04d2DB679C9b8850f510dF49bf869Aec59"
+export const LaunchAddress = "0xf4C91AB5B5c40ba93540c0703954fC148C49f293"
 export const chatAddress = "0x9bcEDCF983d2f6C65e9E58e4EA3EE1f68A941507"
 
 export const defualtChain = "11155111"
@@ -563,6 +563,99 @@ export const swapV2Abi = [{"inputs":[{"internalType":"address","name":"_factory"
 
 
 export const LaunchAbi = [
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "tokenAddress",
+				"type": "address"
+			}
+		],
+		"name": "autoLaunchToken",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "tokenAddress",
+				"type": "address"
+			}
+		],
+		"name": "buyTokens",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_new",
+				"type": "uint256"
+			}
+		],
+		"name": "changeDevFee",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_new",
+				"type": "uint256"
+			}
+		],
+		"name": "changeLaunchFee",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_new",
+				"type": "uint256"
+			}
+		],
+		"name": "changePlatFee",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "symbol",
+				"type": "string"
+			},
+			{
+				"internalType": "string[]",
+				"name": "_desc",
+				"type": "string[]"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_first",
+				"type": "uint256"
+			}
+		],
+		"name": "createToken",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
 	{
 		"inputs": [],
 		"stateMutability": "nonpayable",
@@ -633,6 +726,31 @@ export const LaunchAbi = [
 		],
 		"name": "OwnershipTransferred",
 		"type": "event"
+	},
+	{
+		"inputs": [],
+		"name": "renounceOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "tokenAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "sellTokens",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
 	},
 	{
 		"anonymous": false,
@@ -812,14 +930,18 @@ export const LaunchAbi = [
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "tokenAddress",
+				"name": "newOwner",
 				"type": "address"
 			}
 		],
-		"name": "buyTokens",
+		"name": "transferOwnership",
 		"outputs": [],
-		"stateMutability": "payable",
+		"stateMutability": "nonpayable",
 		"type": "function"
+	},
+	{
+		"stateMutability": "payable",
+		"type": "receive"
 	},
 	{
 		"inputs": [
@@ -838,81 +960,6 @@ export const LaunchAbi = [
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_new",
-				"type": "uint256"
-			}
-		],
-		"name": "changeDevFee",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_new",
-				"type": "uint256"
-			}
-		],
-		"name": "changeLaunchFee",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_new",
-				"type": "uint256"
-			}
-		],
-		"name": "changeLaunchThreshold",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_new",
-				"type": "uint256"
-			}
-		],
-		"name": "changePlatFee",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "symbol",
-				"type": "string"
-			},
-			{
-				"internalType": "string[]",
-				"name": "_desc",
-				"type": "string[]"
-			}
-		],
-		"name": "createToken",
-		"outputs": [],
-		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -1006,30 +1053,6 @@ export const LaunchAbi = [
 		"type": "function"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			},
-			{
-				"internalType": "address",
-				"name": "tokenAddress",
-				"type": "address"
-			}
-		],
-		"name": "getEthToTokens",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 		"inputs": [],
 		"name": "getTokenContractsCount",
 		"outputs": [
@@ -1068,30 +1091,6 @@ export const LaunchAbi = [
 				"internalType": "struct Launchpad.tokenbalance[]",
 				"name": "",
 				"type": "tuple[]"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			},
-			{
-				"internalType": "address",
-				"name": "tokenAddress",
-				"type": "address"
-			}
-		],
-		"name": "getTokenToEth",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
@@ -1162,6 +1161,11 @@ export const LaunchAbi = [
 						"internalType": "uint256",
 						"name": "tokenNo",
 						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "firstBuyer",
+						"type": "uint256"
 					}
 				],
 				"internalType": "struct Launchpad.Token[]",
@@ -1196,31 +1200,6 @@ export const LaunchAbi = [
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "renounceOwnership",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "tokenAddress",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "sellToken",
-		"outputs": [],
-		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -1410,22 +1389,14 @@ export const LaunchAbi = [
 				"internalType": "uint256",
 				"name": "tokenNo",
 				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "firstBuyer",
+				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "newOwner",
-				"type": "address"
-			}
-		],
-		"name": "transferOwnership",
-		"outputs": [],
-		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -1440,10 +1411,6 @@ export const LaunchAbi = [
 		],
 		"stateMutability": "view",
 		"type": "function"
-	},
-	{
-		"stateMutability": "payable",
-		"type": "receive"
 	}
 ]
 

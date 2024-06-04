@@ -462,7 +462,9 @@ export default function Details({selected,setSelected}) {
                         ).toFixed(2)}%`}
                       </div>
                     </div>
-                    <div class="mt-10 bg-white/5 px-6 py-16 ring-1 ring-white/10 rounded-3xl sm:p-8 relative">
+                   {(formatEther(data.firstBuyer)==0 || formatEther(data.ethCollected)>=formatEther(data.firstBuyer) || address==data.owner) ?
+                   
+                   <div class="mt-10 bg-white/5 px-6 py-16 ring-1 ring-white/10 rounded-3xl sm:p-8 relative">
                       <div class="flex items-center justify-between gap-5">
                         <button
                           onClick={() => {
@@ -561,7 +563,7 @@ export default function Details({selected,setSelected}) {
                           buySale
                         )}
                       </button>
-                    </div>
+                    </div> :<p>The Deployer is the first buyer</p>}
                     <div class="flex justify-center pt-10 w-full">
                       <div class="w-full max-w-2xl px-4">
                         <h1 class="text-center text-xl font-bold mb-4">
