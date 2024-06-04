@@ -188,6 +188,7 @@ export default function Home({selected,setSelected }) {
                             />
                             <div>
                               <a
+                                                              target="_blank"
                                 class=" text-black font-semibold mr-1  text-[#FFB921] hover:underline font-bold  "
                                 href={`${ethScan}${v.data.buyer}`}
                               >
@@ -228,6 +229,7 @@ export default function Home({selected,setSelected }) {
                             />
                             <div>
                               <a
+                                target="_blank"
                                 class=" text-black font-semibold mr-1  text-[#FFB921] hover:underline font-bold  "
                                 href={`${ethScan}${v.data.seller}`}
                               >
