@@ -59,8 +59,11 @@ export default function Home({selected,setSelected }) {
         toBlock: `${_block}`,
       });
 
+
+
       const _eventsF = _events.map((v, e) => {
-        return { data: v.returnValues, blockNumber: v.blockNumber };
+        const mainData = [..._data].filter(e=>e.tokenAdd==v.returnValues.tokenAddress)
+        return { data: v.returnValues, blockNumber: v.blockNumber,mainData };
       });
       setEvents(_eventsF);
 
@@ -69,7 +72,8 @@ export default function Home({selected,setSelected }) {
         toBlock: `${_block}`,
       });
       const _seventsF = _Saleevents.map((v, e) => {
-        return { data: v.returnValues, blockNumber: v.blockNumber };
+        const mainData = [..._data].filter(e=>e.tokenAdd==v.returnValues.tokenAddress)
+        return { data: v.returnValues, blockNumber: v.blockNumber,mainData };
       });
       setSaleEvents(_seventsF);
     };
@@ -84,6 +88,8 @@ export default function Home({selected,setSelected }) {
     combinedArray.sort(
       (a, b) => parseFloat(a.blockNumber) - parseFloat(b.blockNumber)
     );
+
+    console.log("block ",combinedArray);
 
   const findname = (add) => {
     const item = data.filter((e) => e[10].toLowerCase() == add.toLowerCase());
@@ -102,7 +108,7 @@ export default function Home({selected,setSelected }) {
   }
 
   const sort = (v) => {
-    console.log("block ", v);
+
     const cloned = [...data];
     const filtered =
       v == 1
@@ -196,8 +202,8 @@ export default function Home({selected,setSelected }) {
                               ETH of
                               <Link
                                 class=" text-black font-semibold ml-1  text-[#FFB921] hover:underline font-bold  "
-                                to={`details/${v[10]}`}
-                                state={{ data: v }}  
+                                to={`details/${v.data.tokenAddress}`}
+                                state={{ data: v.mainData }}  
                               >
                                 {findname(v.data.tokenAddress).name}
                               </Link>
@@ -235,8 +241,8 @@ export default function Home({selected,setSelected }) {
                               </span>{" "}
                               ETH of
                               <Link
-                                            to={`details/${v[10]}`}
-                                            state={{ data: v }}
+                                            to={`details/${v.data.tokenAddress}`}
+                                            state={{ data: v.mainData }}
                                 class=" text-black font-semibold ml-1  text-[#FFB921] hover:underline font-bold  "
 
                               >
