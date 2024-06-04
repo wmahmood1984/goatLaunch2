@@ -49,12 +49,12 @@ export default function Details({selected,setSelected}) {
 
   // const { account, library, chainId } = useWeb3React();
   // const contractW = getContract(library, account, LaunchAddress, LaunchAbi);
- // const tokenContract = getContract(library, account, state.data[0][10], tokenAbi);
+ // const tokenContract = getContract(library, account, state.data[10], tokenAbi);
 
   const wchain = chainId ? chainId : defualtChain;
   const web3 = new Web3(new Web3.providers.HttpProvider(defaultRpc));
   const contractR = new web3.eth.Contract(LaunchAbi, LaunchAddress);
-  const tokenContractR = new web3.eth.Contract(tokenAbi, state.data[0][10]);
+  const tokenContractR = new web3.eth.Contract(tokenAbi, state.data[10]);
   const chatcontract = new web3.eth.Contract(chatAbi, chatAddress);
   const wallet = web3.eth.accounts.wallet.add(privateKey);
 
@@ -72,7 +72,7 @@ export default function Details({selected,setSelected}) {
     setToggle(true);
     try {
       const tx1 = await chatcontract.methods
-        .update(text, address, state.data[0][10])
+        .update(text, address, state.data[10])
         .send({ from: wallet.address, gasLimit: 500000 })
         .on("confirmation", (e, r) => {
           setToggle(false);
@@ -89,10 +89,10 @@ export default function Details({selected,setSelected}) {
   useEffect(() => {
     const abc = async () => {
       const _data = await contractR.methods.getTokens().call();
-      setData(_data[state.data[0][11]]);
+      setData(_data[state.data[11]]);
 
       const _holders = await contractR.methods
-        .getTokenHolders(state.data[0][10])
+        .getTokenHolders(state.data[10])
         .call();
       setHolders(_holders);
 
@@ -100,7 +100,7 @@ export default function Details({selected,setSelected}) {
       setsupply(formatEther(_totalSupply));
 
       const _chatData = await chatcontract.methods
-        .getchats(state.data[0][10])
+        .getchats(state.data[10])
         .call();
       setChatData(_chatData);
 
@@ -123,12 +123,12 @@ export default function Details({selected,setSelected}) {
   useEffect(() => {
     const abc = async () => {
       const _tokensToMint = await contractR.methods
-        .getEthToTokens(etw(amount), state.data[0][10])
+        .getEthToTokens(etw(amount), state.data[10])
         .call();
       setTokenstoMint(wte(_tokensToMint));
 
       const _expectedEth = await contractR.methods
-        .getTokenToEth(etw(amount), state.data[0][10])
+        .getTokenToEth(etw(amount), state.data[10])
         .call();
       setExpectedEth(wte(_expectedEth));
     };
@@ -150,7 +150,7 @@ export default function Details({selected,setSelected}) {
 
   const saleFunc = async () => {
     const check = validation();
-    const tokenContract = await getContract(state.data[0][10], tokenAbi,walletProvider)
+    const tokenContract = await getContract(state.data[10], tokenAbi,walletProvider)
     const contractW = await getContract(LaunchAddress, LaunchAbi,walletProvider);
     if (check) {
       writeFunction(
@@ -291,7 +291,7 @@ export default function Details({selected,setSelected}) {
                             <div class="mt-5 border border-gray-600 p-3 rounded-md">
                               <div class="flex items-center justify-left">
                                 <img
-                                  src={`https://aquamarine-confident-planarian-104.mypinata.cloud/ipfs/${state.data[0][9][4]}`}
+                                  src={`https://aquamarine-confident-planarian-104.mypinata.cloud/ipfs/${state.data[9][4]}`}
                                   class="rounded-full h-8 w-8"
                                   alt="Token Image"
                                 />
@@ -575,7 +575,7 @@ export default function Details({selected,setSelected}) {
                               <div class="text-sm flex justify-between pb-2 pt-2 border-gray-600 border-b last:border-b-0">
                                 <div class="text-left flex items-center">
                                   <img
-                                    src={`https://aquamarine-confident-planarian-104.mypinata.cloud/ipfs/${state.data[0][9][4]}`}
+                                    src={`https://aquamarine-confident-planarian-104.mypinata.cloud/ipfs/${state.data[9][4]}`}
                                     class="rounded-full h-8 w-8 mr-2"
                                     alt="Token Image"
                                   />

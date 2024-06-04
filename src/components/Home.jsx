@@ -204,7 +204,7 @@ export default function Home({selected,setSelected }) {
                               <Link
                                 class=" text-black font-semibold ml-1  text-[#FFB921] hover:underline font-bold  "
                                 to={`details/${v.data.tokenAddress}`}
-                                state={{ data: v.mainData }}  
+                                state={{ data: v.mainData[0] }}  
                               >
                                 {findname(v.data.tokenAddress).name}
                               </Link>
@@ -244,7 +244,7 @@ export default function Home({selected,setSelected }) {
                               ETH of
                               <Link
                                             to={`details/${v.data.tokenAddress}`}
-                                            state={{ data: v.mainData }}
+                                            state={{ data: v.mainData[0] }}
                                 class=" text-black font-semibold ml-1  text-[#FFB921] hover:underline font-bold  "
 
                               >
