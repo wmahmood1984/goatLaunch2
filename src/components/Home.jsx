@@ -178,8 +178,8 @@ export default function Home({selected,setSelected }) {
                       if (v.data.buyer) {
                         return (
                           <div
-                            style={{ backgroundColor: "#50F6F4" }}
-                            class="items-center flex gap-2 bg-green-200 p-1 pl-2 pr-3 rounded-3xl"
+                            style={{ color:"white", borderLeft:"1px solid white", borderRight:"1px solid white" }}
+                            class="items-center flex gap-2  p-1 pl-2 pr-3"
                           >
                             <img
                               src={findname(v.data.tokenAddress).pic}
@@ -189,7 +189,7 @@ export default function Home({selected,setSelected }) {
                             <div>
                               <a
                                                               target="_blank"
-                                class=" text-black font-semibold mr-1  text-[#FFB921] hover:underline font-bold  "
+                                class="font-semibold mr-1  text-[#FFB921] hover:underline font-bold  "
                                 href={`${ethScan}${v.data.buyer}`}
                               >
                                 {`${v.data.buyer.slice(
@@ -202,7 +202,7 @@ export default function Home({selected,setSelected }) {
                               </span>{" "}
                               ETH of
                               <Link
-                                class=" text-black font-semibold ml-1  text-[#FFB921] hover:underline font-bold  "
+                                class="font-semibold ml-1  text-[#FFB921] hover:underline font-bold  "
                                 to={`details/${v.data.tokenAddress}`}
                                 state={{ data: v.mainData[0] }}  
                               >
@@ -213,14 +213,14 @@ export default function Home({selected,setSelected }) {
                               src={findname(v.data.tokenAddress).pic}
                               class="rounded-full h-8 w-8"
                               alt="Token Image"
-                            />
+                            /> 
                           </div>
                         );
                       } else {
                         return (
                           <div
-                            style={{ backgroundColor: "#F9DC8B" }}
-                            class="items-center flex gap-2 bg-red-200 p-1 pl-2 pr-3 rounded-3xl"
+                          style={{ color:"white", borderLeft:"1px solid white", borderRight:"1px solid white" }}
+                            class="items-center flex gap-2 p-1 pl-2 pr-3"
                           >
                             <img
                               src={findname(v.data.tokenAddress).pic}
@@ -230,7 +230,7 @@ export default function Home({selected,setSelected }) {
                             <div>
                               <a
                                 target="_blank"
-                                class=" text-black font-semibold mr-1  text-[#FFB921] hover:underline font-bold  "
+                                class="font-semibold mr-1  text-[#FFB921] hover:underline font-bold  "
                                 href={`${ethScan}${v.data.seller}`}
                               >
                                 {`${v.data.seller.slice(
@@ -245,7 +245,7 @@ export default function Home({selected,setSelected }) {
                               <Link
                                             to={`details/${v.data.tokenAddress}`}
                                             state={{ data: v.mainData[0] }}
-                                class=" text-black font-semibold ml-1  text-[#FFB921] hover:underline font-bold  "
+                                class="font-semibold ml-1  text-[#FFB921] hover:underline font-bold  "
 
                               >
                                 {findname(v.data.tokenAddress).name}
@@ -269,7 +269,7 @@ export default function Home({selected,setSelected }) {
                     return (
                       <div>
                         <h2 class="text-2xl mb-4 font-bold tracking-tight text-white sm:text-2xl mt-6 text-center">
-                          🏆 Top 🏆
+                          🐐 G.O.A.T 🐐
                         </h2>
                         <div class="flex flex-col sm:flex-row flex-wrap justify-center gap-4 mb-6">
                           <div

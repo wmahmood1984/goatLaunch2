@@ -193,7 +193,7 @@ export default function Details({selected,setSelected}) {
                 {ranArr.map((v,e)=>
                 <div>
                 <h2 class="text-2xl mb-4 font-bold tracking-tight text-white sm:text-2xl mt-6 text-center">
-                  🏆 Top 🏆
+                  🐐 Top 🐐
                 </h2>
                 <div 
  

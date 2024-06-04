@@ -101,7 +101,7 @@ export default function Mobilemenu({selected,setSelected,setShowMobile}) {
                         ></path>
                       </svg>
                     </span>
-                    Add Token
+                    Create Token
                   </Link>
                 </li>
                 <li>
@@ -130,7 +130,7 @@ export default function Mobilemenu({selected,setSelected,setShowMobile}) {
                         ></path>
                       </svg>
                     </span>
-                    Leaderboard
+                    GOATboard
                   </Link>
                 </li>
                 {admin && admin == address && (

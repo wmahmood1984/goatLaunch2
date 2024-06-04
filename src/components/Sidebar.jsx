@@ -105,7 +105,7 @@ export default function Sidebar({ selected, setSelected }) {
                         ></path>
                       </svg>
                     </span>
-                    Add Token
+                    Create Token
                   </Link>
                 </li>
                 <li>
@@ -134,7 +134,7 @@ export default function Sidebar({ selected, setSelected }) {
                         ></path>
                       </svg>
                     </span>
-                    Leaderboard
+                    GOATboard
                   </Link>
                 </li>
                 {admin && admin == address && (
