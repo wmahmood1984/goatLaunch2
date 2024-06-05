@@ -547,7 +547,7 @@ export const tokenAbi = [
 ]
 
 export const tokenAddress = "0xB84B60b31cf851330A74FAc1F02B921545bA3C03"
-export const LaunchAddress = "0xf4C91AB5B5c40ba93540c0703954fC148C49f293"
+export const LaunchAddress = "0x80dE8D814Fcacf52013f8B65977C3112785f7bBB"
 export const chatAddress = "0x9bcEDCF983d2f6C65e9E58e4EA3EE1f68A941507"
 
 export const defualtChain = "11155111"
@@ -563,19 +563,6 @@ export const swapV2Abi = [{"inputs":[{"internalType":"address","name":"_factory"
 
 
 export const LaunchAbi = [
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "tokenAddress",
-				"type": "address"
-			}
-		],
-		"name": "autoLaunchToken",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
 	{
 		"inputs": [
 			{
@@ -611,6 +598,19 @@ export const LaunchAbi = [
 			}
 		],
 		"name": "changeLaunchFee",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_new",
+				"type": "uint256"
+			}
+		],
+		"name": "changeLaunchThreshold",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -1053,6 +1053,30 @@ export const LaunchAbi = [
 		"type": "function"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "tokenAddress",
+				"type": "address"
+			}
+		],
+		"name": "getEthToTokens",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"name": "getTokenContractsCount",
 		"outputs": [
@@ -1171,6 +1195,30 @@ export const LaunchAbi = [
 				"internalType": "struct Launchpad.Token[]",
 				"name": "",
 				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "tokenAddress",
+				"type": "address"
+			}
+		],
+		"name": "getTokenToEth",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",

@@ -5,7 +5,7 @@ import Search from "./Search";
 import { writeFunction } from "./writeFun";
 // import { useWeb3React } from "@web3-react/core";
 import { LaunchAbi, LaunchAddress, defaultRpc, defualtChain } from "../config";
-import { Contract, ethers } from "ethers";
+import { Contract, ethers, formatEther, parseEther } from "ethers";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
 import Web3 from "web3";
@@ -23,6 +23,7 @@ export const getContract = async (conAdd,conAbi,walletProvider)=>{
 
 export default function Admin({selected,setSelected}) {
   const { address, chainId, isConnected } = useWeb3ModalAccount()
+  const { walletProvider } = useWeb3ModalProvider()
   const wchain = chainId ? chainId : defualtChain;
   const web3 = new Web3(new Web3.providers.HttpProvider(defaultRpc));
   const contractR = new web3.eth.Contract(LaunchAbi, LaunchAddress);
@@ -44,7 +45,7 @@ export default function Admin({selected,setSelected}) {
       setLaunchFee((_launchFee / 10000) * 100);
 
       const _ethThreshold = await contractR.methods.ethThreshold().call();
-      setEthThreshold(ethers.utils.formatEther(_ethThreshold));
+      setEthThreshold(formatEther(_ethThreshold));
 
       const _platFormFee = await contractR.methods.feePlatform().call();
       setPlatFormFee((_platFormFee / 10000) * 100);
@@ -60,7 +61,7 @@ export default function Admin({selected,setSelected}) {
  
 
   const validation = () => {
-    if (!account) {
+    if (!address) {
       toast.error("Please connect wallet first");
       return false;
     } else if (!owner.includes("0x")) {
@@ -232,6 +233,7 @@ export default function Admin({selected,setSelected}) {
                             onClick={async () => {
                               const check = validation();
                               const contractW = await getContract(LaunchAddress, LaunchAbi,walletProvider);
+                              console.log("first",contractW)
                               if (check) {
                                 writeFunction(
                                   "update",
@@ -244,7 +246,7 @@ export default function Admin({selected,setSelected}) {
                                     setToggle(false);
                                   },
                                   setToggle,
-                                  ethers.utils.parseEther(ethThreshold),
+                                  parseEther(ethThreshold),
                                   { gasLimit: 30000 }
                                 );
                               }
@@ -281,6 +283,7 @@ export default function Admin({selected,setSelected}) {
                             onClick={async () => {
                               const check = validation();
                               const contractW = await getContract(LaunchAddress, LaunchAbi,walletProvider);
+                              
                               if (check) {
                                 writeFunction(
                                   "update",

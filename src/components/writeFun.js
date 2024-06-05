@@ -23,11 +23,11 @@ export const getContract = (library, account,add,abi) => {
 };
 
 export const etw = (v)=>{
-    return parseEther(v)
+    return parseEther(v.toString())
 }
 
 export const wte = (v)=>{
-    return formatEther(v)
+    return formatEther(v.toString())
 }
 
 export const fN = (x,d)=> {

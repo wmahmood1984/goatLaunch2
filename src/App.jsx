@@ -8,6 +8,7 @@ import Admin from './components/Admin'
 import Add from './components/Add'
 import Details from './components/Details'
 import { ToastContainer } from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css";
 import Sidebar from './components/Sidebar'
 import LeaderBoard from './components/LeaderBoard'
 

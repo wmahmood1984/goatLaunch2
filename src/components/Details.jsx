@@ -22,6 +22,7 @@ import { CircularProgress } from "@mui/material";
 import { useWeb3ModalProvider, useWeb3ModalAccount } from '@web3modal/ethers/react'
 import { BrowserProvider, } from 'ethers'
 
+import { useMediaQuery } from "react-responsive";
 // export const getContract = (library, account, add, abi) => {
 //   const signer = library?.getSigner(account).connectUnchecked();
 //   var contract = new Contract(add, abi, signer);
@@ -37,6 +38,7 @@ export const getContract = async (conAdd,conAbi,walletProvider)=>{
 }
 
 export default function Details({selected,setSelected}) {
+  const isMobile = useMediaQuery({ query: "(max-width: 600px)" });
   const { address, chainId, isConnected } = useWeb3ModalAccount()
   const { walletProvider } = useWeb3ModalProvider()
   const { state } = useLocation();
@@ -464,9 +466,14 @@ export default function Details({selected,setSelected}) {
                     </div>
                    {(formatEther(data.firstBuyer)==0 || formatEther(data.ethCollected)>=formatEther(data.firstBuyer) || address==data.owner) ?
                    
-                   <div class="mt-10 bg-white/5 px-6 py-16 ring-1 ring-white/10 rounded-3xl sm:p-8 relative">
-                      <div class="flex items-center justify-between gap-5">
+                   <div 
+
+                   class="mt-10 bg-white/5 px-6 py-16 ring-1 ring-white/10 rounded-3xl sm:p-8 relative">
+                      <div 
+
+                      class="flex items-center justify-between gap-5">
                         <button
+                          style={isMobile ? {width:"45%"}:{}}
                           onClick={() => {
                             setBuySale("Buy");
                             setExpectedEth(0);
@@ -478,6 +485,7 @@ export default function Details({selected,setSelected}) {
                           Buy
                         </button>
                         <button
+                                                  style={isMobile ? {width:"45%"}:{}}
                           onClick={() => {
                             setBuySale("Sale");
                             setTokenstoMint(0);
@@ -491,6 +499,7 @@ export default function Details({selected,setSelected}) {
                       </div>
                       <div class="flex items-center w-full max-w-xs mt-5 bg-[#282c33] border border-gray-300 rounded">
                         <input
+                                                  style={isMobile ? {width:"40%"}:{}}
                           placeholder="0.00"
                           class="input input-bordered flex-grow p-2 rounded-l focus:outline-none"
                           type="text"
@@ -506,6 +515,7 @@ export default function Details({selected,setSelected}) {
                       {buySale == "Sale" ? (
                         <div>
                           <button
+                          
                             onClick={() => {
                               setAmount(tokenBalance * 0.25);
                             }}
@@ -547,6 +557,7 @@ export default function Details({selected,setSelected}) {
                             )} eth`}
                       </div>
                       <button
+                        style={isMobile?{width:"100%"}:{}}
                         onClick={buySale == "Buy" ? buyFunc : saleFunc}
                         class={`btn btn-wide w-full max-w-xs mt-4 text-black ${
                           buySale == "Buy"
