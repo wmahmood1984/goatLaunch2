@@ -393,7 +393,7 @@ const validation = ()=>{
                             ticker,
                             [website,XX,telegram,description,file],
                             parseEther(firstBuyer.toString()),
-                            {gasLimit:1300000,value:parseEther("0.0003")}
+                            {gasLimit:1300000,value:parseEther("0.00031")}
 
                         )
                         }
