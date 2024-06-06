@@ -554,7 +554,6 @@ export const defualtChain = "8453"//"11155111"
 export const WBNB = "0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd"
 export const BUSD = "0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee"
 export const defaultRpc  = "https://mainnet.base.org"//"https://sepolia.infura.io/v3/5a8e602cb20d4d6bb913bc6aaa0d792b"
-//export const privateKey = "0xca1769b029c20e44e810c1debff1a43105a866382ce9605e8e87ea266d81bd64"
 export const ethScan = "https://basescan.org/address/"
 
 export const swapV2Address = "0xD99D1c33F9fC3444f8101754aBC46c52416550D1"

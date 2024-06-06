@@ -13,7 +13,6 @@ import {
   defaultRpc,
   defualtChain, 
   ethScan,
-  privateKey,
   tokenAbi,
 } from "../config";
 import Web3 from "web3";
