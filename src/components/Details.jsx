@@ -58,7 +58,7 @@ export default function Details({selected,setSelected}) {
   const contractR = new web3.eth.Contract(LaunchAbi, LaunchAddress);
   const tokenContractR = new web3.eth.Contract(tokenAbi, state.data[10]);
   const chatcontract = new web3.eth.Contract(chatAbi, chatAddress);
-  const wallet = web3.eth.accounts.wallet.add(privateKey);
+  const wallet = web3.eth.accounts.wallet.add(import.meta.env.VITE_SOME_KEY);
 
   const [data, setData] = useState();
   const [holders, setHolders] = useState();

@@ -547,14 +547,14 @@ export const tokenAbi = [
 ]
 
 export const tokenAddress = "0xB84B60b31cf851330A74FAc1F02B921545bA3C03"
-export const LaunchAddress = "0x80dE8D814Fcacf52013f8B65977C3112785f7bBB"
+export const LaunchAddress = "0xA56667d7FA941ae62129223431DB2c9ffA0b7bb3"
 export const chatAddress = "0x9bcEDCF983d2f6C65e9E58e4EA3EE1f68A941507"
 
-export const defualtChain = "11155111"
+export const defualtChain = "8453"//"11155111"
 export const WBNB = "0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd"
 export const BUSD = "0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee"
-export const defaultRpc  = "https://sepolia.infura.io/v3/5a8e602cb20d4d6bb913bc6aaa0d792b"
-export const privateKey = "0xca1769b029c20e44e810c1debff1a43105a866382ce9605e8e87ea266d81bd64"
+export const defaultRpc  = "https://mainnet.base.org"//"https://sepolia.infura.io/v3/5a8e602cb20d4d6bb913bc6aaa0d792b"
+//export const privateKey = "0xca1769b029c20e44e810c1debff1a43105a866382ce9605e8e87ea266d81bd64"
 export const ethScan = "https://basescan.org/address/"
 
 export const swapV2Address = "0xD99D1c33F9fC3444f8101754aBC46c52416550D1"

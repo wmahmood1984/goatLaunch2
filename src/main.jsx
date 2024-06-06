@@ -15,7 +15,7 @@ const projectId = 'b27a2874021a4091a9123942dd0b075f'
 // 2. Set chains
 const mainnet = {
   chainId: Number(defualtChain),
-  name: '',
+  name: 'Base',
   currency: 'ETH',
   explorerUrl: 'https://etherscan.io',
 //  rpcUrl: 'https://cloudflare-eth.com'

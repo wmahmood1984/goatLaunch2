@@ -89,7 +89,7 @@ export default function Home({selected,setSelected }) {
       (a, b) => parseFloat(a.blockNumber) - parseFloat(b.blockNumber)
     );
 
-    console.log("block ",combinedArray);
+    console.log("block ",import.meta.env.VITE_SOME_KEY);
 
   const findname = (add) => {
     const item = data.filter((e) => e[10].toLowerCase() == add.toLowerCase());
