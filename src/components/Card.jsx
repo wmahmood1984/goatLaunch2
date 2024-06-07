@@ -56,7 +56,7 @@ export default function Card({ v, ethThreshold }) {
               class="  text-white hover:text-blue-500  text-[#FFB921] hover:underline font-bold  "
               target="_blank"
               rel="noopener noreferrer"
-              href={v[9][0]}
+              href={v[9][2]}
             >
               <svg
                 aria-hidden="true"
@@ -78,7 +78,7 @@ export default function Card({ v, ethThreshold }) {
               class=" text-white hover:text-blue-500  text-[#FFB921] hover:underline font-bold  "
               target="_blank"
               rel="noopener noreferrer"
-              href={v[9][2]}
+              href={v[9][1]}
             >
               <svg
                 aria-hidden="true"

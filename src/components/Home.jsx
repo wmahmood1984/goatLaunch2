@@ -137,7 +137,9 @@ export default function Home({selected,setSelected }) {
     }
   };
 
-  console.log("block ",sorted);
+  console.log("block ",data
+    
+  );
 
   return (
     data &&
