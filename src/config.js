@@ -553,7 +553,7 @@ export const chatAddress = "0x63ee07fbAE8C58bE8580Cb61B80603A8D55762C5"
 export const defualtChain = "8453"//"11155111"
 export const WBNB = "0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd"
 export const BUSD = "0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee"
-export const defaultRpc  = "https://mainnet.base.org"//"https://sepolia.infura.io/v3/5a8e602cb20d4d6bb913bc6aaa0d792b"
+export const defaultRpc  = "https://base-rpc.publicnode.com"//"https://mainnet.base.org"//"https://sepolia.infura.io/v3/5a8e602cb20d4d6bb913bc6aaa0d792b"
 export const ethScan = "https://basescan.org/address/"
 
 export const swapV2Address = "0xD99D1c33F9fC3444f8101754aBC46c52416550D1"

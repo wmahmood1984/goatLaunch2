@@ -89,7 +89,7 @@ export default function Home({selected,setSelected }) {
       (a, b) => parseFloat(a.blockNumber) - parseFloat(b.blockNumber)
     );
 
-    console.log("block ",import.meta.env.VITE_SOME_KEY);
+
 
   const findname = (add) => {
     const item = data.filter((e) => e[10].toLowerCase() == add.toLowerCase());
@@ -137,7 +137,7 @@ export default function Home({selected,setSelected }) {
     }
   };
 
-
+  console.log("block ",sorted);
 
   return (
     data &&
@@ -327,8 +327,14 @@ export default function Home({selected,setSelected }) {
                                   </div>
                                 </div>
                               </div>
-                              <div class="flex flex-col sm:items-end flex-shrink-0">
-                                <div class="mt-1 flex justify-start space-x-2">
+                              <div 
+                              
+ //                             class="flex flex-col sm:items-end flex-shrink-0"
+                              >
+                                <div 
+                                
+                                class="mt-1 flex justify-start space-x-2"
+                                >
                                   <a
                                     class=" text-white hover:text-blue-500  text-[#FFB921] hover:underline font-bold  "
                                     target="_blank"
@@ -351,11 +357,12 @@ export default function Home({selected,setSelected }) {
                                       ></path>
                                     </svg>
                                   </a>
+                                  
                                   <a
+                                    style={{cursor:"pointer"}}
                                     class="  text-white hover:text-blue-500  text-[#FFB921] hover:underline font-bold  "
                                     target="_blank"
-                                    rel="noopener noreferrer"
-                                    href={v[9][2]}
+                                     href={v[9][2]}
                                   >
                                     <svg
                                       aria-hidden="true"
@@ -374,6 +381,7 @@ export default function Home({selected,setSelected }) {
                                     </svg>
                                   </a>
                                   <a
+                                                                      style={{cursor:"pointer"}}
                                     class=" text-white hover:text-blue-500  text-[#FFB921] hover:underline font-bold  "
                                     target="_blank"
                                     rel="noopener noreferrer"
