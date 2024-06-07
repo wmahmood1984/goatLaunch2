@@ -107,7 +107,7 @@ export default function Card({ v, ethThreshold }) {
             }%`,
           }}
           class="bg-blue-700 p-1.5 text-center text-xs font-medium leading-none text-white style-HciqI"
-          id="style-HciqI"
+          id="style-HciqI "
         >
           {`${
             Number((formatEther(v.ethCollected) / ethThreshold) * 100).toFixed(2)
