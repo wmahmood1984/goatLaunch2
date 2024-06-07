@@ -210,7 +210,7 @@ export default function Details({selected,setSelected}) {
         setToggle,
         data[10],
         {
-          gasLimit: 2700000,
+          gasLimit: 3000000,
           value: parseEther(amount.toString()),
         }
       );
