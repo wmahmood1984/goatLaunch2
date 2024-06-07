@@ -85,7 +85,7 @@ export default function Details({selected,setSelected}) {
     }
   };
 
-  console.log("chat data", state);
+
 
   useEffect(() => {
     const abc = async () => {
@@ -238,6 +238,8 @@ export default function Details({selected,setSelected}) {
   const divStyle = {
     backgroundImage: `url("./assets/backg.png") !important`,
   };
+
+  console.log("chat data", state);
 
   return (
     data && (

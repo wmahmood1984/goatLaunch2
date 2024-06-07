@@ -49,7 +49,9 @@ export default function LeaderBoard() {
                       />
                       🥇{" "}
                       <Link
-                                to={`details/${v[10]}`}
+                                to={`/details/${v[10]}`}
+
+                                state={{ data: v }}
                         class="   text-[#FFB921] hover:underline font-bold  "
                         href="profile?address=0x9f2F31d1d4cba2D61F457378EFD9F082307949eD"
                       >
