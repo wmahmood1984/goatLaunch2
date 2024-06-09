@@ -547,13 +547,13 @@ export const tokenAbi = [
 ]
 
 export const tokenAddress = "0xB84B60b31cf851330A74FAc1F02B921545bA3C03"
-export const LaunchAddress = "0x23615844f92c0aacbFC571d74149E391c65C1Ab1"
+export const LaunchAddress = "0x2F3Ee0BD984540eF084E88DE061575663E7bf84d"
 export const chatAddress = "0x63ee07fbAE8C58bE8580Cb61B80603A8D55762C5"
 
-export const defualtChain = "8453"//"11155111"
+export const defualtChain = "11155111"//"8453"//
 export const WBNB = "0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd"
 export const BUSD = "0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee"
-export const defaultRpc  = "https://base-rpc.publicnode.com"//"https://mainnet.base.org"//"https://sepolia.infura.io/v3/5a8e602cb20d4d6bb913bc6aaa0d792b"
+export const defaultRpc  ="https://sepolia.infura.io/v3/5a8e602cb20d4d6bb913bc6aaa0d792b"// "https://base-rpc.publicnode.com"//"https://mainnet.base.org"//
 export const ethScan = "https://basescan.org/address/"
 
 export const swapV2Address = "0xD99D1c33F9fC3444f8101754aBC46c52416550D1"
@@ -721,6 +721,18 @@ export const LaunchAbi = [
 				"internalType": "uint256",
 				"name": "ethPaid",
 				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "price",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "time",
+				"type": "uint256"
 			}
 		],
 		"name": "TokensPurchased",
@@ -776,6 +788,18 @@ export const LaunchAbi = [
 				"indexed": false,
 				"internalType": "uint256",
 				"name": "ethReceived",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "price",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "time",
 				"type": "uint256"
 			}
 		],

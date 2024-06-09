@@ -1,10 +1,10 @@
 import React from 'react'
-import { sampleOHLCV, tradeData } from "./tradeX/15min_btc";
+import {  tradeData } from "./tradeX/15min_btc";
 import { CHART_OPTIONS } from "./tradeX/utils";
 import useTheme from "../components/hooks/useTheme";
 const TokenChart = React.lazy(() => import('./tradeX/Wrapper'));
 
-export default function Chart({symbol}) {
+export default function Chart({symbol,chartData}) {
     const { isLightTheme, theme, switchTheme } = useTheme();
     return (
     <div className={`full-size ${theme}`}>
@@ -24,7 +24,7 @@ export default function Chart({symbol}) {
               chartType: "candlestick", // Assuming "candlestick" is the CHART_OPTIONS[0]
             },
           }}
-          chartData={sampleOHLCV}
+          chartData={chartData}
           tradeData={tradeData}
         />
       </React.Suspense>

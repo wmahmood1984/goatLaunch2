@@ -79,6 +79,7 @@ const TokenChart: React.FC<IProps> = (props) => {
     chartData,
     tradeData,
   } = props;
+
   const [availability, setAvailability] = useState<AvailabilityType | null>(
     null,
   );
@@ -194,7 +195,7 @@ const TokenChart: React.FC<IProps> = (props) => {
   };
 
   useEffect(() => {
-    setTitle(`${symbol}/${availability?.base || ""}`);
+   // setTitle(`${symbol}/${availability?.base || ""}`);
   }, [availability, symbol]);
 
   useEffect(() => {
@@ -239,7 +240,8 @@ const TokenChart: React.FC<IProps> = (props) => {
     return <div />;
   }
 
-  console.log("chart",selectedChartType)
+  // console.log("data",data)
+  // console.log("chartdata",chartData)
   return (
     <FullScreenWrapper>
       {({ handle, isIOS }) => (

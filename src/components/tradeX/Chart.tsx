@@ -41,6 +41,7 @@ const Chart: FC<IProps> = ({
 }) => {
   const { theme, isLightTheme } = useTheme();
 
+
   const registerIndicators = (chart: ITradeX) => {
     chart.setIndicators(customIndicators);
   };
@@ -148,7 +149,7 @@ const Chart: FC<IProps> = ({
       <div
 
         id={chartAccessor}
-        className="w-full flex justify-center full-size"
+
       />
     </div>
   );

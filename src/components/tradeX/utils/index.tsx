@@ -5,7 +5,7 @@ import { IChartOption, IIndicatorOption } from "./types";
 import React from "react";
 
 export const LIMIT = 250;
-export const DEFAULT_RANGE_LIMIT = 25;
+export const DEFAULT_RANGE_LIMIT = 45;
 
 export const CHART_OPTIONS: IChartOption[] = [
   {

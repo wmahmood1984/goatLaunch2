@@ -137,7 +137,7 @@ export default function Home({selected,setSelected }) {
     }
   };
 
-  console.log("block ",data
+  console.log("block ",combinedArray
     
   );
 

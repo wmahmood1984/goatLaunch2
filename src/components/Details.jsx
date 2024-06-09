@@ -43,11 +43,12 @@ export default function Details({selected,setSelected}) {
   const { walletProvider } = useWeb3ModalProvider()
   const { state } = useLocation();
 
-  //  console.log("props", state.data);
+
   const [amount, setAmount] = useState(0);
   const [toggle, setToggle] = useState(false);
   const [buySale, setBuySale] = useState("Buy");
   const [text, setText] = useState();
+  const [chartData, setChartData] = useState([[]]);
 
   // const { account, library, chainId } = useWeb3React();
   // const contractW = getContract(library, account, LaunchAddress, LaunchAbi);
@@ -69,7 +70,11 @@ export default function Details({selected,setSelected}) {
   const [ethThreshold, setEthThreshold] = useState("0");
   const [tokenName, setTokenName] = useState("");
   const [tokenBalance, setTokenBalance] = useState("0");
-
+  const [Events, setEvents] = useState();
+  const [saleEvents, setSaleEvents] = useState();
+  
+  
+  
   const updateChat = async () => {
     setToggle(true);
     try {
@@ -101,13 +106,40 @@ export default function Details({selected,setSelected}) {
       const _totalSupply = await tokenContractR.methods.totalSupply().call();
       setsupply(formatEther(_totalSupply));
 
+      const _ethThreshold = await contractR.methods.ethThreshold().call();
+
+      setEthThreshold(formatEther(_ethThreshold));
+
+      const _block = await web3.eth.getBlockNumber();
+      const _events = await contractR.getPastEvents("TokensPurchased", {
+        fromBlock: `${_block - 5000}`,
+        toBlock: `${_block}`,
+      });
+
+
+
+      const _eventsF = _events.map((v, e) => {
+        const mainData = [..._data].filter(e=>e.tokenAdd==v.returnValues.tokenAddress)
+        return { data: v.returnValues, blockNumber: v.blockNumber,mainData };
+      });
+      setEvents(_eventsF);
+
+      const _Saleevents = await contractR.getPastEvents("TokensSold", {
+        fromBlock: `${_block - 5000}`,
+        toBlock: `${_block}`,
+      });
+      const _seventsF = _Saleevents.map((v, e) => {
+        const mainData = [..._data].filter(e=>e.tokenAdd==v.returnValues.tokenAddress)
+        return { data: v.returnValues, blockNumber: v.blockNumber,mainData };
+      });
+      setSaleEvents(_seventsF);
+
       const _chatData = await chatcontract.methods
         .getchats(state.data[10])
         .call();
       setChatData(_chatData);
 
-      const _ethThreshold = await contractR.methods.ethThreshold().call();
-      setEthThreshold(formatEther(_ethThreshold));
+
 
       const _tokenName = await tokenContractR.methods.name().call();
       setTokenName(_tokenName);
@@ -240,7 +272,8 @@ export default function Details({selected,setSelected}) {
     backgroundImage: `url("./assets/backg.png") !important`,
   };
 
-  console.log("chat data", state);
+  const combinedArray = Events && saleEvents && [...Events, ...saleEvents];
+  console.log("props", combinedArray);
 
   return (
     data && (
@@ -274,6 +307,7 @@ export default function Details({selected,setSelected}) {
               class="py-10 relative"
             >
               <div style={divStyle} class="px-4 sm:px-6 lg:px-8 mx-auto">
+              <Chart symbol={data[1]} chartData={chartData}/>
                 <div 
 
                 class="flex flex-col xl:flex-row gap-4 p-4 relative">
@@ -285,7 +319,7 @@ export default function Details({selected,setSelected}) {
 
                       class=" opacity-80"
                     >
-                      <Chart symbol={data[1]}/>
+              
                       {/* <iframe
                         src="https://dexscreener.com/base/0xbE90C8602e710156f45Cc046BE4256a312Fe882a?embed=1&amp;theme=dark&amp;info=0"
                         allowfullscreen=""
