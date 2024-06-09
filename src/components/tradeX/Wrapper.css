@@ -1,0 +1,56 @@
+.toolbar {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.full-size {
+    height: 100%;
+    width: 100%;
+}
+
+.flex-container {
+    display: flex; /* Equivalent to flex */
+    flex-direction: column; /* Equivalent to flex-col */
+    gap: 1rem; /* Equivalent to gap-4 */
+    padding: 1rem; /* Equivalent to p-4 */
+    width: 100%; /* Assuming full-size means full width */
+    height: 100%; /* Assuming full-size means full height */
+  }
+
+
+  .flex-center-container {
+    width: 100%; /* Equivalent to w-full */
+    display: flex; /* Equivalent to flex */
+    justify-content: center; /* Equivalent to justify-center */
+    width: 100%; /* Assuming full-size means full width */
+    height: 100%; /* Assuming full-size means full height */
+  }
+
+
+  .custom-flex-box {
+    border-radius: 0.25rem; /* Equivalent to rounded */
+    padding-left: 0.5rem; /* Equivalent to px-2 */
+    padding-right: 0.5rem; /* Equivalent to px-2 */
+    padding-top: 0.5rem; /* Equivalent to py-2 */
+    padding-bottom: 0.5rem; /* Equivalent to py-2 */
+    background-color: var(--foreground); /* Equivalent to bg-foreground */
+    display: flex; /* Equivalent to flex */
+    flex-direction: row; /* Equivalent to flex-row */
+    flex-wrap: wrap; /* Equivalent to flex-wrap */
+    color: var(--text-secondary); /* Equivalent to text-text-secondary */
+    font-size: 0.75rem; /* Equivalent to text-xs */
+    font-weight: normal; /* Equivalent to font-normal */
+    width: fit-content; /* Equivalent to w-fit */
+  }
+  
+  /* Dark mode specific styles */
+  @media (prefers-color-scheme: dark) {
+    .custom-flex-box {
+      background-color: var(--state-inactive); /* Equivalent to dark:bg-state-inactive */
+    }
+  }
+  
+  

@@ -22,6 +22,7 @@ import { useWeb3ModalProvider, useWeb3ModalAccount } from '@web3modal/ethers/rea
 import { BrowserProvider, } from 'ethers'
 
 import { useMediaQuery } from "react-responsive";
+import Chart from "./Chart";
 // export const getContract = (library, account, add, abi) => {
 //   const signer = library?.getSigner(account).connectUnchecked();
 //   var contract = new Contract(add, abi, signer);
@@ -273,19 +274,25 @@ export default function Details({selected,setSelected}) {
               class="py-10 relative"
             >
               <div style={divStyle} class="px-4 sm:px-6 lg:px-8 mx-auto">
-                <div class="flex flex-col xl:flex-row gap-4 p-4 relative">
-                  <div class="flex-grow">
+                <div 
+
+                class="flex flex-col xl:flex-row gap-4 p-4 relative">
+                  <div 
+
+                  class="flex-grow">
                     <div
-                      id="dexscreener-embed"
-                      class=" opacity-80 sm:rounded-3xl overflow-hidden max-h-[40px] "
+
+
+                      class=" opacity-80"
                     >
-                      <iframe
+                      <Chart symbol={data[1]}/>
+                      {/* <iframe
                         src="https://dexscreener.com/base/0xbE90C8602e710156f45Cc046BE4256a312Fe882a?embed=1&amp;theme=dark&amp;info=0"
                         allowfullscreen=""
                         class="w-full"
                       >
                         {" "}
-                      </iframe>
+                      </iframe> */}
                     </div>
                     <div class="mt-5 max-w-[600px]">
                       <div>

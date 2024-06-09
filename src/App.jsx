@@ -11,6 +11,7 @@ import { ToastContainer } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
 import Sidebar from './components/Sidebar'
 import LeaderBoard from './components/LeaderBoard'
+import Chart from './components/Chart'
 
 
 
@@ -21,6 +22,7 @@ export default function App() {
 
   return (
   <div>
+
           <ToastContainer />
       <Sidebar selected={selected} setSelected={setSelected} />
     <Routes>
