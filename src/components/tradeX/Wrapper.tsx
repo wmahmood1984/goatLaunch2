@@ -162,7 +162,7 @@ const TokenChart: React.FC<IProps> = (props) => {
     const resolution = selectedInterval;
 
     try {
-      console.log("FETCH CHART DATA");
+      // console.log("FETCH CHART DATA");
       let newData = chartData;
       setIsLoading(true);
       if (tokenId) {

@@ -11,15 +11,18 @@ import {
   chatAbi,
   chatAddress,
   defaultRpc,
-  defualtChain, 
+  defualtChain,
   ethScan,
   tokenAbi,
 } from "../config";
 import Web3 from "web3";
 import { toast } from "react-toastify";
 import { CircularProgress } from "@mui/material";
-import { useWeb3ModalProvider, useWeb3ModalAccount } from '@web3modal/ethers/react'
-import { BrowserProvider, } from 'ethers'
+import {
+  useWeb3ModalProvider,
+  useWeb3ModalAccount,
+} from "@web3modal/ethers/react";
+import { BrowserProvider } from "ethers";
 
 import { useMediaQuery } from "react-responsive";
 import Chart from "./Chart";
@@ -29,30 +32,28 @@ import Chart from "./Chart";
 //   return contract;
 // };
 
-export const getContract = async (conAdd,conAbi,walletProvider)=>{
-  const ethersProvider = new BrowserProvider(walletProvider)
-  const signer = await ethersProvider.getSigner()
+export const getContract = async (conAdd, conAbi, walletProvider) => {
+  const ethersProvider = new BrowserProvider(walletProvider);
+  const signer = await ethersProvider.getSigner();
   // The Contract object
-  const contract = new Contract(conAdd, conAbi, signer)
-  return contract
-}
+  const contract = new Contract(conAdd, conAbi, signer);
+  return contract;
+};
 
-export default function Details({selected,setSelected}) {
+export default function Details({ selected, setSelected }) {
   const isMobile = useMediaQuery({ query: "(max-width: 600px)" });
-  const { address, chainId, isConnected } = useWeb3ModalAccount()
-  const { walletProvider } = useWeb3ModalProvider()
+  const { address, chainId, isConnected } = useWeb3ModalAccount();
+  const { walletProvider } = useWeb3ModalProvider();
   const { state } = useLocation();
-
 
   const [amount, setAmount] = useState(0);
   const [toggle, setToggle] = useState(false);
   const [buySale, setBuySale] = useState("Buy");
   const [text, setText] = useState();
-  const [chartData, setChartData] = useState([[]]);
 
   // const { account, library, chainId } = useWeb3React();
   // const contractW = getContract(library, account, LaunchAddress, LaunchAbi);
- // const tokenContract = getContract(library, account, state.data[10], tokenAbi);
+  // const tokenContract = getContract(library, account, state.data[10], tokenAbi);
 
   const wchain = chainId ? chainId : defualtChain;
   const web3 = new Web3(new Web3.providers.HttpProvider(defaultRpc));
@@ -72,9 +73,7 @@ export default function Details({selected,setSelected}) {
   const [tokenBalance, setTokenBalance] = useState("0");
   const [Events, setEvents] = useState();
   const [saleEvents, setSaleEvents] = useState();
-  
-  
-  
+
   const updateChat = async () => {
     setToggle(true);
     try {
@@ -90,8 +89,6 @@ export default function Details({selected,setSelected}) {
       setToggle(false);
     }
   };
-
-
 
   useEffect(() => {
     const abc = async () => {
@@ -116,11 +113,11 @@ export default function Details({selected,setSelected}) {
         toBlock: `${_block}`,
       });
 
-
-
       const _eventsF = _events.map((v, e) => {
-        const mainData = [..._data].filter(e=>e.tokenAdd==v.returnValues.tokenAddress)
-        return { data: v.returnValues, blockNumber: v.blockNumber,mainData };
+        const mainData = [..._data].filter(
+          (e) => e.tokenAdd == v.returnValues.tokenAddress
+        );
+        return { data: v.returnValues, blockNumber: v.blockNumber, mainData };
       });
       setEvents(_eventsF);
 
@@ -129,8 +126,10 @@ export default function Details({selected,setSelected}) {
         toBlock: `${_block}`,
       });
       const _seventsF = _Saleevents.map((v, e) => {
-        const mainData = [..._data].filter(e=>e.tokenAdd==v.returnValues.tokenAddress)
-        return { data: v.returnValues, blockNumber: v.blockNumber,mainData };
+        const mainData = [..._data].filter(
+          (e) => e.tokenAdd == v.returnValues.tokenAddress
+        );
+        return { data: v.returnValues, blockNumber: v.blockNumber, mainData };
       });
       setSaleEvents(_seventsF);
 
@@ -138,8 +137,6 @@ export default function Details({selected,setSelected}) {
         .getchats(state.data[10])
         .call();
       setChatData(_chatData);
-
-
 
       const _tokenName = await tokenContractR.methods.name().call();
       setTokenName(_tokenName);
@@ -184,8 +181,16 @@ export default function Details({selected,setSelected}) {
 
   const saleFunc = async () => {
     const check = validation();
-    const tokenContract = await getContract(state.data[10], tokenAbi,walletProvider)
-    const contractW = await getContract(LaunchAddress, LaunchAbi,walletProvider);
+    const tokenContract = await getContract(
+      state.data[10],
+      tokenAbi,
+      walletProvider
+    );
+    const contractW = await getContract(
+      LaunchAddress,
+      LaunchAbi,
+      walletProvider
+    );
     if (check) {
       writeFunction(
         "approve",
@@ -224,9 +229,13 @@ export default function Details({selected,setSelected}) {
   };
 
   const buyFunc = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const check = validation();
-    const contractW = await getContract(LaunchAddress, LaunchAbi,walletProvider);
+    const contractW = await getContract(
+      LaunchAddress,
+      LaunchAbi,
+      walletProvider
+    );
     if (check) {
       writeFunction(
         "Buy",
@@ -273,10 +282,138 @@ export default function Details({selected,setSelected}) {
   };
 
   const combinedArray = Events && saleEvents && [...Events, ...saleEvents];
-  console.log("props", combinedArray);
+
+  // const chartData =
+  //   Events &&
+  //   saleEvents &&
+  //   combinedArray.map((e, index) => {
+  //     console.log("inside", e);
+  //     var _time = 0;
+  //     var _arr = [];
+  //     if (index == 0) {
+  //       _time = Number(e.data.time);
+  //       _arr[0] = Number(e.data.time);
+  //       _arr[1] = Number(e.data.price);
+  //       _arr[2] = Number(e.data.price);
+  //       _arr[3] = Number(e.data.price);
+  //       _arr[4] = Number(e.data.price);
+  //       _arr[5] = Number(wte(e.data.amount)).toFixed(0);
+  //     }
+
+  //     if(index==combinedArray.length){
+  //       _arr[4] = Number(e.data.price);
+  //       return _arr;
+  //     }
+
+
+
+  //     if (Number(e.data.time) < _time + 60) {
+  //       if (Number(e.data.price) > _arr[2]) {
+  //         _arr[2] = Number(e.data.price);
+  //       }
+
+  //       if (Number(e.data.price) < _arr[3]) {
+  //         _arr[3] = Number(e.data.price);
+  //       }
+
+  //       _arr[5] += Number(wte(e.data.amount)).toFixed(0);
+  //     }
+
+  //     if (Number(e.data.time) > _time + 60) {
+  //       _arr[4] = Number(e.data.price)
+  //       const duplicate = [..._arr]
+  //       _time = Number(e.data.time);
+  //       _arr[0] = Number(e.data.time);
+  //       _arr[1] = Number(e.data.price);
+  //       _arr[2] = Number(e.data.price);
+  //       _arr[3] = Number(e.data.price);
+  //       _arr[4] = Number(e.data.price);
+  //       _arr[5] = Number(wte(e.data.amount)).toFixed(0);
+  //       return duplicate
+  //     }
+
+      
+      
+
+     
+
+  //   });
+
+  const chartData = [];
+  if (Events && saleEvents && combinedArray) {
+    let _arr = [];
+    let _time = 0;
+    let lastTime = 0; // Initialize lastTime to track the last processed minute
+  
+    combinedArray.forEach((e, index) => {
+      const currentTime = Number(e.data.time) * 1000;
+      const currentPrice = Number(wte(e.data.price));
+      const currentAmount = Math.floor(Number(wte(e.data.amount)));
+  
+      if (index === 0) {
+        // Initialize the first array
+        _time = currentTime;
+        lastTime = _time; // Initialize lastTime
+        _arr = [currentTime, currentPrice, currentPrice, currentPrice, currentPrice, currentAmount];
+      } else {
+        // Check for missing minutes
+        while (currentTime >= _time + 120000) { // Check for more than 2 minutes to ensure gap
+          // Fill in the missing minute with the previous minute's data
+          _time += 60000; // Move to the next minute
+          chartData.push([_time, _arr[1], _arr[2], _arr[3], _arr[4], 0]); // Insert a new entry with volume = 0
+        }
+  
+        if (currentTime < _time + 60000) {
+          // Within the same minute interval
+          if (currentPrice > _arr[2]) {
+            _arr[2] = currentPrice; // Highest price in this minute
+          }
+  
+          if (currentPrice < _arr[3]) {
+            _arr[3] = currentPrice; // Lowest price in this minute
+          }
+  
+          // Update the volume (total amount)
+          _arr[5] = Math.floor(Number(_arr[5])) + Math.floor(Number(currentAmount));
+          // Update the closing price
+          _arr[4] = currentPrice;
+        } else {
+          // Outside the minute interval, finalize the current array
+          chartData.push([..._arr]);
+  
+          // Initialize new array for the new minute
+          _time = currentTime;
+          _arr = [currentTime, currentPrice, currentPrice, currentPrice, currentPrice, currentAmount];
+        }
+  
+        lastTime = _time; // Update lastTime to the current processed minute
+      }
+  
+      // Handle the last element case
+      if (index === combinedArray.length - 1) {
+        chartData.push([..._arr]);
+      }
+    });
+  
+    // Fill in any remaining minutes up to the last known time
+    let finalTime = lastTime;
+    const endTime = combinedArray[combinedArray.length - 1].data.time * 1000;
+    while (finalTime < endTime) {
+      finalTime += 60000;
+      chartData.push([finalTime, _arr[1], _arr[2], _arr[3], _arr[4], 0]); // Use the last known prices and volume = 0
+    }
+  }
+  
+
+  chartData.sort((a,b)=> a[0] - b[0])
+
+  console.log("izafa",chartData)
+
+
+
 
   return (
-    data && (
+    data && combinedArray && (
       <div
         //cz-shortcut-listen="true"
         class="snipcss-qdNqy"
@@ -300,26 +437,19 @@ export default function Details({selected,setSelected}) {
           </div> */}
 
           <div class="lg:pl-72">
-          <Search selected={selected} setSelected={setSelected}/>
+            <Search selected={selected} setSelected={setSelected} />
 
             <main
-              style={{ backgroundImage: `url("./assets/backg.png") !important` }}
+              style={{
+                backgroundImage: `url("./assets/backg.png") !important`,
+              }}
               class="py-10 relative"
             >
               <div style={divStyle} class="px-4 sm:px-6 lg:px-8 mx-auto">
-              <Chart symbol={data[1]} chartData={chartData}/>
-                <div 
-
-                class="flex flex-col xl:flex-row gap-4 p-4 relative">
-                  <div 
-
-                  class="flex-grow">
-                    <div
-
-
-                      class=" opacity-80"
-                    >
-              
+                <Chart symbol={data[1]} chartData={chartData} />
+                <div class="flex flex-col xl:flex-row gap-4 p-4 relative">
+                  <div class="flex-grow">
+                    <div class=" opacity-80">
                       {/* <iframe
                         src="https://dexscreener.com/base/0xbE90C8602e710156f45Cc046BE4256a312Fe882a?embed=1&amp;theme=dark&amp;info=0"
                         allowfullscreen=""
@@ -491,8 +621,7 @@ export default function Details({selected,setSelected}) {
                       <div
                         style={{
                           width: `${
-                            (formatEther(data.ethCollected) /
-                              ethThreshold) *
+                            (formatEther(data.ethCollected) / ethThreshold) *
                             100
                           }%`,
                         }}
@@ -500,123 +629,121 @@ export default function Details({selected,setSelected}) {
                         id="style-Ff8Mx"
                       >
                         {`${Number(
-                          (formatEther(data.ethCollected) /
-                            ethThreshold) *
-                            100
+                          (formatEther(data.ethCollected) / ethThreshold) * 100
                         ).toFixed(2)}%`}
                       </div>
                     </div>
-                   {(formatEther(data.firstBuyer)==0 || formatEther(data.ethCollected)>=formatEther(data.firstBuyer) || address==data.owner) ?
-                   
-                   <div 
-
-                   class="mt-10 bg-white/5 px-6 py-16 ring-1 ring-white/10 rounded-3xl sm:p-8 relative">
-                      <div 
-
-                      class="flex items-center justify-between gap-5">
-                        <button
-                          style={isMobile ? {width:"45%"}:{}}
-                          onClick={() => {
-                            setBuySale("Buy");
-                            setExpectedEth(0);
-                          }}
-                          class={`btn btn-wide bg-green-500 p-2 rounded-md text-black font-bold w-32 ${
-                            buySale == "Sale" ? "opacity-20" : ""
-                          } `}
-                        >
-                          Buy
-                        </button>
-                        <button
-                                                  style={isMobile ? {width:"45%"}:{}}
-                          onClick={() => {
-                            setBuySale("Sale");
-                            setTokenstoMint(0);
-                          }}
-                          class={`btn btn-wide bg-red-500 p-2 rounded-md text-black font-bold w-32 ${
-                            buySale == "Buy" ? "opacity-20" : ""
-                          } `}
-                        >
-                          Sell
-                        </button>
-                      </div>
-                      <div class="flex items-center w-full max-w-xs mt-5 bg-[#282c33] border border-gray-300 rounded">
-                        <input
-                                                  style={isMobile ? {width:"40%"}:{}}
-                          placeholder="0.00"
-                          class="input input-bordered flex-grow p-2 rounded-l focus:outline-none"
-                          type="text"
-                          value={amount}
-                          onChange={(e) => {
-                            setAmount(e.target.value);
-                          }}
-                        />
-                        <span class="p-2 bg-[#282c33] rounded-r border-l">
-                          {buySale == "Buy" ? "ETH" : `${tokenName}`}
-                        </span>
-                      </div>
-                      {buySale == "Sale" ? (
-                        <div>
+                    {formatEther(data.firstBuyer) == 0 ||
+                    formatEther(data.ethCollected) >=
+                      formatEther(data.firstBuyer) ||
+                    address == data.owner ? (
+                      <div class="mt-10 bg-white/5 px-6 py-16 ring-1 ring-white/10 rounded-3xl sm:p-8 relative">
+                        <div class="flex items-center justify-between gap-5">
                           <button
-                          
+                            style={isMobile ? { width: "45%" } : {}}
                             onClick={() => {
-                              setAmount(tokenBalance * 0.25);
+                              setBuySale("Buy");
+                              setExpectedEth(0);
                             }}
-                            style={{ marginLeft: "10%", fontWeight: "bold" }}
+                            class={`btn btn-wide bg-green-500 p-2 rounded-md text-black font-bold w-32 ${
+                              buySale == "Sale" ? "opacity-20" : ""
+                            } `}
                           >
-                            25%
+                            Buy
                           </button>
                           <button
+                            style={isMobile ? { width: "45%" } : {}}
                             onClick={() => {
-                              setAmount(tokenBalance * 0.5);
+                              setBuySale("Sale");
+                              setTokenstoMint(0);
                             }}
-                            style={{ marginLeft: "10%", fontWeight: "bold" }}
+                            class={`btn btn-wide bg-red-500 p-2 rounded-md text-black font-bold w-32 ${
+                              buySale == "Buy" ? "opacity-20" : ""
+                            } `}
                           >
-                            50%
-                          </button>
-                          <button
-                            onClick={() => {
-                              setAmount(tokenBalance * 0.75);
-                            }}
-                            style={{ marginLeft: "10%", fontWeight: "bold" }}
-                          >
-                            75%
-                          </button>
-                          <button
-                            onClick={() => {
-                              setAmount(tokenBalance * 1);
-                            }}
-                            style={{ marginLeft: "10%", fontWeight: "bold" }}
-                          >
-                            100%
+                            Sell
                           </button>
                         </div>
-                      ) : null}
-                      <div class="ml-2 mt-2 text-sm font-bold ">
-                        {buySale == "Buy"
-                          ? `You will get ${fN(tokensToMint, 2)} tokens`
-                          : `you will get ${Number(expectedEth).toFixed(
-                              6
-                            )} eth`}
+                        <div class="flex items-center w-full max-w-xs mt-5 bg-[#282c33] border border-gray-300 rounded">
+                          <input
+                            style={isMobile ? { width: "40%" } : {}}
+                            placeholder="0.00"
+                            class="input input-bordered flex-grow p-2 rounded-l focus:outline-none"
+                            type="text"
+                            value={amount}
+                            onChange={(e) => {
+                              setAmount(e.target.value);
+                            }}
+                          />
+                          <span class="p-2 bg-[#282c33] rounded-r border-l">
+                            {buySale == "Buy" ? "ETH" : `${tokenName}`}
+                          </span>
+                        </div>
+                        {buySale == "Sale" ? (
+                          <div>
+                            <button
+                              onClick={() => {
+                                setAmount(tokenBalance * 0.25);
+                              }}
+                              style={{ marginLeft: "10%", fontWeight: "bold" }}
+                            >
+                              25%
+                            </button>
+                            <button
+                              onClick={() => {
+                                setAmount(tokenBalance * 0.5);
+                              }}
+                              style={{ marginLeft: "10%", fontWeight: "bold" }}
+                            >
+                              50%
+                            </button>
+                            <button
+                              onClick={() => {
+                                setAmount(tokenBalance * 0.75);
+                              }}
+                              style={{ marginLeft: "10%", fontWeight: "bold" }}
+                            >
+                              75%
+                            </button>
+                            <button
+                              onClick={() => {
+                                setAmount(tokenBalance * 1);
+                              }}
+                              style={{ marginLeft: "10%", fontWeight: "bold" }}
+                            >
+                              100%
+                            </button>
+                          </div>
+                        ) : null}
+                        <div class="ml-2 mt-2 text-sm font-bold ">
+                          {buySale == "Buy"
+                            ? `You will get ${fN(tokensToMint, 2)} tokens`
+                            : `you will get ${Number(expectedEth).toFixed(
+                                6
+                              )} eth`}
+                        </div>
+                        <button
+                          style={isMobile ? { width: "100%" } : {}}
+                          onClick={buySale == "Buy" ? buyFunc : saleFunc}
+                          class={`btn btn-wide w-full max-w-xs mt-4 text-black ${
+                            buySale == "Buy"
+                              ? "bg-green-500 hover:bg-green-600"
+                              : "bg-red-500 hover:bg-red-600"
+                          } `}
+                          disabled=""
+                        >
+                          {toggle ? (
+                            <CircularProgress
+                              sx={{ color: "white" }}
+                            ></CircularProgress>
+                          ) : (
+                            buySale
+                          )}
+                        </button>
                       </div>
-                      <button
-                        style={isMobile?{width:"100%"}:{}}
-                        onClick={buySale == "Buy" ? buyFunc : saleFunc}
-                        class={`btn btn-wide w-full max-w-xs mt-4 text-black ${
-                          buySale == "Buy"
-                            ? "bg-green-500 hover:bg-green-600"
-                            : "bg-red-500 hover:bg-red-600"
-                        } `}
-                        disabled=""
-                      >
-                        {toggle ? (
-                          <CircularProgress
-                            sx={{ color: "white" }}
-                          ></CircularProgress>
-                        ) : (
-                          buySale
-                        )}
-                      </button>
-                    </div> :<p>The Deployer is the first buyer</p>}
+                    ) : (
+                      <p>The Deployer is the first buyer</p>
+                    )}
                     <div class="flex justify-center pt-10 w-full">
                       <div class="w-full max-w-2xl px-4">
                         <h1 class="text-center text-xl font-bold mb-4">
@@ -646,9 +773,11 @@ export default function Details({selected,setSelected}) {
                                 <div class="text-yellow-400 font-bold text-left">
                                   {v.balance == "0"
                                     ? "0"
-                                    : (Number(formatEther(v.balance) /
-                                        supply) *
-                                      100).toFixed(2)}{" "}
+                                    : (
+                                        Number(
+                                          formatEther(v.balance) / supply
+                                        ) * 100
+                                      ).toFixed(2)}{" "}
                                   %
                                 </div>
                               </div>
