@@ -133,11 +133,6 @@ export default function Details({ selected, setSelected }) {
       });
       setSaleEvents(_seventsF);
 
-      const _chatData = await chatcontract.methods
-        .getchats(state.data[10])
-        .call();
-      setChatData(_chatData);
-
       const _tokenName = await tokenContractR.methods.name().call();
       setTokenName(_tokenName);
       if (address) {
@@ -146,6 +141,13 @@ export default function Details({ selected, setSelected }) {
           .call();
         setTokenBalance(formatEther(_tokenBalance));
       }
+
+      const _chatData = await chatcontract.methods
+        .getchats(state.data[10])
+        .call();
+      setChatData(_chatData);
+
+   
     };
 
     abc();
@@ -200,7 +202,7 @@ export default function Details({ selected, setSelected }) {
           writeFunction(
             "Sale",
             contractW,
-            "sellToken",
+            "sellTokens",
             () => {
               setToggle(false);
               setAmount(0);
