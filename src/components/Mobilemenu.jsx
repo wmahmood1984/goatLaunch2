@@ -45,9 +45,14 @@ export default function Mobilemenu({selected,setSelected,setShowMobile}) {
         >{" "}X{" "}</button>
         <w3m-button balance='hide'/>
         <nav class="flex flex-1 flex-col">
-          <ul role="list" class="flex flex-1 flex-col gap-y-7">
+          <ul role="list" 
+                        style={{marginLeft:"10px"}}
+          class="flex flex-1 flex-col gap-y-7"
+          >
             <li>
-              <ul role="list" class="-mx-2 space-y-1">
+              <ul role="list" 
+              //class="-mx-2 space-y-1"
+              >
                 <li>
                   <Link
                     to="/"
@@ -167,7 +172,11 @@ export default function Mobilemenu({selected,setSelected,setShowMobile}) {
               </ul>
             </li>
             <li class="mt-auto">
-              <ul role="list" class="-mx-2 space-y-1">
+              <ul 
+              style={{marginLeft:"10px"}}
+              role="list" 
+              //class="-mx-2 space-y-1"
+              >
                 <li>
                   <a
                     href="https://x.com/goatpad_?s=11"
