@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Details.css";
-import { useLocation } from "react-router";
+import { useLocation, useParams } from "react-router";
 import Search from "./Search";
 import { Contract, ethers, formatEther, parseEther } from "ethers";
 import { etw, fN, writeFunction, wte } from "./writeFun";
@@ -26,6 +26,8 @@ import { BrowserProvider } from "ethers";
 
 import { useMediaQuery } from "react-responsive";
 import Chart from "./Chart";
+import { sampleOHLCV } from "./tradeX/15min_btc";
+import ApexChart from "./ApexChart";
 // export const getContract = (library, account, add, abi) => {
 //   const signer = library?.getSigner(account).connectUnchecked();
 //   var contract = new Contract(add, abi, signer);
@@ -41,6 +43,7 @@ export const getContract = async (conAdd, conAbi, walletProvider) => {
 };
 
 export default function Details({ selected, setSelected }) {
+  const {id} = useParams()
   const isMobile = useMediaQuery({ query: "(max-width: 600px)" });
   const { address, chainId, isConnected } = useWeb3ModalAccount();
   const { walletProvider } = useWeb3ModalProvider();
@@ -58,7 +61,7 @@ export default function Details({ selected, setSelected }) {
   const wchain = chainId ? chainId : defualtChain;
   const web3 = new Web3(new Web3.providers.HttpProvider(defaultRpc));
   const contractR = new web3.eth.Contract(LaunchAbi, LaunchAddress);
-  const tokenContractR = new web3.eth.Contract(tokenAbi, state.data[10]);
+  const tokenContractR = new web3.eth.Contract(tokenAbi, id);
   const chatcontract = new web3.eth.Contract(chatAbi, chatAddress);
   const wallet = web3.eth.accounts.wallet.add(import.meta.env.VITE_SOME_KEY);
 
@@ -78,7 +81,7 @@ export default function Details({ selected, setSelected }) {
     setToggle(true);
     try {
       const tx1 = await chatcontract.methods
-        .update(text, address, state.data[10])
+        .update(text, address, id)
         .send({ from: wallet.address, gasLimit: 500000 })
         .on("confirmation", (e, r) => {
           setToggle(false);
@@ -184,7 +187,7 @@ export default function Details({ selected, setSelected }) {
   const saleFunc = async () => {
     const check = validation();
     const tokenContract = await getContract(
-      state.data[10],
+      id,
       tokenAbi,
       walletProvider
     );
@@ -245,7 +248,7 @@ export default function Details({ selected, setSelected }) {
         "buyTokens",
         () => {
           setToggle(false);
-          setAmount(0);
+//          setAmount(0);
         },
         () => {
           setToggle(false);
@@ -281,9 +284,11 @@ export default function Details({ selected, setSelected }) {
 
   const divStyle = {
     backgroundImage: `url("./assets/backg.png") !important`,
+    
   };
 
-  const combinedArray = Events && saleEvents && [...Events, ...saleEvents];
+  const combinedArray1 = Events && saleEvents && [...Events, ...saleEvents];
+  const combinedArray = Events && saleEvents && combinedArray1.filter(e=>e.mainData[0][10]===id)
 
   // const chartData =
   //   Events &&
@@ -341,75 +346,76 @@ export default function Details({ selected, setSelected }) {
 
   //   });
 
-  const chartData = [];
-  if (Events && saleEvents && combinedArray) {
-    let _arr = [];
-    let _time = 0;
-    let lastTime = 0; // Initialize lastTime to track the last processed minute
-  
-    combinedArray.forEach((e, index) => {
-      const currentTime = Number(e.data.time) * 1000;
-      const currentPrice = Number(wte(e.data.price));
-      const currentAmount = Math.floor(Number(wte(e.data.amount)));
-  
-      if (index === 0) {
-        // Initialize the first array
-        _time = currentTime;
-        lastTime = _time; // Initialize lastTime
-        _arr = [currentTime, currentPrice, currentPrice, currentPrice, currentPrice, currentAmount];
-      } else {
-        // Check for missing minutes
-        while (currentTime >= _time + 120000) { // Check for more than 2 minutes to ensure gap
-          // Fill in the missing minute with the previous minute's data
-          _time += 60000; // Move to the next minute
-          chartData.push([_time, _arr[1], _arr[2], _arr[3], _arr[4], 0]); // Insert a new entry with volume = 0
-        }
-  
-        if (currentTime < _time + 60000) {
-          // Within the same minute interval
-          if (currentPrice > _arr[2]) {
-            _arr[2] = currentPrice; // Highest price in this minute
-          }
-  
-          if (currentPrice < _arr[3]) {
-            _arr[3] = currentPrice; // Lowest price in this minute
-          }
-  
-          // Update the volume (total amount)
-          _arr[5] = Math.floor(Number(_arr[5])) + Math.floor(Number(currentAmount));
-          // Update the closing price
-          _arr[4] = currentPrice;
-        } else {
-          // Outside the minute interval, finalize the current array
-          chartData.push([..._arr]);
-  
-          // Initialize new array for the new minute
-          _time = currentTime;
-          _arr = [currentTime, currentPrice, currentPrice, currentPrice, currentPrice, currentAmount];
-        }
-  
-        lastTime = _time; // Update lastTime to the current processed minute
-      }
-  
-      // Handle the last element case
-      if (index === combinedArray.length - 1) {
-        chartData.push([..._arr]);
-      }
-    });
-  
-    // Fill in any remaining minutes up to the last known time
-    let finalTime = lastTime;
-    const endTime = combinedArray[combinedArray.length - 1].data.time * 1000;
-    while (finalTime < endTime) {
-      finalTime += 60000;
-      chartData.push([finalTime, _arr[1], _arr[2], _arr[3], _arr[4], 0]); // Use the last known prices and volume = 0
-    }
-  }
-  
+//   const chartData = [];
 
-  chartData.sort((a,b)=> a[0] - b[0])
+// if (Events && saleEvents && combinedArray) {
+//   let _arr;
+//   let _time = 0;
+//   let lastTime = 0; // Initialize lastTime to track the last processed minute
 
-  console.log("izafa",chartData)
+//   combinedArray.forEach((e, index) => {
+//     const currentTime = Number(e.data.time) * 1000;
+//     const currentPrice = Number(wte(e.data.price));
+//     const currentAmount = Math.floor(Number(wte(e.data.amount)));
+
+//     if (index === 0) {
+//       // Initialize the first array
+//       _time = currentTime;
+//       lastTime = _time; // Initialize lastTime
+//       _arr = [currentTime,
+//         currentPrice, currentPrice, currentPrice, currentPrice,currentAmount] // [open, high, low, close]
+//       ;
+//     } else {
+//       // Check for missing minutes
+//       while (currentTime >= _time + 120000) { // Check for more than 2 minutes to ensure gap
+//         _time += 60000; // Move to the next minute
+//         chartData.push([
+//           currentTime,
+//           _arr[1], _arr[2], _arr[3], _arr[4],currentAmount // Use correct indices
+//         ]); // Insert a new entry with volume = 0
+//       }
+
+//       if (currentTime < _time + 60000) {
+//         // Within the same minute interval
+//         _arr[2] = Math.max(_arr[2], currentPrice); // Update high price
+//         _arr[3] = Math.min(_arr[3], currentPrice); // Update low price
+//         _arr[4] = currentPrice; // Update closing price
+//       } else {
+//         // Outside the minute interval, finalize the current array
+//         chartData.push(_arr);
+
+//         // Initialize new array for the new minute
+//         _time = currentTime;
+//         _arr = [
+//           currentTime,currentPrice, currentPrice, currentPrice, currentPrice,currentAmount // New minute data
+//         ];
+//       }
+
+//       lastTime = _time; // Update lastTime to the current processed minute
+//     }
+
+//     // Handle the last element case
+//     if (index === combinedArray.length - 1) {
+//       chartData.push(_arr);
+//     }
+//   });
+
+//   // Fill in any remaining minutes up to the last known time
+//   let finalTime = lastTime;
+//   const endTime = combinedArray.length > 0 ? combinedArray[combinedArray.length - 1].data.time * 1000 : 0;
+//   while (finalTime < endTime) {
+//     finalTime += 60000;
+//     chartData.push([finalTime,_arr[4], _arr[4], _arr[4], _arr[4],_arr[5]] // Use the last known prices
+//     );
+//   }
+// }
+
+// chartData.sort((a, b) => a.x - b.x); // Sort based on the 'x' (date)
+
+
+//   // console.log("before",combinedArray1)
+//   // console.log("after",combinedArray)
+//   console.log("id",chartData)
 
 
 
@@ -444,11 +450,13 @@ export default function Details({ selected, setSelected }) {
             <main
               style={{
                 backgroundImage: `url("./assets/backg.png") !important`,
+                marginLeft: isMobile ? "-23px": ""
               }}
               class="py-10 relative"
             >
               <div style={divStyle} class="px-4 sm:px-6 lg:px-8 mx-auto">
-                <Chart symbol={data[1]} chartData={chartData} />
+                  {/* <ApexChart data={[{data:chartData}]}/>                */}
+                <Chart symbol={data[1]} chartData={sampleOHLCV} />
                 <div class="flex flex-col xl:flex-row gap-4 p-4 relative">
                   <div class="flex-grow">
                     <div class=" opacity-80">

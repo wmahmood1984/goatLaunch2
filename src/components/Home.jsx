@@ -55,11 +55,11 @@ export default function Home({selected,setSelected }) {
       const _block = await web3.eth.getBlockNumber();
 
       const _events = await contractR.getPastEvents("TokensPurchased", {
-        fromBlock: `${_block - 5000}`,
+        fromBlock: `${_block - 50000}`,
         toBlock: `${_block}`,
       });
 
-
+      console.log("block ",_events);
 
       const _eventsF = _events.map((v, e) => {
         const mainData = [..._data].filter(e=>e.tokenAdd==v.returnValues.tokenAddress)
@@ -137,9 +137,7 @@ export default function Home({selected,setSelected }) {
     }
   };
 
-  console.log("block ",combinedArray
-    
-  );
+
 
   return (
     data &&
@@ -177,90 +175,93 @@ export default function Home({selected,setSelected }) {
                   {Events &&
                     saleEvents &&
                     combinedArray.map((v, e) => {
-                      if (v.data.buyer) {
-                        return (
-                          <div
+                      if((!isMobile &&  e<4) || ((isMobile &&  e<1)) ){
+                        if (v.data.buyer) {
+                          return (
+                            <div
+                              style={{ color:"white", borderLeft:"1px solid white", borderRight:"1px solid white" }}
+                              class="items-center flex gap-2  p-1 pl-2 pr-3"
+                            >
+                              <img
+                                src={findname(v.data.tokenAddress).pic}
+                                class="rounded-full h-8 w-8"
+                                alt="Token Image"
+                              />
+                              <div>
+                                <a
+                                                                target="_blank"
+                                  class="font-semibold mr-1  text-[#FFB921] hover:underline font-bold  "
+                                  href={`${ethScan}${v.data.buyer}`}
+                                >
+                                  {`${v.data.buyer.slice(
+                                    0,
+                                    4
+                                  )}...${v.data.buyer.slice(-5)}`}
+                                </a>
+                                <span class="font-semibold">
+                                  {wte(v.data.ethPaid)}
+                                </span>{" "}
+                                ETH of
+                                <Link
+                                  class="font-semibold ml-1  text-[#FFB921] hover:underline font-bold  "
+                                  to={`details/${v.data.tokenAddress}`}
+                                  state={{ data: v.mainData[0] }}  
+                                >
+                                  {findname(v.data.tokenAddress).name}
+                                </Link>
+                              </div>
+                              <img
+                                src={findname(v.data.tokenAddress).pic}
+                                class="rounded-full h-8 w-8"
+                                alt="Token Image"
+                              /> 
+                            </div>
+                          );
+                        } else {
+                          return (
+                            <div
                             style={{ color:"white", borderLeft:"1px solid white", borderRight:"1px solid white" }}
-                            class="items-center flex gap-2  p-1 pl-2 pr-3"
-                          >
-                            <img
-                              src={findname(v.data.tokenAddress).pic}
-                              class="rounded-full h-8 w-8"
-                              alt="Token Image"
-                            />
-                            <div>
-                              <a
-                                                              target="_blank"
-                                class="font-semibold mr-1  text-[#FFB921] hover:underline font-bold  "
-                                href={`${ethScan}${v.data.buyer}`}
-                              >
-                                {`${v.data.buyer.slice(
-                                  0,
-                                  4
-                                )}...${v.data.buyer.slice(-5)}`}
-                              </a>
-                              <span class="font-semibold">
-                                {wte(v.data.ethPaid)}
-                              </span>{" "}
-                              ETH of
-                              <Link
-                                class="font-semibold ml-1  text-[#FFB921] hover:underline font-bold  "
-                                to={`details/${v.data.tokenAddress}`}
-                                state={{ data: v.mainData[0] }}  
-                              >
-                                {findname(v.data.tokenAddress).name}
-                              </Link>
+                              class="items-center flex gap-2 p-1 pl-2 pr-3"
+                            >
+                              <img
+                                src={findname(v.data.tokenAddress).pic}
+                                class="rounded-full h-8 w-8"
+                                alt="Token Image"
+                              />
+                              <div>
+                                <a
+                                  target="_blank"
+                                  class="font-semibold mr-1  text-[#FFB921] hover:underline font-bold  "
+                                  href={`${ethScan}${v.data.seller}`}
+                                >
+                                  {`${v.data.seller.slice(
+                                    0,
+                                    4
+                                  )}...${v.data.seller.slice(-5)}`}
+                                </a>
+                                <span class="font-semibold">
+                                  {wte(v.data.ethReceived)}
+                                </span>{" "}
+                                ETH of
+                                <Link
+                                              to={`details/${v.data.tokenAddress}`}
+                                              state={{ data: v.mainData[0] }}
+                                  class="font-semibold ml-1  text-[#FFB921] hover:underline font-bold  "
+  
+                                >
+                                  {findname(v.data.tokenAddress).name}
+                                </Link>
+                              </div>
+                              <img
+                                src={findname(v.data.tokenAddress).pic}
+                                class="rounded-full h-8 w-8"
+                                alt="Token Image"
+                              />
                             </div>
-                            <img
-                              src={findname(v.data.tokenAddress).pic}
-                              class="rounded-full h-8 w-8"
-                              alt="Token Image"
-                            /> 
-                          </div>
-                        );
-                      } else {
-                        return (
-                          <div
-                          style={{ color:"white", borderLeft:"1px solid white", borderRight:"1px solid white" }}
-                            class="items-center flex gap-2 p-1 pl-2 pr-3"
-                          >
-                            <img
-                              src={findname(v.data.tokenAddress).pic}
-                              class="rounded-full h-8 w-8"
-                              alt="Token Image"
-                            />
-                            <div>
-                              <a
-                                target="_blank"
-                                class="font-semibold mr-1  text-[#FFB921] hover:underline font-bold  "
-                                href={`${ethScan}${v.data.seller}`}
-                              >
-                                {`${v.data.seller.slice(
-                                  0,
-                                  4
-                                )}...${v.data.seller.slice(-5)}`}
-                              </a>
-                              <span class="font-semibold">
-                                {wte(v.data.ethReceived)}
-                              </span>{" "}
-                              ETH of
-                              <Link
-                                            to={`details/${v.data.tokenAddress}`}
-                                            state={{ data: v.mainData[0] }}
-                                class="font-semibold ml-1  text-[#FFB921] hover:underline font-bold  "
-
-                              >
-                                {findname(v.data.tokenAddress).name}
-                              </Link>
-                            </div>
-                            <img
-                              src={findname(v.data.tokenAddress).pic}
-                              class="rounded-full h-8 w-8"
-                              alt="Token Image"
-                            />
-                          </div>
-                        );
+                          );
+                        }
                       }
+
                     })}
                 </div>
               </div>
@@ -270,7 +271,9 @@ export default function Home({selected,setSelected }) {
                   if (e < 2) {
                     return (
                       <div>
-                        <h2 class="text-2xl mb-4 font-bold tracking-tight text-white sm:text-2xl mt-6 text-center">
+                        <h2 
+                        style={{fontSize:"20px"}}
+                        class="text-2xl mb-4 font-bold tracking-tight text-white sm:text-2xl mt-6 text-center">
                           🐐 G.O.A.T 🐐
                         </h2>
                         <div class="flex flex-col sm:flex-row flex-wrap justify-center gap-4 mb-6">
@@ -773,7 +776,7 @@ export default function Home({selected,setSelected }) {
                   ))}
               </div>
               <div>
-                <div class="flex justify-center mt-6 mb-6 text-2xl">
+                {/* <div class="flex justify-center mt-6 mb-6 text-2xl">
                   <button
                     class="text-green-400 hover:underline font-bold p-4 style-9eDX5"
                     id="style-9eDX5"
@@ -823,7 +826,7 @@ export default function Home({selected,setSelected }) {
                   >
                     56
                   </button>
-                </div>
+                </div> */}
               </div>
             </div>
           </main>

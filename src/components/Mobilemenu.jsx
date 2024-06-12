@@ -29,11 +29,11 @@ export default function Mobilemenu({selected,setSelected,setShowMobile}) {
 
     const _selec =
     "bg-blue-700 text-white group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold w80";
-  const _nonSelect =
+    const _nonSelect =
     "text-gray-400 hover:text-white hover:bg-black/25 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold  w80";
     return (
     <div 
-    style={{border:"1px solid white", width:"300px",zIndex:"999",height:"600px",display:"flex",flexDirection:"column",justifyContent:"flex-start"}}
+    style={{  backgroundImage: `url("/public/assets/backg.png")`, position:"fixed",top:"0",left:"0", border:"1px solid white", width:"300px",zIndex:"999",height:"600px",display:"flex",flexDirection:"column",justifyContent:"flex-start"}}
     
     >
         <img 
