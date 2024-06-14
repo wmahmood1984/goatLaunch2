@@ -14,7 +14,7 @@ export default function Card({ v, ethThreshold }) {
     >
       <div class="flex gap-x-4 mt-1 justify-center">
         <Link
-          to={`details/${v[10]}`}
+          to={`/details/${v[10]}`}
           state={{ data: v }}
           class="  truncate text-3xl text-green-400  text-[#FFB921] hover:underline font-bold  "
 
@@ -115,7 +115,7 @@ export default function Card({ v, ethThreshold }) {
         </div>
       </div>
       <Link
-              to={`details/${v[10]}`}
+              to={`/details/${v[10]}`}
               state={{ data: v }}
         class=" mt-1 truncate text-xs leading-5 text-gray-400  text-[#FFB921] hover:underline font-bold  "
 
@@ -145,7 +145,7 @@ export default function Card({ v, ethThreshold }) {
       </Link>
       <Link
         class=" flex text-lg text-white font-bold bg-black/25 hover:bg-black/50 p-3 rounded-md mt-5 w-full text-center justify-center undefined "
-        to={`details/${v[10]}`}
+        to={`/details/${v[10]}`}
         state={{ data: v }}
       >
         View

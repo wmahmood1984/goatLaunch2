@@ -547,7 +547,7 @@ export const tokenAbi = [
 ]
 
 export const tokenAddress = "0xB84B60b31cf851330A74FAc1F02B921545bA3C03"
-export const LaunchAddress = "0x9c79210E73d9F6b09809a4774Bf72205378a1735"
+export const LaunchAddress = "0xC927117a65C412DdE378cA3b526B0D91DeD7f973"
 export const chatAddress = "0x63ee07fbAE8C58bE8580Cb61B80603A8D55762C5"
 
 export const defualtChain = "11155111"//"8453"//
@@ -834,6 +834,34 @@ export const LaunchAbi = [
 	{
 		"inputs": [
 			{
+				"internalType": "uint256",
+				"name": "_index",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_date",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_image",
+				"type": "string"
+			}
+		],
+		"name": "UpdateUser",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "address",
 				"name": "tokenAddress",
 				"type": "address"
@@ -988,6 +1016,30 @@ export const LaunchAbi = [
 				"internalType": "address",
 				"name": "",
 				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "createdTokens",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
 			}
 		],
 		"name": "currentPrice",
@@ -1070,6 +1122,25 @@ export const LaunchAbi = [
 		"inputs": [
 			{
 				"internalType": "address",
+				"name": "_user",
+				"type": "address"
+			}
+		],
+		"name": "getCreatedTokens",
+		"outputs": [
+			{
+				"internalType": "address[]",
+				"name": "",
+				"type": "address[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
 				"name": "tokenAddress",
 				"type": "address"
 			}
@@ -1104,6 +1175,47 @@ export const LaunchAbi = [
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_user",
+				"type": "address"
+			}
+		],
+		"name": "getLatestBuys",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "time",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "token",
+						"type": "address"
+					}
+				],
+				"internalType": "struct Launchpad.transaction[]",
+				"name": "",
+				"type": "tuple[]"
 			}
 		],
 		"stateMutability": "view",
@@ -1265,6 +1377,41 @@ export const LaunchAbi = [
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getUsers",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "add",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "dateJoined",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "image",
+						"type": "string"
+					}
+				],
+				"internalType": "struct Launchpad.user[]",
+				"name": "",
+				"type": "tuple[]"
 			}
 		],
 		"stateMutability": "view",
@@ -1526,6 +1673,40 @@ export const LaunchAbi = [
 				"internalType": "address",
 				"name": "",
 				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "userArray",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "add",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "dateJoined",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "image",
+				"type": "string"
 			}
 		],
 		"stateMutability": "view",

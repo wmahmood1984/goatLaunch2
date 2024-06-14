@@ -12,6 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Sidebar from './components/Sidebar'
 import LeaderBoard from './components/LeaderBoard'
 import Chart from './components/Chart'
+import Profile from './components/Profile'
 
 
 
@@ -26,7 +27,8 @@ export default function App() {
           <ToastContainer />
       <Sidebar selected={selected} setSelected={setSelected} />
     <Routes>
-      <Route path='leaderboard' element={<LeaderBoard />}></Route>
+      <Route path='leaderboard' element={<Profile />}></Route>
+      <Route path='profile' element={<Profile />}></Route>
       <Route
           path="add"
           element={<Add selected={selected} setSelected={setSelected} />}
