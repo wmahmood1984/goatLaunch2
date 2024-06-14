@@ -6,8 +6,12 @@ import Web3 from "web3";
 import { writeFunction, wte } from "./writeFun";
 import Card from "./Card";
 import { useNavigate } from "react-router";
+import { useMediaQuery } from "react-responsive";
+import Search from "./Search";
 
-export default function Profile() {
+
+export default function Profile({selected,setSelected}) {
+  const isMobile = useMediaQuery({ query: "(max-width: 600px)" });
   const navigate = useNavigate()
   const { address, chainId, isConnected } = useWeb3ModalAccount()
   const { disconnect } = useDisconnect()
@@ -118,9 +122,10 @@ export default function Profile() {
   };
   return (
     <main 
-    style={{marginLeft:"400px"}}
+    style={{marginLeft: isMobile ? "25px" : "400px"}}
     class="p  y-10 px-4 sm:px-6 lg:px-8 mx-auto relative snipcss-9tRc4">
       <div class="">
+      <Search selected={selected} setSelected={setSelected} />
         <div class="flex items-start flex-wrap">
           <div class="flex-auto">
             <div class="basis-full xl:flex-1 p-4 my-4 mx-auto">

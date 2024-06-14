@@ -3,7 +3,7 @@ import "./Details.css";
 import { useLocation, useParams } from "react-router";
 import Search from "./Search";
 import { Contract, ethers, formatEther, parseEther } from "ethers";
-import { etw, fN, writeFunction, wte } from "./writeFun";
+import { etw, fN, timePassed, writeFunction, wte } from "./writeFun";
 // import { useWeb3React } from "@web3-react/core";
 import {
   LaunchAbi,
@@ -13,6 +13,7 @@ import {
   defaultRpc,
   defualtChain,
   ethScan,
+  ethScanTx,
   tokenAbi,
 } from "../config";
 import Web3 from "web3";
@@ -28,6 +29,7 @@ import { useMediaQuery } from "react-responsive";
 import Chart from "./Chart";
 import { sampleOHLCV } from "./tradeX/15min_btc";
 import ApexChart from "./ApexChart";
+import Li from "./Li";
 // export const getContract = (library, account, add, abi) => {
 //   const signer = library?.getSigner(account).connectUnchecked();
 //   var contract = new Contract(add, abi, signer);
@@ -43,7 +45,7 @@ export const getContract = async (conAdd, conAbi, walletProvider) => {
 };
 
 export default function Details({ selected, setSelected }) {
-  const {id} = useParams()
+  const { id } = useParams();
   const isMobile = useMediaQuery({ query: "(max-width: 600px)" });
   const { address, chainId, isConnected } = useWeb3ModalAccount();
   const { walletProvider } = useWeb3ModalProvider();
@@ -53,6 +55,7 @@ export default function Details({ selected, setSelected }) {
   const [toggle, setToggle] = useState(false);
   const [buySale, setBuySale] = useState("Buy");
   const [text, setText] = useState();
+  const [chatTrade, setChatTrade] = useState("chat");
 
   // const { account, library, chainId } = useWeb3React();
   // const contractW = getContract(library, account, LaunchAddress, LaunchAbi);
@@ -120,7 +123,12 @@ export default function Details({ selected, setSelected }) {
         const mainData = [..._data].filter(
           (e) => e.tokenAdd == v.returnValues.tokenAddress
         );
-        return { data: v.returnValues, blockNumber: v.blockNumber, mainData };
+        return {
+          data: v.returnValues,
+          blockNumber: v.blockNumber,
+          mainData,
+          txHash: v.transactionHash,
+        };
       });
       setEvents(_eventsF);
 
@@ -132,7 +140,12 @@ export default function Details({ selected, setSelected }) {
         const mainData = [..._data].filter(
           (e) => e.tokenAdd == v.returnValues.tokenAddress
         );
-        return { data: v.returnValues, blockNumber: v.blockNumber, mainData };
+        return {
+          data: v.returnValues,
+          blockNumber: v.blockNumber,
+          mainData,
+          txHash: v.transactionHash,
+        };
       });
       setSaleEvents(_seventsF);
 
@@ -149,8 +162,6 @@ export default function Details({ selected, setSelected }) {
         .getchats(state.data[10])
         .call();
       setChatData(_chatData);
-
-   
     };
 
     abc();
@@ -186,11 +197,7 @@ export default function Details({ selected, setSelected }) {
 
   const saleFunc = async () => {
     const check = validation();
-    const tokenContract = await getContract(
-      id,
-      tokenAbi,
-      walletProvider
-    );
+    const tokenContract = await getContract(id, tokenAbi, walletProvider);
     const contractW = await getContract(
       LaunchAddress,
       LaunchAbi,
@@ -248,7 +255,7 @@ export default function Details({ selected, setSelected }) {
         "buyTokens",
         () => {
           setToggle(false);
-//          setAmount(0);
+          //          setAmount(0);
         },
         () => {
           setToggle(false);
@@ -284,11 +291,13 @@ export default function Details({ selected, setSelected }) {
 
   const divStyle = {
     backgroundImage: `url("./assets/backg.png") !important`,
-    
   };
 
   const combinedArray1 = Events && saleEvents && [...Events, ...saleEvents];
-  const combinedArray = Events && saleEvents && combinedArray1.filter(e=>e.mainData[0][10]===id)
+  const combinedArray =
+    Events &&
+    saleEvents &&
+    combinedArray1.filter((e) => e.mainData[0][10] === id);
 
   // const chartData =
   //   Events &&
@@ -311,8 +320,6 @@ export default function Details({ selected, setSelected }) {
   //       _arr[4] = Number(e.data.price);
   //       return _arr;
   //     }
-
-
 
   //     if (Number(e.data.time) < _time + 60) {
   //       if (Number(e.data.price) > _arr[2]) {
@@ -339,89 +346,80 @@ export default function Details({ selected, setSelected }) {
   //       return duplicate
   //     }
 
-      
-      
-
-     
-
   //   });
 
-//   const chartData = [];
+  //   const chartData = [];
 
-// if (Events && saleEvents && combinedArray) {
-//   let _arr;
-//   let _time = 0;
-//   let lastTime = 0; // Initialize lastTime to track the last processed minute
+  // if (Events && saleEvents && combinedArray) {
+  //   let _arr;
+  //   let _time = 0;
+  //   let lastTime = 0; // Initialize lastTime to track the last processed minute
 
-//   combinedArray.forEach((e, index) => {
-//     const currentTime = Number(e.data.time) * 1000;
-//     const currentPrice = Number(wte(e.data.price));
-//     const currentAmount = Math.floor(Number(wte(e.data.amount)));
+  //   combinedArray.forEach((e, index) => {
+  //     const currentTime = Number(e.data.time) * 1000;
+  //     const currentPrice = Number(wte(e.data.price));
+  //     const currentAmount = Math.floor(Number(wte(e.data.amount)));
 
-//     if (index === 0) {
-//       // Initialize the first array
-//       _time = currentTime;
-//       lastTime = _time; // Initialize lastTime
-//       _arr = [currentTime,
-//         currentPrice, currentPrice, currentPrice, currentPrice,currentAmount] // [open, high, low, close]
-//       ;
-//     } else {
-//       // Check for missing minutes
-//       while (currentTime >= _time + 120000) { // Check for more than 2 minutes to ensure gap
-//         _time += 60000; // Move to the next minute
-//         chartData.push([
-//           currentTime,
-//           _arr[1], _arr[2], _arr[3], _arr[4],currentAmount // Use correct indices
-//         ]); // Insert a new entry with volume = 0
-//       }
+  //     if (index === 0) {
+  //       // Initialize the first array
+  //       _time = currentTime;
+  //       lastTime = _time; // Initialize lastTime
+  //       _arr = [currentTime,
+  //         currentPrice, currentPrice, currentPrice, currentPrice,currentAmount] // [open, high, low, close]
+  //       ;
+  //     } else {
+  //       // Check for missing minutes
+  //       while (currentTime >= _time + 120000) { // Check for more than 2 minutes to ensure gap
+  //         _time += 60000; // Move to the next minute
+  //         chartData.push([
+  //           currentTime,
+  //           _arr[1], _arr[2], _arr[3], _arr[4],currentAmount // Use correct indices
+  //         ]); // Insert a new entry with volume = 0
+  //       }
 
-//       if (currentTime < _time + 60000) {
-//         // Within the same minute interval
-//         _arr[2] = Math.max(_arr[2], currentPrice); // Update high price
-//         _arr[3] = Math.min(_arr[3], currentPrice); // Update low price
-//         _arr[4] = currentPrice; // Update closing price
-//       } else {
-//         // Outside the minute interval, finalize the current array
-//         chartData.push(_arr);
+  //       if (currentTime < _time + 60000) {
+  //         // Within the same minute interval
+  //         _arr[2] = Math.max(_arr[2], currentPrice); // Update high price
+  //         _arr[3] = Math.min(_arr[3], currentPrice); // Update low price
+  //         _arr[4] = currentPrice; // Update closing price
+  //       } else {
+  //         // Outside the minute interval, finalize the current array
+  //         chartData.push(_arr);
 
-//         // Initialize new array for the new minute
-//         _time = currentTime;
-//         _arr = [
-//           currentTime,currentPrice, currentPrice, currentPrice, currentPrice,currentAmount // New minute data
-//         ];
-//       }
+  //         // Initialize new array for the new minute
+  //         _time = currentTime;
+  //         _arr = [
+  //           currentTime,currentPrice, currentPrice, currentPrice, currentPrice,currentAmount // New minute data
+  //         ];
+  //       }
 
-//       lastTime = _time; // Update lastTime to the current processed minute
-//     }
+  //       lastTime = _time; // Update lastTime to the current processed minute
+  //     }
 
-//     // Handle the last element case
-//     if (index === combinedArray.length - 1) {
-//       chartData.push(_arr);
-//     }
-//   });
+  //     // Handle the last element case
+  //     if (index === combinedArray.length - 1) {
+  //       chartData.push(_arr);
+  //     }
+  //   });
 
-//   // Fill in any remaining minutes up to the last known time
-//   let finalTime = lastTime;
-//   const endTime = combinedArray.length > 0 ? combinedArray[combinedArray.length - 1].data.time * 1000 : 0;
-//   while (finalTime < endTime) {
-//     finalTime += 60000;
-//     chartData.push([finalTime,_arr[4], _arr[4], _arr[4], _arr[4],_arr[5]] // Use the last known prices
-//     );
-//   }
-// }
+  //   // Fill in any remaining minutes up to the last known time
+  //   let finalTime = lastTime;
+  //   const endTime = combinedArray.length > 0 ? combinedArray[combinedArray.length - 1].data.time * 1000 : 0;
+  //   while (finalTime < endTime) {
+  //     finalTime += 60000;
+  //     chartData.push([finalTime,_arr[4], _arr[4], _arr[4], _arr[4],_arr[5]] // Use the last known prices
+  //     );
+  //   }
+  // }
 
-// chartData.sort((a, b) => a.x - b.x); // Sort based on the 'x' (date)
+  // chartData.sort((a, b) => a.x - b.x); // Sort based on the 'x' (date)
 
-
-//   // console.log("before",combinedArray1)
-//   // console.log("after",combinedArray)
-//   console.log("id",chartData)
-
-
-
-
+  //   // console.log("before",combinedArray1)
+  //   // console.log("after",combinedArray)
+  console.log("id", combinedArray);
   return (
-    data && combinedArray && (
+    data &&
+    combinedArray && (
       <div
         //cz-shortcut-listen="true"
         class="snipcss-qdNqy"
@@ -450,12 +448,12 @@ export default function Details({ selected, setSelected }) {
             <main
               style={{
                 backgroundImage: `url("./assets/backg.png") !important`,
-                marginLeft: isMobile ? "-23px": ""
+                marginLeft: isMobile ? "-23px" : "",
               }}
               class="py-10 relative"
             >
               <div style={divStyle} class="px-4 sm:px-6 lg:px-8 mx-auto">
-                  {/* <ApexChart data={[{data:chartData}]}/>                */}
+                {/* <ApexChart data={[{data:chartData}]}/>                */}
                 <Chart symbol={data[1]} chartData={sampleOHLCV} />
                 <div class="flex flex-col xl:flex-row gap-4 p-4 relative">
                   <div class="flex-grow">
@@ -468,61 +466,253 @@ export default function Details({ selected, setSelected }) {
                         {" "}
                       </iframe> */}
                     </div>
-                    <div class="mt-5 max-w-[600px]">
-                      <div>
-                        {chatData &&
-                          chatData.map((v, e) => (
-                            <div class="mt-5 border border-gray-600 p-3 rounded-md">
-                              <div class="flex items-center justify-left">
-                                <img
-                                  src={`https://aquamarine-confident-planarian-104.mypinata.cloud/ipfs/${state.data[9][4]}`}
-                                  class="rounded-full h-8 w-8"
-                                  alt="Token Image"
-                                />
-                                <div class="ml-3 bg-green-300 rounded-md pl-1 pr-1 text-black">
-                                  <a href={`${ethScan}${v._user}`}>
-                                    {`${v._user.slice(0, 4)}...${v._user.slice(
-                                      -5
-                                    )}`}
-                                  </a>
-                                </div>
-                                <div class="ml-3 text-xs">
-                                  {formatTime(v.time)}
-                                </div>
-                              </div>
-                              <div class="flex items-center">
-                                <div class="mt-3 text-sm font-mono overflow-hidden break-words">
-                                  {v._msg}
-                                </div>
-                              </div>
-                            </div>
-                          ))}
-                      </div>
-                      <textarea
-                        value={text}
-                        onChange={(e) => {
-                          setText(e.target.value);
+                    <div
+                      style={{
+                        width: "80%",
+                        borderBottom: "1px solid white",
+                        marginTop: "35px",
+                        display: "flex",
+                        flexDirection: "row",
+                      }}
+                    >
+                      <ul
+                        style={{
+                          display: "flex",
+                          listStyle: "none",
+                          padding: 0,
+                          cursor: "pointer",
                         }}
-                        class="w-full h-20 mt-5 p-2 rounded-md border border-gray-300"
-                        placeholder="Add a comment"
-                      ></textarea>
-                      <div class="flex">
-                        <button
-                          onClick={updateChat}
-                          disabled=""
-                          class="mr-5 rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 cursor-pointer"
+                      >
+                        <li
+                          onClick={() => {
+                            setChatTrade("chat");
+                          }}
+                          style={{
+                            marginRight: "20px",
+                            color: chatTrade == "chat" ? "#F76F0B" : "white",
+                          }}
                         >
-                          {toggle ? (
-                            <CircularProgress sx={{ color: "white" }} />
-                          ) : (
-                            "Send"
-                          )}
-                        </button>
-                        {/* <div class="mt-2">
+                          Chat
+                        </li>
+                        <li
+                          style={{
+                            color: chatTrade == "trade" ? "#F76F0B" : "white",
+                          }}
+                          onClick={() => {
+                            setChatTrade("trade");
+                          }}
+                        >
+                          Trades
+                        </li>
+                      </ul>
+                    </div>
+
+                    {chatTrade == "chat" ? (
+                      <div class="mt-5 max-w-[600px]">
+                        <div>
+                          {chatData &&
+                            chatData.map((v, e) => (
+                              <div class="mt-5 border border-gray-600 p-3 rounded-md">
+                                <div class="flex items-center justify-left">
+                                  <img
+                                    src={`https://aquamarine-confident-planarian-104.mypinata.cloud/ipfs/${state.data[9][4]}`}
+                                    class="rounded-full h-8 w-8"
+                                    alt="Token Image"
+                                  />
+                                  <div class="ml-3 bg-green-300 rounded-md pl-1 pr-1 text-black">
+                                    <a href={`${ethScan}${v._user}`}>
+                                      {`${v._user.slice(
+                                        0,
+                                        4
+                                      )}...${v._user.slice(-5)}`}
+                                    </a>
+                                  </div>
+                                  <div class="ml-3 text-xs">
+                                    {formatTime(v.time)}
+                                  </div>
+                                </div>
+                                <div class="flex items-center">
+                                  <div class="mt-3 text-sm font-mono overflow-hidden break-words">
+                                    {v._msg}
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
+                        </div>
+                        <textarea
+                          value={text}
+                          onChange={(e) => {
+                            setText(e.target.value);
+                          }}
+                          class="w-full h-20 mt-5 p-2 rounded-md border border-gray-300"
+                          placeholder="Add a comment"
+                        ></textarea>
+                        <div class="flex">
+                          <button
+                            onClick={updateChat}
+                            disabled=""
+                            class="mr-5 rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 cursor-pointer"
+                          >
+                            {toggle ? (
+                              <CircularProgress sx={{ color: "white" }} />
+                            ) : (
+                              "Send"
+                            )}
+                          </button>
+                          {/* <div class="mt-2">
                         <input class="mb-3" type="file" />
                       </div> */}
+                        </div>
                       </div>
-                    </div>
+                    ) : (
+                      <div
+                        style={{
+                          width:isMobile? "120%":"80%",
+
+                          marginTop: "35px",
+                          display: "block", // Changed from flex to block to stack vertically
+                        }}
+                      >
+                        <div
+                          style={{
+                            width: "100%",
+                            display: "flex",
+                            listStyle: "none",
+                            padding: 0,
+                            margin: 0,
+                          }}
+                        >
+                          <ul
+                            style={{
+                              width: "100%",
+                              display: "flex",
+                              borderBottom: "1px solid white",
+                              listStyle: "none",
+                              padding: 0,
+                              margin: 0,
+                            }}
+                          >
+                            <li
+                              style={{ width: "20%", boxSizing: "border-box" }}
+                            >
+                              Maker
+                            </li>
+                            <li
+                              style={{ width: "10%", boxSizing: "border-box" }}
+                            >
+                              Type
+                            </li>
+                            <li
+                              style={{ width: "10%", boxSizing: "border-box" }}
+                            >
+                              Eth
+                            </li>
+                            <li
+                              style={{ width: "10%", boxSizing: "border-box" }}
+                            >
+                              Token
+                            </li>
+                           {!isMobile &&  <li
+                              style={{ width: "20%", boxSizing: "border-box" }}
+                            >
+                              Date
+                            </li>}
+                            <li
+                              style={{ width: "30%", boxSizing: "border-box",marginLeft:isMobile? "25px":"0px" }}
+                            >
+                              Tx
+                            </li>
+                          </ul>
+                        </div>
+                        <div
+                          style={{
+                            width: "100%",
+                            display: "flex",
+                            listStyle: "none",
+                            backgroundColor: "black",
+                            padding: 0,
+                            margin: 0,
+                            marginTop: "10px", // Add some space between the two ULs if desired
+                          }}
+                        >
+                          {combinedArray &&
+                            combinedArray.map((v, e) => {
+                              return (
+                                <ul
+                                  style={{
+                                    width: "100%",
+                                    display: "flex",
+                                    listStyle: "none",
+                                    padding: 0,
+                                    margin: 0,
+                                  }}
+                                >
+                                  <li
+                                    style={{
+                                      width: "20%",
+                                      boxSizing: "border-box",
+                                    }}
+                                  >{`${
+                                    v.data.buyer
+                                      ? v.data.buyer.slice(0, 4)
+                                      : v.seller.buyer.slice(0, 4)
+                                  }...${
+                                    v.data.buyer
+                                      ? v.data.buyer.slice(-5)
+                                      : v.seller.buyer.slice(-5)
+                                  }`}</li>
+                                  <li
+                                    style={{
+                                      width: "10%",
+                                      boxSizing: "border-box",
+                                    }}
+                                  >
+                                    {v.data.buyer ? "Buy" : "Sell"}
+                                  </li>
+                                  <li
+                                    style={{
+                                      width: "10%",
+                                      boxSizing: "border-box",
+                                    }}
+                                  >
+                                    {Number(wte(v.data.ethPaid)).toFixed(isMobile? 2 : 4)}
+                                  </li>
+                                  <li
+                                    style={{
+                                      width: "10%",
+                                      boxSizing: "border-box",
+                                    }}
+                                  >
+                                    {Number(wte(v.data.amount)).toFixed(0)}
+                                  </li>
+                                 {!isMobile && <li
+                                    style={{
+                                      width: "20%",
+                                      boxSizing: "border-box",
+                                    }}
+                                  >
+                                    {timePassed(v.data.time)}
+                                  </li>}
+                                  <li
+                                    style={{
+                                      width: "30%",
+                                      boxSizing: "border-box",
+                                      marginLeft: isMobile? "25px" : "0px"
+                                    }}
+                                  ><a
+                                  target="_blank"
+                                  href={`${ethScanTx}${v.txHash}`}
+                                  >
+                                    {`${v.txHash.slice(0,6)}..${v.txHash.slice(-3)}`}
+                                  </a>
+
+                                  </li>
+                                </ul>
+                              );
+                            })}
+                        </div>
+                      </div>
+                    )}
                   </div>
                   <div class="bg-white/5 px-6 py-16 ring-1 ring-white/10 sm:rounded-3xl sm:p-8 relative lg:max-w-[25rem]">
                     Created by:

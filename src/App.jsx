@@ -27,8 +27,8 @@ export default function App() {
           <ToastContainer />
       <Sidebar selected={selected} setSelected={setSelected} />
     <Routes>
-      <Route path='leaderboard' element={<Profile />}></Route>
-      <Route path='profile' element={<Profile />}></Route>
+      <Route path='leaderboard' element={<Profile selected={selected} setSelected={setSelected} />}></Route>
+      <Route path='profile' element={<Profile selected={selected} setSelected={setSelected} />}></Route>
       <Route
           path="add"
           element={<Add selected={selected} setSelected={setSelected} />}
