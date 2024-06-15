@@ -122,7 +122,7 @@ export default function Profile({selected,setSelected}) {
   };
   return (
     <main 
-    style={{marginLeft: isMobile ? "25px" : "400px"}}
+    style={{marginLeft: isMobile ? "0px" : "400px"}}
     class="p  y-10 px-4 sm:px-6 lg:px-8 mx-auto relative snipcss-9tRc4">
       <div class="">
       <Search selected={selected} setSelected={setSelected} />
