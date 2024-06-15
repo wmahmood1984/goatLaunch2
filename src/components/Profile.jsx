@@ -169,6 +169,7 @@ export default function Profile({selected,setSelected}) {
                   <div class="basis-auto xl:basis-full">
                   <label class="block font-bold mb-2">Profile pic:</label>
                   <img
+                    style={isMobile ? {width:"70%"} : {}}
                     src={`https://aquamarine-confident-planarian-104.mypinata.cloud/ipfs/${file}`}
                     class="w-64 h-64 object-contain mt-5 mb-5 rounded-md cursor-default"
                     alt="Token Image"

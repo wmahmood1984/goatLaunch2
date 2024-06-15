@@ -776,7 +776,7 @@ export default function Home({selected,setSelected }) {
                     //     </div>
                   ))}
               </div>
-              <div>
+              {/* <div>
                 <div class="flex justify-center mt-6 mb-6 text-2xl">
                   <button
                     class="text-green-400 hover:underline font-bold p-4 style-9eDX5"
@@ -828,7 +828,7 @@ export default function Home({selected,setSelected }) {
                     56
                   </button>
                 </div>
-              </div>
+              </div> */}
             </div>
           </main>
         </div>
