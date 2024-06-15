@@ -599,7 +599,7 @@ export default function Details({ selected, setSelected }) {
                             }}
                           >
                             <li
-                              style={{ width: "20%", boxSizing: "border-box" }}
+                              style={{ width: "25%", boxSizing: "border-box" }}
                             >
                               Maker
                             </li>
@@ -655,7 +655,7 @@ export default function Details({ selected, setSelected }) {
                                 >
                                   <li
                                     style={{
-                                      width: "20%",
+                                      width: "25%",
                                       boxSizing: "border-box",
                                     }}
                                   >{`${
