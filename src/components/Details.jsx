@@ -56,6 +56,7 @@ export default function Details({ selected, setSelected }) {
   const [buySale, setBuySale] = useState("Buy");
   const [text, setText] = useState();
   const [chatTrade, setChatTrade] = useState("chat");
+  const [users, setUsers] = useState();
 
   // const { account, library, chainId } = useWeb3React();
   // const contractW = getContract(library, account, LaunchAddress, LaunchAbi);
@@ -100,6 +101,9 @@ export default function Details({ selected, setSelected }) {
     const abc = async () => {
       const _data = await contractR.methods.getTokens().call();
       setData(_data[state.data[11]]);
+
+      const _users = await contractR.methods.getUsers().call()
+      setUsers(_users)
 
       const _holders = await contractR.methods
         .getTokenHolders(state.data[10])
@@ -416,7 +420,9 @@ export default function Details({ selected, setSelected }) {
 
   //   // console.log("before",combinedArray1)
   //   // console.log("after",combinedArray)
-  console.log("id", combinedArray);
+
+  const _name = users && users.map((v,e)=>{if(v.add==address){return v.name}})
+  console.log("id", _name[0]);
   return (
     data &&
     combinedArray && (
@@ -716,7 +722,7 @@ export default function Details({ selected, setSelected }) {
                   </div>
                   <div class="bg-white/5 px-6 py-16 ring-1 ring-white/10 sm:rounded-3xl sm:p-8 relative lg:max-w-[25rem]">
                     Created by:
-                    <div class="mt-1 mb-1 text-sm">{data[3]}</div>
+                    <div class="mt-1 mb-1 text-sm">{_name.length>0? _name[0] : data.owner}</div>
                     <div class="flex justify-between gap-x-6 py-5">
                       <div class="flex gap-x-4">
                         <img

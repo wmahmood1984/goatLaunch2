@@ -32,6 +32,7 @@ export default function Home({selected,setSelected }) {
   const [showFilter, setshowFilter] = useState(false);
   const [filled, setFilled] = useState(0);
   const [sorted, setSorted] = useState();
+  const [users, setUsers] = useState();
 
   useEffect(() => {
     const abc = async () => {
