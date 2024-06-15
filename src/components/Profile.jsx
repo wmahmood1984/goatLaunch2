@@ -157,6 +157,7 @@ export default function Profile({selected,setSelected}) {
                   </div> */}
                   <label class="block font-bold mb-2">Username:</label>
                   <input
+                    style={isMobile ? {width:"80%"} : {}}
                     class="mb-6 px-3 py-1.5 border rounded-md w-full max-w-[49rem] block"
                     type="text"
                     value={name}

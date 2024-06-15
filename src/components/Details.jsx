@@ -422,7 +422,7 @@ export default function Details({ selected, setSelected }) {
   //   // console.log("after",combinedArray)
 
   const _name = users && users.map((v,e)=>{if(v.add==address){return v.name}})
-  console.log("id", _name[0]);
+  users && console.log("id", _name[0]);
   return (
     data &&
     combinedArray && (
