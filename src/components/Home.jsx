@@ -60,7 +60,7 @@ export default function Home({selected,setSelected }) {
         toBlock: `${_block}`,
       });
 
-      console.log("block ",_events);
+//      console.log("block ",_events);
 
       const _eventsF = _events.map((v, e) => {
         const mainData = [..._data].filter(e=>e.tokenAdd==v.returnValues.tokenAddress)

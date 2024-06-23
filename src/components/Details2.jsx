@@ -75,7 +75,7 @@ export default function Details({selected,setSelected}) {
   };
 
   const ranArr = [1,2]
-  console.log("block ", isMobile);
+//  console.log("block ", isMobile);
   return (
     data && (
       <div

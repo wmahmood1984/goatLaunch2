@@ -26,10 +26,9 @@ import {
 import { BrowserProvider } from "ethers";
 
 import { useMediaQuery } from "react-responsive";
-import Chart from "./Chart";
-import { sampleOHLCV } from "./tradeX/15min_btc";
-import ApexChart from "./ApexChart";
-import Li from "./Li";
+import ChartT from "../ChartT";
+
+
 // export const getContract = (library, account, add, abi) => {
 //   const signer = library?.getSigner(account).connectUnchecked();
 //   var contract = new Contract(add, abi, signer);
@@ -422,10 +421,11 @@ export default function Details({ selected, setSelected }) {
   //   // console.log("after",combinedArray)
 
   const _name = users && users.map((v,e)=>{if(v.add==address){return v.name}})
-  users && console.log("id", _name[0]);
+ // users && console.log("id", _name[0]);
   return (
-    data &&
-    combinedArray && (
+    //data &&
+    //combinedArray && 
+    (
       <div
         //cz-shortcut-listen="true"
         class="snipcss-qdNqy"
@@ -458,9 +458,12 @@ export default function Details({ selected, setSelected }) {
               }}
               class="py-10 relative"
             >
-              <div style={divStyle} class="px-4 sm:px-6 lg:px-8 mx-auto">
-                {/* <ApexChart data={[{data:chartData}]}/>                */}
-                <Chart symbol={data[1]} chartData={sampleOHLCV} />
+              <div 
+              
+              style={{height:"200px"}} 
+              //class="px-4 sm:px-6 lg:px-8 mx-auto"
+              >
+                <ChartT />
                 <div class="flex flex-col xl:flex-row gap-4 p-4 relative">
                   <div class="flex-grow">
                     <div class=" opacity-80">
@@ -722,11 +725,11 @@ export default function Details({ selected, setSelected }) {
                   </div>
                   <div class="bg-white/5 px-6 py-16 ring-1 ring-white/10 sm:rounded-3xl sm:p-8 relative lg:max-w-[25rem]">
                     Created by:
-                    <div class="mt-1 mb-1 text-sm">{_name.length>0? _name[0] : data.owner}</div>
+                    <div class="mt-1 mb-1 text-sm">{data && users &&  _name.length>0? _name[0] : data?.owner}</div>
                     <div class="flex justify-between gap-x-6 py-5">
                       <div class="flex gap-x-4">
                         <img
-                          src={`https://aquamarine-confident-planarian-104.mypinata.cloud/ipfs/${data[9][4]}`}
+                          src={`https://aquamarine-confident-planarian-104.mypinata.cloud/ipfs/${data &&  data[9][4]}`}
                           class="h-12 w-12 flex-none rounded-full bg-gray-800"
                           alt="Token Image"
                         />
@@ -736,7 +739,7 @@ export default function Details({ selected, setSelected }) {
                           </p>
                           <div class="mt-1 truncate text-xs leading-5 text-gray-400 flex gap-2">
                             <p>
-                              <strong>{data[0]}</strong> ({data[1]})
+                              <strong>{data &&  data[0]}</strong> ({ data && data[1]})
                             </p>
                           </div>
                         </div>
@@ -750,7 +753,7 @@ export default function Details({ selected, setSelected }) {
                             class=" text-white hover:text-blue-500  text-[#FFB921] hover:underline font-bold  "
                             target="_blank"
                             rel="noopener noreferrer"
-                            href={data[9][0]}
+                            href={data &&  data[9][0]}
                           >
                             <svg
                               aria-hidden="true"
@@ -772,7 +775,7 @@ export default function Details({ selected, setSelected }) {
                             class="  text-white hover:text-blue-500  text-[#FFB921] hover:underline font-bold  "
                             target="_blank"
                             rel="noopener noreferrer"
-                            href={data[9][2]}
+                            href={data &&  data[9][2]}
                           >
                             <svg
                               aria-hidden="true"
@@ -794,7 +797,7 @@ export default function Details({ selected, setSelected }) {
                             class=" text-white hover:text-blue-500  text-[#FFB921] hover:underline font-bold  "
                             target="_blank"
                             rel="noopener noreferrer"
-                            href={data[9][1]}
+                            href={data &&  data[9][1]}
                           >
                             <svg
                               aria-hidden="true"
@@ -816,33 +819,33 @@ export default function Details({ selected, setSelected }) {
                       </div>
                     </div>
                     <p class="text-sm block mb-5 overflow-hidden break-words">
-                      {data[9][3]}
+                      {data &&  data[9][3]}
                     </p>
                     <div class="mb-5">
                       Total bought:{" "}
-                      {Number(formatEther(data.ethCollected)).toFixed(4)} /{" "}
+                      {data &&  Number(formatEther(data.ethCollected)).toFixed(4)} /{" "}
                       {ethThreshold} ETH
                     </div>
                     <div class="w-full bg-neutral-600/25 rounded-md overflow-hidden shrink-0 mb-4">
                       <div
                         style={{
                           width: `${
-                            (formatEther(data.ethCollected) / ethThreshold) *
+                            (data &&  formatEther(data.ethCollected) / ethThreshold) *
                             100
                           }%`,
                         }}
                         class="bg-blue-700 p-1.5 text-center text-xs font-medium leading-none text-white style-Ff8Mx"
                         id="style-Ff8Mx"
                       >
-                        {`${Number(
+                        {data &&  `${Number(
                           (formatEther(data.ethCollected) / ethThreshold) * 100
                         ).toFixed(2)}%`}
                       </div>
                     </div>
-                    {formatEther(data.firstBuyer) == 0 ||
-                    formatEther(data.ethCollected) >=
+                    {data &&  formatEther(data.firstBuyer) == 0 ||
+                    data && formatEther(data.ethCollected) >=
                       formatEther(data.firstBuyer) ||
-                    address == data.owner ? (
+                    data && address == data?.owner ? (
                       <div class="mt-10 bg-white/5 px-6 py-16 ring-1 ring-white/10 rounded-3xl sm:p-8 relative">
                         <div class="flex items-center justify-between gap-5">
                           <button
