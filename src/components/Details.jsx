@@ -417,7 +417,7 @@ export default function Details({ selected, setSelected }) {
 
   // chartData.sort((a, b) => a.x - b.x); // Sort based on the 'x' (date)
 
-  //   // console.log("before",combinedArray1)
+ console.log("before",holders)
   //   // console.log("after",combinedArray)
 
   const _name = users && users.map((v,e)=>{if(v.add==address){return v.name}})
