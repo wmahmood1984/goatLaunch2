@@ -547,7 +547,7 @@ export const tokenAbi = [
 ]
 
 export const tokenAddress = "0xB84B60b31cf851330A74FAc1F02B921545bA3C03"
-export const LaunchAddress = "0xaA14A56FC93B14a9350D266F43E2Cc837C13783f"
+export const LaunchAddress = "0x91A935f8f08FA3d212167339ea695C1C2D5d2E23"
 export const chatAddress = "0x63ee07fbAE8C58bE8580Cb61B80603A8D55762C5"
 
 export const defualtChain = "11155111"//"8453"//
