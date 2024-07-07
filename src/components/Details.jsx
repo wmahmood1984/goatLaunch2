@@ -118,7 +118,7 @@ export default function Details({ selected, setSelected }) {
 
       const _block = await web3.eth.getBlockNumber();
       const _events = await contractR.getPastEvents("TokensPurchased", {
-        fromBlock: `${_block - 5000}`,
+        fromBlock: `${_block - 50000}`,
         toBlock: `${_block}`,
       });
 
@@ -136,7 +136,7 @@ export default function Details({ selected, setSelected }) {
       setEvents(_eventsF);
 
       const _Saleevents = await contractR.getPastEvents("TokensSold", {
-        fromBlock: `${_block - 5000}`,
+        fromBlock: `${_block - 50000}`,
         toBlock: `${_block}`,
       });
       const _seventsF = _Saleevents.map((v, e) => {
@@ -417,7 +417,7 @@ export default function Details({ selected, setSelected }) {
 
   // chartData.sort((a, b) => a.x - b.x); // Sort based on the 'x' (date)
 
- console.log("before",holders)
+ console.log("before",combinedArray)
   //   // console.log("after",combinedArray)
 
   const _name = users && users.map((v,e)=>{if(v.add==address){return v.name}})
@@ -575,152 +575,120 @@ export default function Details({ selected, setSelected }) {
                       </div>
                     ) : (
                       <div
+                    style={{
+                      width: isMobile ? "120%" : "80%",
+                      marginTop: "35px",
+                      display: "block",
+                    }}
+                  >
+                    {/* Headers */}
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        borderBottom: "1px solid white",
+                        padding: 0,
+                        margin: 0,
+                      }}
+                    >
+                      <div
                         style={{
-                          width:isMobile? "120%":"80%",
-
-                          marginTop: "35px",
-                          display: "block", // Changed from flex to block to stack vertically
+                          width: "100%",
+                          display: "flex",
+                          justifyContent: "space-between",
+                          padding: "5px 0",
                         }}
                       >
-                        <div
-                          style={{
-                            width: "100%",
-                            display: "flex",
-                            listStyle: "none",
-                            padding: 0,
-                            margin: 0,
-                          }}
-                        >
-                          <ul
+                        <span style={{ width: "25%" }}>Maker</span>
+                        <span style={{ width: "10%" }}>Type</span>
+                        <span style={{ width: "10%" }}>Eth</span>
+                        <span style={{ width: "10%" }}>Token</span>
+                        {!isMobile && (
+                          <span style={{ width: "20%" }}>Date</span>
+                        )}
+                        <span style={{ width: isMobile ? "35%" : "25%" }}>
+                          Tx
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Data Rows */}
+                    <div
+                      style={{
+                        width: "100%",
+                        display: "flex",
+                        flexDirection: "column",
+                        backgroundColor: "black",
+                        padding: 0,
+                        margin: 0,
+                        marginTop: "10px",
+                      }}
+                    >
+                      {combinedArray &&
+                        combinedArray.map((v, e) => (
+                          <div
+                            key={e}
                             style={{
                               width: "100%",
                               display: "flex",
+                              flexDirection: "column",
+                              padding: "5px 0",
                               borderBottom: "1px solid white",
-                              listStyle: "none",
-                              padding: 0,
-                              margin: 0,
                             }}
                           >
-                            <li
-                              style={{ width: "25%", boxSizing: "border-box" }}
+                            <div
+                              style={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                                padding: "5px 0",
+                              }}
                             >
-                              Maker
-                            </li>
-                            <li
-                              style={{ width: "10%", boxSizing: "border-box" }}
-                            >
-                              Type
-                            </li>
-                            <li
-                              style={{ width: "10%", boxSizing: "border-box" }}
-                            >
-                              Eth
-                            </li>
-                            <li
-                              style={{ width: "10%", boxSizing: "border-box" }}
-                            >
-                              Token
-                            </li>
-                           {!isMobile &&  <li
-                              style={{ width: "20%", boxSizing: "border-box" }}
-                            >
-                              Date
-                            </li>}
-                            <li
-                              style={{ width: "30%", boxSizing: "border-box",marginLeft:isMobile? "25px":"0px" }}
-                            >
-                              Tx
-                            </li>
-                          </ul>
-                        </div>
-                        <div
-                          style={{
-                            width: "100%",
-                            display: "flex",
-                            listStyle: "none",
-                            backgroundColor: "black",
-                            padding: 0,
-                            margin: 0,
-                            marginTop: "10px", // Add some space between the two ULs if desired
-                          }}
-                        >
-                          {combinedArray &&
-                            combinedArray.map((v, e) => {
-                              return (
-                                <ul
-                                  style={{
-                                    width: "100%",
-                                    display: "flex",
-                                    listStyle: "none",
-                                    padding: 0,
-                                    margin: 0,
-                                  }}
-                                >
-                                  <li
-                                    style={{
-                                      width: "25%",
-                                      boxSizing: "border-box",
-                                    }}
-                                  >{`${
-                                    v.data.buyer
-                                      ? v.data.buyer.slice(0, 4)
-                                      : v.seller.buyer.slice(0, 4)
-                                  }...${
-                                    v.data.buyer
-                                      ? v.data.buyer.slice(-5)
-                                      : v.seller.buyer.slice(-5)
-                                  }`}</li>
-                                  <li
-                                    style={{
-                                      width: "10%",
-                                      boxSizing: "border-box",
-                                    }}
-                                  >
-                                    {v.data.buyer ? "Buy" : "Sell"}
-                                  </li>
-                                  <li
-                                    style={{
-                                      width: "10%",
-                                      boxSizing: "border-box",
-                                    }}
-                                  >
-                                    {Number(wte(v.data.ethPaid)).toFixed(isMobile? 2 : 4)}
-                                  </li>
-                                  <li
-                                    style={{
-                                      width: "10%",
-                                      boxSizing: "border-box",
-                                    }}
-                                  >
-                                    {Number(wte(v.data.amount)).toFixed(0)}
-                                  </li>
-                                 {!isMobile && <li
-                                    style={{
-                                      width: "20%",
-                                      boxSizing: "border-box",
-                                    }}
-                                  >
-                                    {timePassed(v.data.time)}
-                                  </li>}
-                                  <li
-                                    style={{
-                                      width: "30%",
-                                      boxSizing: "border-box",
-                                      marginLeft: isMobile? "25px" : "0px"
-                                    }}
-                                  ><a
+                              <span style={{ width: "25%" }}>
+                                {`${
+                                  v.data.buyer
+                                    ? v.data.buyer.slice(0, 4)
+                                    : v.data.seller.slice(0, 4)
+                                }...${
+                                  v.data.buyer
+                                    ? v.data.buyer.slice(-5)
+                                    : v.data.seller.slice(-5)
+                                }`}
+                              </span>
+                              <span style={{ width: "10%" }}>
+                                {v.data.buyer ? "Buy" : "Sell"}
+                              </span>
+                              <span style={{ width: "10%" }}>
+                                {v.data.ethPaid
+                                  ? Number(wte(v.data.ethPaid)).toFixed(
+                                      isMobile ? 2 : 4
+                                    )
+                                  : Number(wte(v.data.ethReceived)).toFixed(
+                                      isMobile ? 2 : 4
+                                    )}
+                              </span>
+                              <span style={{ width: "10%" }}>
+                                {Number(wte(v.data.amount)).toFixed(0)}
+                              </span>
+                              {!isMobile && (
+                                <span style={{ width: "20%" }}>
+                                  {timePassed(v.data.time)}
+                                </span>
+                              )}
+                              <span style={{ width: isMobile ? "35%" : "25%" }}>
+                                <a
                                   target="_blank"
                                   href={`${ethScanTx}${v.txHash}`}
-                                  >
-                                    {`${v.txHash.slice(0,6)}..${v.txHash.slice(-3)}`}
-                                  </a>
-
-                                  </li>
-                                </ul>
-                              );
-                            })}
-                        </div>
-                      </div>
+                                >
+                                  {`${v.txHash.slice(0, 6)}..${v.txHash.slice(
+                                    -3
+                                  )}`}
+                                </a>
+                              </span>
+                            </div>
+                          </div>
+                        ))}
+                    </div>
+                  </div>
                     )}
                   </div>
                   <div class="bg-white/5 px-6 py-16 ring-1 ring-white/10 sm:rounded-3xl sm:p-8 relative lg:max-w-[25rem]">
